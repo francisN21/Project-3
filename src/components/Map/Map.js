@@ -12,7 +12,7 @@ const Map = () => {
     zoom: 3,
   });
   useEffect(() => {
-    console.log(api);
+    console.log(process.env.API_KEY);
   }, []);
   return (
     <div id="map">

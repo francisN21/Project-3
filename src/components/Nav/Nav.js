@@ -4,7 +4,6 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import { Link } from "react-router-dom";
-import styles from "./NavStyles";
 
 const Navigation = () => {
   return (
@@ -12,7 +11,7 @@ const Navigation = () => {
       <Navbar bg="dark" variant="dark" sticky="top">
         <Navbar.Brand href="/">
           <img
-            alt="#iconhere"
+            alt="#"
             src="#iconhere"
             width="30"
             height="30"
@@ -32,15 +31,9 @@ const Navigation = () => {
               Separated link
             </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link href="/about" style={styles.linkStyles}>
-            About
-          </Nav.Link>
-          <Nav.Link href="/contact" style={styles.linkStyles}>
-            Contacts
-          </Nav.Link>
-          <Nav.Link href="/login" style={styles.linkStyles}>
-            Login
-          </Nav.Link>
+          <Nav.Link href="/about">About</Nav.Link>
+          <Nav.Link href="/contact">Contacts</Nav.Link>
+          <Nav.Link href="/login">Login</Nav.Link>
         </Nav>
       </Navbar>
     </>
