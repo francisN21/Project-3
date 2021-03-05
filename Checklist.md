@@ -16,4 +16,4 @@
 - [] Setup Authentication
 
 - [] DEPLOY!
--Yeay!
+-Yeay! part 2
