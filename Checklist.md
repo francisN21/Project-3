@@ -1,0 +1,17 @@
+- [] Setup Server
+  - [] Install Dependencies
+  - []
+  - [] Setup Express App
+- [] Model DB
+  - What data will we store?
+- [] Setup Mongoose Model(s)
+- [] POST / Events/Log
+  - Create a new Event/ Log entry
+- [] GET / Event/logs
+  - List all log entries
+- [] Setup Client
+- [] Create Form to add a new entry
+- [x] Setup Map SDK on client
+- [] List all log entries on map
+- [] Setup Authentication
+- [] DEPLOY!
