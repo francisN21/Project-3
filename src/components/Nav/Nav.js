@@ -23,8 +23,8 @@ const Navigation = () => {
         </Navbar.Brand>
         <Nav className="mr-auto">
           <NavDropdown title="Generate" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/">Something</NavDropdown.Item>
-            <NavDropdown.Item href="/Saved Pass">something</NavDropdown.Item>
+            <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
+            <NavDropdown.Item href="/">something</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.4">
@@ -32,7 +32,7 @@ const Navigation = () => {
             </NavDropdown.Item>
           </NavDropdown>
           <Nav.Link href="/about">About</Nav.Link>
-          <Nav.Link href="/contact">Contacts</Nav.Link>
+          <Nav.Link href="/profile">Profile</Nav.Link>
           <Nav.Link href="/login">Login</Nav.Link>
         </Nav>
       </Navbar>
