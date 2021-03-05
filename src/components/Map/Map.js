@@ -31,7 +31,9 @@ const Map = () => {
     };
     console.log(userLocation);
   };
-
+  const style = {
+    background: "black",
+  };
   return (
     <div id="map">
       <ReactMapGL
@@ -39,7 +41,9 @@ const Map = () => {
         mapboxApiAccessToken={api}
         mapStyle={mapstyle}
         onViewportChange={setViewport}
-      ></ReactMapGL>
+      >
+        <div className="example">exampleDiv</div>
+      </ReactMapGL>
     </div>
   );
 };
