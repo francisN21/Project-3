@@ -43,8 +43,6 @@ const Map = () => {
     //   console.log(userLocation);
   }, []);
   const setPosition = (position) => {
-    let lat = position.coords.latitude;
-    let long = position.coords.longitude;
     const userLocation = {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
@@ -113,8 +111,8 @@ const Map = () => {
             <svg
               className="marker"
               style={{
-                height: `${6 * viewport.zoom}px`,
-                width: `${6 * viewport.zoom}px`,
+                height: `${3 * viewport.zoom}px`,
+                width: `${3 * viewport.zoom}px`,
               }}
               version="1.1"
               id="Layer_1"
