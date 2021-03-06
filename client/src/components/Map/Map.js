@@ -13,9 +13,9 @@ const Map = () => {
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
-    latitude: 37.971763873568634,
-    longitude: -122.35046482943676,
-    zoom: 12,
+    latitude: 37.0902,
+    longitude: -95.7129,
+    zoom: 10,
   });
 
   // useeffect for calling API to load saved events to markers on the map
