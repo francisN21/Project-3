@@ -14,6 +14,9 @@
 - [x] Setup Map SDK on client
 - [] List all log entries on map
 - [] Setup Authentication
+- [] Profile
+- [] Dashboard
 - [] Styling
 - [] DEPLOY!
+- [] README
   -Yeay! part 2

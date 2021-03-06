@@ -43,8 +43,6 @@ const Map = () => {
     //   console.log(userLocation);
   }, []);
   const setPosition = (position) => {
-    let lat = position.coords.latitude;
-    let long = position.coords.longitude;
     const userLocation = {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
@@ -63,7 +61,13 @@ const Map = () => {
   //===========TEST CONTAINER============//
   const navStyle = {
     position: "absolute",
-    top: 0,
+    top: 40,
+    right: 30,
+    padding: "10px",
+  };
+  const controlStyle = {
+    position: "auto",
+    top: 150,
     left: 0,
     padding: "10px",
   };
@@ -107,8 +111,8 @@ const Map = () => {
             <svg
               className="marker"
               style={{
-                height: `${6 * viewport.zoom}px`,
-                width: `${6 * viewport.zoom}px`,
+                height: `${3 * viewport.zoom}px`,
+                width: `${3 * viewport.zoom}px`,
               }}
               version="1.1"
               id="Layer_1"
@@ -150,8 +154,8 @@ const Map = () => {
         <div className="nav" style={navStyle}>
           <NavigationControl />
         </div>
+        <ControlPanel events={events} style={controlStyle} />
       </ReactMapGL>
-      <ControlPanel events={events} />
     </div>
   );
 };
