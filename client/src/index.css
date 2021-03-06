@@ -8,3 +8,26 @@ body {
   overflow: hidden;
 
 }
+.marker {
+  transform: translate(-50%, -100%);
+}
+.marker.red path {
+  fill: #f05305;
+}
+
+.marker.yellow path {
+  fill: #F3B73E;
+}
+
+.popup {
+  width: 40vw;
+  padding: 1rem;
+}
+
+.popup img {
+  height: 200px;
+  width: auto;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
