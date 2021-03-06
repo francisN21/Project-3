@@ -28,7 +28,7 @@ function ControlPanel(props) {
           href="https://github.com/visgl/react-map-gl/tree/6.1-release/examples/draggable-markers"
           target="_new"
         >
-          View Code ↗
+          See react map samples ↗
         </a>
       </div>
     </div>

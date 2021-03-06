@@ -63,7 +63,13 @@ const Map = () => {
   //===========TEST CONTAINER============//
   const navStyle = {
     position: "absolute",
-    top: 0,
+    top: 40,
+    right: 30,
+    padding: "10px",
+  };
+  const controlStyle = {
+    position: "auto",
+    top: 150,
     left: 0,
     padding: "10px",
   };
@@ -150,8 +156,8 @@ const Map = () => {
         <div className="nav" style={navStyle}>
           <NavigationControl />
         </div>
+        <ControlPanel events={events} style={controlStyle} />
       </ReactMapGL>
-      <ControlPanel events={events} />
     </div>
   );
 };
