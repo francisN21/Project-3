@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const db = require("./models")
 require("dotenv").config();
 
 //Port 5000 cause I'm crazy!
