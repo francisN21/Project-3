@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapGL, { Marker, Popup, GeolocateControl } from "react-map-gl";
 require("dotenv").config();
 
 const Map = () => {
@@ -34,6 +34,13 @@ const Map = () => {
   const style = {
     background: "black",
   };
+
+  const geolocateStyle = {
+    top: 0,
+    right: 0,
+    margin: 10,
+  };
+  const positionOptions = { enableHighAccuracy: true };
   return (
     <div id="map">
       <ReactMapGL
@@ -42,7 +49,12 @@ const Map = () => {
         mapStyle={mapstyle}
         onViewportChange={setViewport}
       >
-        <div className="example">exampleDiv</div>
+        <GeolocateControl
+          style={geolocateStyle}
+          positionOptions={positionOptions}
+          trackUserLocation
+          auto
+        />
       </ReactMapGL>
     </div>
   );
