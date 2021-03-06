@@ -1,5 +1,7 @@
 {
   "extends": [
+    "airbnb",
+    "airbnb/hooks",
     "eslint:recommended",
     "plugin:import/errors",
     "plugin:react/recommended",
