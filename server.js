@@ -15,7 +15,17 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
+// API Routes start with API and live at apiRoutes.js
+app.use("/api", require("./routes/apiRoutes"))
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/project-3", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+});
+
 // Let the user know the server is running, and which port.  Yeay!
 app.listen(PORT, () => {
-    console.log(`listening at http://localhost${PORT}`);
+    console.log(`listening at http://localhost:${PORT}`);
 });
