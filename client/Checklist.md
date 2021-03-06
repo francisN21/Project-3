@@ -1,10 +1,10 @@
-- [] Setup Server --Sean
-  - [] Install Dependencies
+- [x] Setup Server
+  - [x] Install Dependencies
   - []
-  - [] Setup Express App
-- [] Model DB --Sean
+  - [x] Setup Express App
+- [x] Model DB
   - What data will we store?
-- [] Setup Mongoose/mySQL Model(s)
+- [x] Setup Mongoose/mySQL Model(s)
 - [] POST / Events/Log
   - Create a new Event/ Log entry
 - [] GET / Event/logs
