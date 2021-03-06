@@ -1,18 +1,19 @@
-- [] Setup Server
+- [] Setup Server --Sean
   - [] Install Dependencies
   - []
   - [] Setup Express App
-- [] Model DB
+- [] Model DB --Sean
   - What data will we store?
 - [] Setup Mongoose/mySQL Model(s)
 - [] POST / Events/Log
   - Create a new Event/ Log entry
 - [] GET / Event/logs
-  - List all log entries
+  - List all Events!
 - [x] Setup Client
-- [] Create Form to add a new entry
+- [] Create Form to add a new Event
 - [x] Setup Map SDK on client
 - [] List all log entries on map
 - [] Setup Authentication
-
+- [] Styling
 - [] DEPLOY!
+  -Yeay! part 2

@@ -21,7 +21,7 @@ const Navigation = () => {
             Project 3
           </marquee>{" "}
         </Navbar.Brand>
-        <Nav className="mr-auto">
+        <Nav className="mr-auto collapse navbar-collapse justify-content-end">
           <NavDropdown title="Generate" id="basic-nav-dropdown">
             <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
             <NavDropdown.Item href="/">something</NavDropdown.Item>

@@ -1,0 +1,15 @@
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
+.signup-form,
+.login-form {
+  margin-top: 7%;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+
+button {
+  width: 100%;
+}
