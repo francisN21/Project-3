@@ -10,7 +10,10 @@ function ControlPanel(props) {
   return (
     <div className="control-panel">
       <h3>Draggable Marker</h3>
-      <p>Try dragging the marker to another location.</p>
+      <p>
+        shows lat and long to test the markers if they are on the correct
+        position or not.
+      </p>
       <div>
         {eventNames.map((eventName) => {
           const { events = {} } = props;
@@ -28,7 +31,7 @@ function ControlPanel(props) {
           href="https://github.com/visgl/react-map-gl/tree/6.1-release/examples/draggable-markers"
           target="_new"
         >
-          View Code ↗
+          See react map samples ↗
         </a>
       </div>
     </div>
