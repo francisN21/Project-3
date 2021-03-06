@@ -1,9 +1,7 @@
-import axios from "axios";
-const BASEURL = "https://www.omdbapi.com/?t=";
-const APIKEY = "&apikey=trilogy";
+const API_URL = "localhost";
 
-export default {
-  search: function(query) {
-    return axios.get(BASEURL + query + APIKEY);
-  }
-};
+// will be added soon once I have server working
+export async function listMarkers() {
+  const response = await fetch(`${API_URL}/something/something`);
+  return response.json();
+}
