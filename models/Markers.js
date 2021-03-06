@@ -7,7 +7,7 @@ const requiredNumber = {
   required: true,
 };
 
-const logMarkerSchema = new Schema(
+const logEventSchema = new Schema(
   {
     title: {
       type: String,
@@ -25,16 +25,12 @@ const logMarkerSchema = new Schema(
       min: -180,
       max: 180,
     },
-    visitDate: {
-      required: true,
-      type: Date,
-    },
   },
   {
     timestamps: true,
   }
 );
 
-const LogMarker = mongoose.model("LogMarker", logMarkerSchema);
+const LogEvent = mongoose.model("LogMarker", logEventSchema);
 
-module.exports = LogMarker;
+module.exports = LogEvent;
