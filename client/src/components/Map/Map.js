@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup, GeolocateControl } from "react-map-gl";
-import { listMarkers } from "../../utils/API";
+import { listEvents } from "../../utils/API";
 require("dotenv").config();
 
 const Map = () => {
@@ -18,10 +18,10 @@ const Map = () => {
     zoom: 12,
   });
 
-  // useeffect for calling API to load markers on the map
+  // useeffect for calling API to load saved events to markers on the map
   useEffect(() => {
     (async () => {
-      const showMarkers = await listMarkers();
+      const showMarkers = await listEvents();
       console.log(showMarkers);
     })();
   }, []);
