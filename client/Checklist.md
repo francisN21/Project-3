@@ -16,3 +16,5 @@
 - [] Setup Authentication
 - [] Styling
 - [] DEPLOY!
+- [] README
+  -Yeay! part 2
