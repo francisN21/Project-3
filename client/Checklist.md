@@ -1,8 +1,8 @@
-- [] Setup Server
+- [] Setup Server --Sean
   - [] Install Dependencies
   - []
   - [] Setup Express App
-- [] Model DB
+- [] Model DB --Sean
   - What data will we store?
 - [] Setup Mongoose/mySQL Model(s)
 - [] POST / Events/Log
@@ -16,3 +16,4 @@
 - [] Setup Authentication
 
 - [] DEPLOY!
+-Yeay! part 2
