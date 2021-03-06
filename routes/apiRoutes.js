@@ -1,9 +1,33 @@
 // const axios = require("axios")
 const router = require("express").Router();
-const db = require("./models");
+const db = require("../models");
 
 router.get("/test", (req, res) => {
     res.send({ msg: "success" });
+});
+
+//Route to get /events to get all the saved events
+router.get("/events", (req, res) => {
+    db.LogEvent.find({})
+        .then(dbLogEvent => {
+            res.json(dbLogEvent);
+        })
+        .catch(err => {
+            res.json(err);
+        })
+});
+
+//Route for creating a new post
+router.post("/events", (req, res) => {
+    const newEvent = req.body
+    db.LogEvent.create(newEvent)
+        .then(dbLogEvent => {
+            console.log("Event Saved"),
+                res.json(dbLogEvent);
+        })
+        .catch(err => {
+            res.json(err);
+        })
 });
 
 // Route for creating a new User
