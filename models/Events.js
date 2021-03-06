@@ -31,6 +31,6 @@ const logEventSchema = new Schema(
   }
 );
 
-const LogEvent = mongoose.model("LogMarker", logEventSchema);
+const LogEvent = mongoose.model("LogEvent", logEventSchema);
 
 module.exports = LogEvent;
