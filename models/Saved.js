@@ -4,10 +4,8 @@ const Schema = mongoose.Schema;
 
 const SavedSchema = new Schema({
     name: String,
-    location: [{
-        latitude: String,
-        longitude: String,
-    }],
+    latitude: Number,
+    longitude: Number,
     description: String,
 });
 
