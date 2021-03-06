@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import "./style.css";
+import "./style.css";
 
 class Form extends Component {
   // Setting the component's initial state

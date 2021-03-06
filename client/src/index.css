@@ -6,7 +6,9 @@ body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-
+  background-image: url(http://www.userlogos.org/files/backgrounds/Mafia_Penguin/Map1280x800.jpg);
+  background-size: cover;
+  background-repeat: np-repeat;
 }
 .marker {
   transform: translate(-50%, -100%);

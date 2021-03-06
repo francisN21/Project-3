@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import "../Forms/styles.css";
 
 const FormAuthenticate = () => {
   const [form, setform] = useState(true);
   // console.log(setform);
 
   const login = "Login";
-  const signup = "SignUp";
+  const signup = "Sign Up";
 
   const haveAcc = "Already have an Account?";
-  const noAcc = "Joining my app is one click away!";
+  const noAcc = "or";
 
   let formText;
   let formButton;
@@ -29,9 +30,9 @@ const FormAuthenticate = () => {
 
         <div>
           <p>{formText}</p>
-          <button className="btn btn-primary" onClick={() => setform(!form)}>
+          <button2 className="btn btn-primary" onClick={() => setform(!form)}>
             {formButton}
-          </button>
+          </button2>
         </div>
       </div>
     </div>
