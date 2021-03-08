@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect, useCallback } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import ReactMapGL, {
   Marker,
   Popup,
@@ -8,6 +8,10 @@ import ReactMapGL, {
 import { listEvents } from "../../utils/API";
 import ControlPanel from "./Control-Panel";
 import Pin from "./pin";
+import Geocoder from "react-map-gl-geocoder";
+import "mapbox-gl/dist/mapbox-gl.css";
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
+
 require("dotenv").config();
 
 const Map = () => {
@@ -34,14 +38,14 @@ const Map = () => {
   }, []);
   // =========== GeoLocation =========== //
   // useeffect for geolocation
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(setPosition);
-    } else {
-      console.log("no geocode");
-    }
-    //   console.log(userLocation);
-  }, []);
+  // useEffect(() => {
+  //   if ("geolocation" in navigator) {
+  //     navigator.geolocation.getCurrentPosition(setPosition);
+  //   } else {
+  //     console.log("no geocode");
+  //   }
+  //   //   console.log(userLocation);
+  // }, []);
   const setPosition = (position) => {
     const userLocation = {
       latitude: position.coords.latitude,
@@ -93,13 +97,34 @@ const Map = () => {
     });
   }, []);
   // ===========ENDS HERE============ //
+  //  GeoCoder Location //
+  const mapRef = useRef();
+  const handleViewportChange = useCallback(
+    (newViewport) => setViewport(newViewport),
+    []
+  );
+
+  // if you are happy with Geocoder default settings, you can just use handleViewportChange directly
+  const handleGeocoderViewportChange = useCallback(
+    (newViewport) => {
+      const geocoderDefaultOverrides = { transitionDuration: 1000 };
+
+      return handleViewportChange({
+        ...newViewport,
+        ...geocoderDefaultOverrides,
+      });
+    },
+    [handleViewportChange]
+  );
+
   return (
     <div id="map">
       <ReactMapGL
+        ref={mapRef}
         {...viewport}
         mapboxApiAccessToken={api}
         mapStyle={mapstyle}
-        onViewportChange={setViewport}
+        onViewportChange={handleViewportChange}
       >
         <Marker
           latitude={37.7523728}
@@ -132,6 +157,12 @@ const Map = () => {
             </svg>
           </div>
         </Marker>
+        <Geocoder
+          mapRef={mapRef}
+          onViewportChange={handleGeocoderViewportChange}
+          mapboxApiAccessToken={api}
+          position="top-left"
+        />
         <GeolocateControl
           style={geolocateStyle}
           positionOptions={positionOptions}

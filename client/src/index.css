@@ -8,6 +8,9 @@ body {
   overflow: hidden;
 
 }
+.mapboxgl-ctrl-geocoder--button{
+  width:auto !important;
+}
 .marker {
   transform: translate(-0%, -0%);
 }
