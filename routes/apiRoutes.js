@@ -60,5 +60,21 @@ router.post("/location/:id", function (req, res) {
             res.json(err);
         });
 });
+router.post("/events/:id", function (req, res) {
+  db.Events.create(req.body)
+    .then(function (dbSaved) {
+      return db.User.findOneAndUpdate(
+        { _id: req.params.id },
+        { $push: { saved: dbSaved._id } }
+      );
+    })
+    .then(function (dbSaved) {
+      res.json(dbSaved);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
 
 module.exports = router;
