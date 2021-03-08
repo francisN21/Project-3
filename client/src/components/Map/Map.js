@@ -126,6 +126,7 @@ const Map = () => {
         mapStyle={mapstyle}
         onViewportChange={handleViewportChange}
       >
+        {/* display marker section */}
         <Marker
           latitude={37.7523728}
           longitude={-122.4819459}
@@ -157,18 +158,16 @@ const Map = () => {
             </svg>
           </div>
         </Marker>
+
+        {/* location search */}
         <Geocoder
           mapRef={mapRef}
           onViewportChange={handleGeocoderViewportChange}
           mapboxApiAccessToken={api}
           position="top-left"
         />
-        <GeolocateControl
-          style={geolocateStyle}
-          positionOptions={positionOptions}
-          trackUserLocation
-          auto
-        />
+
+        {/* Components for testing lat and long */}
         <Marker
           longitude={marker.longitude}
           latitude={marker.latitude}
@@ -181,7 +180,16 @@ const Map = () => {
         >
           <Pin size={20} />
         </Marker>
+        {/* Utilities Section */}
 
+        {/* looks for user location */}
+        <GeolocateControl
+          style={geolocateStyle}
+          positionOptions={positionOptions}
+          trackUserLocation
+          auto
+        />
+        {/*  */}
         <div className="nav" style={navStyle}>
           <NavigationControl />
         </div>
