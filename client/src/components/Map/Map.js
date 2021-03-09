@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect, useCallback } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import ReactMapGL, {
   Marker,
   Popup,
@@ -8,13 +8,17 @@ import ReactMapGL, {
 import { listEvents } from "../../utils/API";
 import ControlPanel from "./Control-Panel";
 import Pin from "./pin";
+import Geocoder from "react-map-gl-geocoder";
+import "mapbox-gl/dist/mapbox-gl.css";
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import "./Map.css";
 require("dotenv").config();
 
 const Map = () => {
   // map setup
   const api = `pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;
   const mapstyle = "mapbox://styles/francisn21/cklv81byf44mx17ql4bv4chxl";
-  const [location, setLocation] = useState();
+  const [showevents, setEvents] = useState([]);
   const [showPopup, setShowPopup] = useState({});
   const [addEntryLocation, setAddEntryLocation] = useState(null);
   const [viewport, setViewport] = useState({
@@ -30,26 +34,10 @@ const Map = () => {
     (async () => {
       const showMarkers = await listEvents();
       console.log(showMarkers);
+      setEvents(showMarkers);
     })();
   }, []);
-  // =========== GeoLocation =========== //
-  // useeffect for geolocation
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(setPosition);
-    } else {
-      console.log("no geocode");
-    }
-    //   console.log(userLocation);
-  }, []);
-  const setPosition = (position) => {
-    const userLocation = {
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-    };
-    console.log(userLocation);
-    setLocation(userLocation);
-  };
+
   //
   const geolocateStyle = {
     top: 0,
@@ -93,51 +81,76 @@ const Map = () => {
     });
   }, []);
   // ===========ENDS HERE============ //
+  //  GeoCoder Location //
+  const mapRef = useRef();
+  const handleViewportChange = useCallback(
+    (newViewport) => setViewport(newViewport),
+    []
+  );
+
+  // if you are happy with Geocoder default settings, you can just use handleViewportChange directly
+  const handleGeocoderViewportChange = useCallback(
+    (newViewport) => {
+      const geocoderDefaultOverrides = { transitionDuration: 1000 };
+
+      return handleViewportChange({
+        ...newViewport,
+        ...geocoderDefaultOverrides,
+      });
+    },
+    [handleViewportChange]
+  );
+  // navyblue color for the events
+  const navyblue = {
+    fill: "#1f4980",
+    stroke: "none",
+  };
   return (
     <div id="map">
       <ReactMapGL
+        ref={mapRef}
         {...viewport}
         mapboxApiAccessToken={api}
         mapStyle={mapstyle}
-        onViewportChange={setViewport}
+        onViewportChange={handleViewportChange}
       >
-        <Marker
-          latitude={37.7523728}
-          longitude={-122.4819459}
-          offsetLeft={-24}
-          offsetTop={-24}
-        >
-          <div>
-            <svg
-              className="marker"
-              style={{
-                height: `${3 * viewport.zoom}px`,
-                width: `${3 * viewport.zoom}px`,
-              }}
-              version="1.1"
-              id="Layer_1"
-              x="0px"
-              y="0px"
-              viewBox="0 0 512 512"
+        {/* display marker section */}
+        {showevents.map((event, index) => {
+          return (
+            <Marker
+              key={index}
+              // className="event-pin"
+              latitude={event.latitude}
+              longitude={event.longitude}
+              offsetTop={-20}
+              offsetLeft={-10}
             >
-              <g>
-                <g>
-                  <path
-                    d="M256,0C153.755,0,70.573,83.182,70.573,185.426c0,126.888,165.939,313.167,173.004,321.035
-                        c6.636,7.391,18.222,7.378,24.846,0c7.065-7.868,173.004-194.147,173.004-321.035C441.425,83.182,358.244,0,256,0z M256,278.719
-                        c-51.442,0-93.292-41.851-93.292-93.293S204.559,92.134,256,92.134s93.291,41.851,93.291,93.293S307.441,278.719,256,278.719z"
-                  />
-                </g>
-              </g>
-            </svg>
-          </div>
-        </Marker>
-        <GeolocateControl
-          style={geolocateStyle}
-          positionOptions={positionOptions}
-          trackUserLocation
-          auto
+              <svg
+                style={navyblue}
+                height="20"
+                viewBox="0 0 24 24"
+                x="0px"
+                y="0px"
+              >
+                <path
+                  d="M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
+            c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
+            C20.1,15.8,20.2,15.8,20.2,15.7z"
+                />
+              </svg>
+            </Marker>
+          );
+        })}
+
+        {/* location search */}
+        <Geocoder
+          mapRef={mapRef}
+          onViewportChange={handleGeocoderViewportChange}
+          mapboxApiAccessToken={api}
+          position="top-left"
         />
+
+        {/* Components for testing lat and long */}
         <Marker
           longitude={marker.longitude}
           latitude={marker.latitude}
@@ -150,7 +163,16 @@ const Map = () => {
         >
           <Pin size={20} />
         </Marker>
+        {/* Utilities Section */}
 
+        {/* looks for user location */}
+        <GeolocateControl
+          style={geolocateStyle}
+          positionOptions={positionOptions}
+          trackUserLocation
+          auto
+        />
+        {/*  */}
         <div className="nav" style={navStyle}>
           <NavigationControl />
         </div>
