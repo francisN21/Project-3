@@ -17,7 +17,7 @@ router.get("/events", (req, res) => {
     });
 });
 
-//Route for creating a new post
+//Route for creating a new Event
 router.post("/events", (req, res) => {
   const newEvent = req.body;
   db.LogEvent.create(newEvent)
@@ -43,7 +43,7 @@ router.post("/user", function (req, res) {
 });
 
 //Route to Create a new Saved Location.
-router.post("/location/:id", function (req, res) {
+router.post("/location/", function (req, res) {
   db.Saved.create(req.body)
     .then(function (dbSaved) {
       return db.User.findOneAndUpdate(

@@ -12,8 +12,6 @@ import Geocoder from "react-map-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "./Map.css";
-import pin from "./location64x64.png";
-
 require("dotenv").config();
 
 const Map = () => {
@@ -102,8 +100,10 @@ const Map = () => {
     },
     [handleViewportChange]
   );
-  const sticky = {
-    transform: "translate(-50%, -50%) rotateX(0deg) rotateZ(0deg) !important",
+  // navyblue color for the events
+  const navyblue = {
+    fill: "#1f4980",
+    stroke: "none",
   };
   return (
     <div id="map">
@@ -122,11 +122,22 @@ const Map = () => {
               // className="event-pin"
               latitude={event.latitude}
               longitude={event.longitude}
-              offsetLeft={-24}
-              offsetTop={-24}
-              style={sticky}
+              offsetTop={-20}
+              offsetLeft={-10}
             >
-              <img className="event-pin" src={pin} alt="event" />
+              <svg
+                style={navyblue}
+                height="20"
+                viewBox="0 0 24 24"
+                x="0px"
+                y="0px"
+              >
+                <path
+                  d="M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
+            c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
+            C20.1,15.8,20.2,15.8,20.2,15.7z"
+                />
+              </svg>
             </Marker>
           );
         })}
