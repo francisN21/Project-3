@@ -42,6 +42,19 @@ router.post("/user", function (req, res) {
     });
 });
 
+// GET Route for creating a new User
+router.get("/user", function (req, res) {
+  db.User.find({})
+    .then(function (dbUser) {
+      // If we were able to successfully create a User, send it back to the client
+      res.json(dbUser);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
 //Route to Create a new Saved Location.
 router.post("/location/", function (req, res) {
   db.Saved.create(req.body)
