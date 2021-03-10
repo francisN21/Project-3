@@ -2,8 +2,9 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const db = require("./models")
+const db = require("./models");
 require("dotenv").config();
+const cors = require("cors");
 
 //Port 5000 cause I'm crazy!
 const PORT = process.env.PORT || 5000;
@@ -11,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(cors());
 // Optimize for Heroku
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

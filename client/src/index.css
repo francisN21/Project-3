@@ -10,8 +10,11 @@ body {
   background-size: cover;
   background-repeat: np-repeat;
 }
+.mapboxgl-ctrl-geocoder--button{
+  width:auto !important;
+}
 .marker {
-  transform: translate(-50%, -100%);
+  transform: translate(-0%, -0%);
 }
 .marker.red path {
   fill: #f05305;
