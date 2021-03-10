@@ -10,12 +10,8 @@ body {
   background-size: cover;
   background-repeat: np-repeat;
 }
-.mapboxgl-ctrl-geocoder--button{
-  width:auto !important;
-}
-.marker {
-  transform: translate(-0%, -0%);
-}
+
+
 .marker.red path {
   fill: #f05305;
 }
@@ -25,7 +21,7 @@ body {
 }
 
 .popup {
-  width: 40vw;
+  width: auto;
   padding: 1rem;
 }
 
