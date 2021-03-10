@@ -115,32 +115,57 @@ const Map = () => {
         onViewportChange={handleViewportChange}
       >
         {/* display marker section */}
-        {showevents.map((event, index) => {
-          return (
+        {showevents.map((event) => (
+          <React.Fragment key={event._id}>
             <Marker
-              key={index}
               // className="event-pin"
               latitude={event.latitude}
               longitude={event.longitude}
               offsetTop={-20}
               offsetLeft={-10}
             >
-              <svg
-                style={navyblue}
-                height="20"
-                viewBox="0 0 24 24"
-                x="0px"
-                y="0px"
+              {/* div wrapper to add onclick to the markers on the map to show the event info */}
+              <div
+                onClick={() =>
+                  setShowPopup({
+                    // ...showPopup,
+                    [event._id]: true,
+                  })
+                }
               >
-                <path
-                  d="M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
+                <svg
+                  style={navyblue}
+                  height="20"
+                  viewBox="0 0 24 24"
+                  x="0px"
+                  y="0px"
+                >
+                  <path
+                    d="M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
             c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
             C20.1,15.8,20.2,15.8,20.2,15.7z"
-                />
-              </svg>
+                  />
+                </svg>
+              </div>
             </Marker>
-          );
-        })}
+            {showPopup[event._id] ? (
+              <Popup
+                latitude={event.latitude}
+                longitude={event.longitude}
+                closeButton={true}
+                closeOnClick={false}
+                dynamicPosition={true}
+                onClose={() => setShowPopup({})}
+                anchor="top"
+              >
+                <div className="popup">
+                  <h3>{event.title}</h3>
+                </div>
+              </Popup>
+            ) : null}
+          </React.Fragment>
+        ))}
+        {/* display marker section END*/}
 
         {/* location search */}
         <Geocoder
