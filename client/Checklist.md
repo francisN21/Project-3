@@ -12,8 +12,8 @@
 - [] Create Form to add a new Event
 - [x] Setup Map SDK on client
 - [x] List all log entries on map
-- [] Setup Authentication
-- [] Profile -
+- [] Setup Authentication - Edgar
+- [] Profile - Sean
 - [] Dashboard -
 - [] more features
   -[] add friends
