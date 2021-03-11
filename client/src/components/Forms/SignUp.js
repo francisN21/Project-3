@@ -1,6 +1,12 @@
 import React from "react";
+import axios from "axios";
 
 const SignUp = () => {
+  //use onSubmit
+  const saveUser = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <div className="signup-form">
       <h2>Sign Up</h2>
@@ -35,7 +41,7 @@ const SignUp = () => {
             placeholder="Password"
           ></input>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" onSubmit={saveUser}>
           Create account
         </button>
       </form>
