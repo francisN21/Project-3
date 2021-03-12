@@ -1,19 +1,25 @@
-- [] Setup Server --Sean
-  - [] Install Dependencies
-  - []
-  - [] Setup Express App
-- [] Model DB --Sean
+- [x] Setup Server
+  - [x] Install Dependencies
+  - [x] Setup Express App
+- [x] Model DB
   - What data will we store?
-- [] Setup Mongoose/mySQL Model(s)
-- [] POST / Events/Log
+- [x] Setup Mongoose/mySQL Model(s)
+- [~] POST / Events/Log - Brandon
   - Create a new Event/ Log entry
-- [] GET / Event/logs
-  - List all log entries
+- [~] GET / Event/logs - Brandon
+  - List all Events!
 - [x] Setup Client
-- [] Create Form to add a new entry
+- [] Create Form to add a new Event
 - [x] Setup Map SDK on client
-- [] List all log entries on map
-- [] Setup Authentication
-
+- [x] List all log entries on map
+- [] Setup Authentication - Edgar
+- [] Profile - Sean
+- [] Dashboard -
+- [] more features
+  -[] add friends
+  -[] make events public or private
+  -[] invite friends to an event
+- [] Styling
 - [] DEPLOY!
--Yeay! part 2
+- [] README
+  -Yeay! part 2

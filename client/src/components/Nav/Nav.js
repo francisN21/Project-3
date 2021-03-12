@@ -12,16 +12,16 @@ const Navigation = () => {
         <Navbar.Brand href="/">
           <img
             alt="#"
-            src="#iconhere"
-            width="30"
-            height="30"
+            src="./images/map.jpg"
+            width="32"
+            height="32"
             className="d-inline-block align-top"
           />{" "}
           <marquee scrollamount="1" behavior="alternate" width="90">
             Project 3
           </marquee>{" "}
         </Navbar.Brand>
-        <Nav className="mr-auto">
+        <Nav className="mr-auto collapse navbar-collapse justify-content-end">
           <NavDropdown title="Generate" id="basic-nav-dropdown">
             <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
             <NavDropdown.Item href="/">something</NavDropdown.Item>
