@@ -82,6 +82,14 @@ const Profile = () => {
               }
             </ul>
           </div>
+          <div className="card-footer">
+            <button
+              className="btn btn-danger"
+              onClick={() => console.log("Delete")}
+            >
+              Delete Profile
+            </button>
+          </div>
         </div>
       ) : (
           // If no users, display this
