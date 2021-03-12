@@ -12,11 +12,11 @@ body {
 }
 
 
-.marker.red path {
+.marker.red svg path {
   fill: #f05305;
 }
 
-.marker.yellow path {
+.marker.yellow svg path {
   fill: #F3B73E;
 }
 
@@ -31,4 +31,14 @@ body {
   text-align: center;
   margin: 0 auto;
   display: block;
+}
+
+.new-event-f label,
+.new-event-f input,
+.new-event-f textarea,
+.new-event-f button {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  display: block;
+  width: 100%;
 }

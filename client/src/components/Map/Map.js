@@ -30,12 +30,15 @@ const Map = () => {
   });
 
   // useeffect for calling API to load saved events to markers on the map
+  // reusable backend call to fetch event database
+  const getEvents = async () => {
+    const showMarkers = await listEvents();
+    console.log(showMarkers);
+    setEvents(showMarkers);
+  };
+
   useEffect(() => {
-    (async () => {
-      const showMarkers = await listEvents();
-      console.log(showMarkers);
-      setEvents(showMarkers);
-    })();
+    getEvents();
   }, []);
 
   //
@@ -109,6 +112,15 @@ const Map = () => {
     fill: "red",
     stroke: "none",
   };
+  // new Event section //
+
+  const addEventPopup = (event) => {
+    const [longitude, latitude] = event.lngLat;
+    setEventLocation({
+      latitude,
+      longitude,
+    });
+  };
   return (
     <div id="map">
       <ReactMapGL
@@ -117,7 +129,7 @@ const Map = () => {
         mapboxApiAccessToken={api}
         mapStyle={mapstyle}
         onClick={() => setShowPopup({})}
-        onDblClick={console.log("hello")}
+        onDblClick={addEventPopup}
         onViewportChange={handleViewportChange}
       >
         {/* display marker section */}
@@ -173,11 +185,13 @@ const Map = () => {
         ))}
         {/* display marker section END*/}
         {/* New Location section */}
-        {/* {addEventLocation ? (
+        {addEventLocation ? (
           <>
             <Marker
               latitude={addEventLocation.latitude}
               longitude={addEventLocation.longitude}
+              offsetTop={-30}
+              offsetLeft={-10}
             >
               <div>
                 <svg
@@ -205,17 +219,18 @@ const Map = () => {
               anchor="top"
             >
               <div className="popup">
-                <LogEntryForm
+                <p>hello</p>
+                {/* <LogEntryForm
                   onClose={() => {
                     setEventLocation(null);
-                    getEntries();
+                    getEvents();
                   }}
                   location={addEventLocation}
-                />
+                /> */}
               </div>
             </Popup>
           </>
-        ) : null} */}
+        ) : null}
         {/* New Location section end*/}
         {/* location search */}
         <Geocoder

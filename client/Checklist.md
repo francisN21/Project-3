@@ -4,9 +4,9 @@
 - [x] Model DB
   - What data will we store?
 - [x] Setup Mongoose/mySQL Model(s)
-- [~] POST / Events/Log
+- [~] POST / Events/Log - Brandon
   - Create a new Event/ Log entry
-- [~] GET / Event/logs
+- [~] GET / Event/logs - Brandon
   - List all Events!
 - [x] Setup Client
 - [] Create Form to add a new Event
