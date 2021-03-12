@@ -12,8 +12,6 @@ import Geocoder from "react-map-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "./Map.css";
-import pin from "./location64x64.png";
-
 require("dotenv").config();
 
 const Map = () => {
@@ -22,7 +20,7 @@ const Map = () => {
   const mapstyle = "mapbox://styles/francisn21/cklv81byf44mx17ql4bv4chxl";
   const [showevents, setEvents] = useState([]);
   const [showPopup, setShowPopup] = useState({});
-  const [addEntryLocation, setAddEntryLocation] = useState(null);
+  const [addEventLocation, setEventLocation] = useState(null);
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
@@ -32,12 +30,15 @@ const Map = () => {
   });
 
   // useeffect for calling API to load saved events to markers on the map
+  // reusable backend call to fetch event database
+  const getEvents = async () => {
+    const showMarkers = await listEvents();
+    console.log(showMarkers);
+    setEvents(showMarkers);
+  };
+
   useEffect(() => {
-    (async () => {
-      const showMarkers = await listEvents();
-      console.log(showMarkers);
-      setEvents(showMarkers);
-    })();
+    getEvents();
   }, []);
 
   //
@@ -102,8 +103,23 @@ const Map = () => {
     },
     [handleViewportChange]
   );
-  const sticky = {
-    transform: "translate(-50%, -50%) rotateX(0deg) rotateZ(0deg) !important",
+  // navyblue color for the events
+  const navyblue = {
+    fill: "#1f4980",
+    stroke: "none",
+  };
+  const red = {
+    fill: "red",
+    stroke: "none",
+  };
+  // new Event section //
+
+  const addEventPopup = (event) => {
+    const [longitude, latitude] = event.lngLat;
+    setEventLocation({
+      latitude,
+      longitude,
+    });
   };
   return (
     <div id="map">
@@ -112,25 +128,110 @@ const Map = () => {
         {...viewport}
         mapboxApiAccessToken={api}
         mapStyle={mapstyle}
+        onClick={() => setShowPopup({})}
+        onDblClick={addEventPopup}
         onViewportChange={handleViewportChange}
       >
         {/* display marker section */}
-        {showevents.map((event, index) => {
-          return (
+        {showevents.map((event) => (
+          <React.Fragment key={event._id}>
             <Marker
-              key={index}
               // className="event-pin"
               latitude={event.latitude}
               longitude={event.longitude}
-              offsetLeft={-24}
-              offsetTop={-24}
-              style={sticky}
+              offsetTop={-20}
+              offsetLeft={-10}
             >
-              <img className="event-pin" src={pin} alt="event" />
+              {/* div wrapper to add onclick to the markers on the map to show the event info */}
+              <div
+                onClick={() =>
+                  setShowPopup({
+                    // ...showPopup,
+                    [event._id]: true,
+                  })
+                }
+              >
+                <svg
+                  style={navyblue}
+                  height="20"
+                  viewBox="0 0 24 24"
+                  x="0px"
+                  y="0px"
+                >
+                  <path
+                    d="M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
+            c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
+            C20.1,15.8,20.2,15.8,20.2,15.7z"
+                  />
+                </svg>
+              </div>
             </Marker>
-          );
-        })}
-
+            {showPopup[event._id] ? (
+              <Popup
+                latitude={event.latitude}
+                longitude={event.longitude}
+                closeButton={true}
+                closeOnClick={false}
+                dynamicPosition={true}
+                onClose={() => setShowPopup({})}
+                anchor="top"
+              >
+                <div className="popup">
+                  <h3>{event.title}</h3>
+                </div>
+              </Popup>
+            ) : null}
+          </React.Fragment>
+        ))}
+        {/* display marker section END*/}
+        {/* New Location section */}
+        {addEventLocation ? (
+          <>
+            <Marker
+              latitude={addEventLocation.latitude}
+              longitude={addEventLocation.longitude}
+              offsetTop={-30}
+              offsetLeft={-10}
+            >
+              <div>
+                <svg
+                  style={red}
+                  height="20"
+                  viewBox="0 0 24 24"
+                  x="0px"
+                  y="0px"
+                >
+                  <path
+                    d="M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
+            c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
+            C20.1,15.8,20.2,15.8,20.2,15.7z"
+                  />
+                </svg>
+              </div>
+            </Marker>
+            <Popup
+              latitude={addEventLocation.latitude}
+              longitude={addEventLocation.longitude}
+              closeButton={true}
+              closeOnClick={false}
+              dynamicPosition={true}
+              onClose={() => setEventLocation(null)}
+              anchor="top"
+            >
+              <div className="popup">
+                <p>hello</p>
+                {/* <LogEntryForm
+                  onClose={() => {
+                    setEventLocation(null);
+                    getEvents();
+                  }}
+                  location={addEventLocation}
+                /> */}
+              </div>
+            </Popup>
+          </>
+        ) : null}
+        {/* New Location section end*/}
         {/* location search */}
         <Geocoder
           mapRef={mapRef}

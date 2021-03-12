@@ -12,9 +12,9 @@ const Navigation = () => {
         <Navbar.Brand href="/">
           <img
             alt="#"
-            src="#iconhere"
-            width="30"
-            height="30"
+            src="./images/map.jpg"
+            width="32"
+            height="32"
             className="d-inline-block align-top"
           />{" "}
           <marquee scrollamount="1" behavior="alternate" width="90">

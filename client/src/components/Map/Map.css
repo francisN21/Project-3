@@ -1,5 +1,4 @@
-.event-pin{
-    transform: "translate(-50%, -50%)";
-    height: 24px;
-    width: 24px;
-}
+.popup {
+    width: 40vw;
+    padding: 1rem;
+  }
