@@ -13,7 +13,6 @@ import Geocoder from "react-map-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "./Map.css";
-
 require("dotenv").config();
 
 const Map = () => {
