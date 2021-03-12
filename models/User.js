@@ -31,11 +31,16 @@ const UserSchema = new Schema({
       "Please fill a valid email address",
     ],
   },
+  username: {
+    type: String,
+    unique: true,
+    required: "Email address is required",
+  },
   password: {
     type: String,
     required: true,
   },
-  following: [
+  friends: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
