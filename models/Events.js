@@ -25,6 +25,11 @@ const logEventSchema = new Schema(
       min: -180,
       max: 180,
     },
+    date: {
+      type: Date,
+      min: "2021-01-28",
+      max: "2023-05-23",
+    },
   },
   {
     timestamps: true,
