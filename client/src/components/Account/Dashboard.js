@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { listEvents } from "../../utils/API";
 
 
-
-const cardStyles = {
-  margin: "20px",
-  width: "18rem"
-}
 const Dashboard = () => {
+
+  // 
+  const [dashboardList, setDashboardList] = useState([]);
+
+
+  // useeffect for calling API to load saved events to markers on the map
+  // reusable backend call to fetch event database
+  const getListEvents = async () => {
+    const showList = await listEvents();
+    console.log(showList);
+    setDashboardList(showList);
+  };
+
+  useEffect(() => {
+    getListEvents();
+  }, []);
+
+  const cardStyles = {
+    margin: "20px",
+    width: "18rem"
+  }
+
   return (
     <>
       <h1 className="text-center">Your Events</h1>
@@ -22,7 +40,7 @@ const Dashboard = () => {
           <div className="card-footer">
             <button
               className="btn btn-info"
-              onClick={() => console.log("Delete")}
+              onClick={() => console.log("View Event")}
             >
               View Event
             </button>
@@ -30,12 +48,15 @@ const Dashboard = () => {
           <div className="card-footer">
             <button
               className="btn btn-danger"
-              onClick={() => console.log("Delete")}
+              onClick={() => console.log("Delete Event")}
             >
               Delete Event
             </button>
           </div>
         </div>
+
+
+
       </div>
     </>
   )
