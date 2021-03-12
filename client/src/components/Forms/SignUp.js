@@ -12,13 +12,14 @@ const SignUp = () => {
   });
 
   const onChange = (e) => {
-    setSignUpForm({ ...setSignUpForm, [e.target.name]: e.target.value });
+    setSignUpForm({ ...signUpForm, [e.target.name]: e.target.value });
   };
 
   const submit = async (e) => {
     e.preventDefault(e);
     try {
       await axios.post("/api/user", signUpForm);
+      console.log(signUpForm);
     } catch (error) {
       console.log(error);
     }
