@@ -7,7 +7,9 @@ const SignUp = () => {
   const [signUpForm, setSignUpForm] = useState({
     firstName: "",
     lastName: "",
+    username: "",
     email: "",
+
     password: "",
   });
 
@@ -49,6 +51,16 @@ const SignUp = () => {
             onChange={onChange}
           ></input>
         </div>
+        <label>User Name</label>
+        <br></br>
+        <input
+          type="text"
+          name="username"
+          className="form-control"
+          id="name-input"
+          placeholder="First Name"
+          onChange={onChange}
+        ></input>
         <div className="form-group">
           <label>Email address</label>
           <br></br>

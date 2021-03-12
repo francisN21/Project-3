@@ -5,6 +5,7 @@ import ReactMapGL, {
   GeolocateControl,
   NavigationControl,
 } from "react-map-gl";
+import EntryForm from "./EntryForm";
 import { listEvents } from "../../utils/API";
 import ControlPanel from "./Control-Panel";
 import Pin from "./pin";
@@ -219,7 +220,12 @@ const Map = () => {
               anchor="top"
             >
               <div className="popup">
-                <p>hello</p>
+                <EntryForm
+                  onClose={() => {
+                    // setEventLocation(null);
+                    getEvents();
+                  }}
+                />
                 {/* <LogEntryForm
                   onClose={() => {
                     setEventLocation(null);
