@@ -5,3 +5,8 @@ export async function listEvents() {
   const response = await fetch(`${API_URL}/api/events`);
   return response.json();
 }
+
+export async function createEvent() {
+  const response = await fetch(`${API_URL}/api/events`);
+  return response.json();
+}
