@@ -1,29 +1,37 @@
+// Import all the React Goodness!
 import React, { useEffect, useState } from "react";
 import { listEvents } from "../../utils/API";
 
-
+// Dashboard Page Component
 const Dashboard = () => {
 
-  // 
+  // State for getting the list of events saved for the dashboardPage
   const [dashboardList, setDashboardList] = useState([]);
 
-
-  // useeffect for calling API to load saved events to markers on the map
-  // reusable backend call to fetch event database
+  // getListEvents function gets the list of events from the Mongo Database
   const getListEvents = async () => {
+    // Await the List events function in Utils/API
     const showList = await listEvents();
-    console.log(showList);
+    // Console.log it
+    // console.log(showList);
+    // Set State for the event list
     setDashboardList(showList);
   };
 
+  // UseEffect to call the function when the page loads
   useEffect(() => {
     getListEvents();
   }, []);
 
+
+  // Styles for the cards.
   const cardStyles = {
     margin: "20px",
     width: "18rem"
   }
+
+  // Console log to show that the axios request is working
+  console.log(dashboardList);
 
   return (
     <>
