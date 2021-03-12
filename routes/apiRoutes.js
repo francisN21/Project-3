@@ -17,8 +17,18 @@ router.get("/events", (req, res) => {
     });
 });
 
+router.get("/location", (req, res) => {
+  db.Saved.find({})
+    .then((dbLogEvent) => {
+      res.json(dbLogEvent);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
 //Route for creating a new Event
-router.post("/events", (req, res) => {
+router.post("/events/", (req, res) => {
   const newEvent = req.body;
   db.LogEvent.create(newEvent)
     .then((dbLogEvent) => {
@@ -35,6 +45,7 @@ router.post("/user", function (req, res) {
     .then(function (dbUser) {
       // If we were able to successfully create a User, send it back to the client
       res.json(dbUser);
+      console.log("saved:" + dbUser);
     })
     .catch(function (err) {
       // If an error occurred, send it to the client
@@ -66,6 +77,7 @@ router.post("/location/", function (req, res) {
     })
     .then(function (dbSaved) {
       res.json(dbSaved);
+      // console.log("saved:" + res.json(dbSaved));
     })
     .catch(function (err) {
       // If an error occurred, send it to the client

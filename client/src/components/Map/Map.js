@@ -6,7 +6,7 @@ import ReactMapGL, {
   NavigationControl,
 } from "react-map-gl";
 import EntryForm from "./EntryForm";
-import { listEvents } from "../../utils/API";
+import { listEvents, listLocation } from "../../utils/API";
 import ControlPanel from "./Control-Panel";
 import Pin from "./pin";
 import Geocoder from "react-map-gl-geocoder";
@@ -33,8 +33,10 @@ const Map = () => {
   // useeffect for calling API to load saved events to markers on the map
   // reusable backend call to fetch event database
   const getEvents = async () => {
-    const showMarkers = await listEvents();
-    console.log(showMarkers);
+    const showMarkers = await listLocation();
+    const test = await listEvents();
+    console.log(test);
+
     setEvents(showMarkers);
   };
 
@@ -138,8 +140,8 @@ const Map = () => {
           <React.Fragment key={event._id}>
             <Marker
               // className="event-pin"
-              latitude={event.latitude}
-              longitude={event.longitude}
+              latitude={event.location[0].latitude}
+              longitude={event.location[0].longitude}
               offsetTop={-20}
               offsetLeft={-10}
             >
@@ -169,8 +171,8 @@ const Map = () => {
             </Marker>
             {showPopup[event._id] ? (
               <Popup
-                latitude={event.latitude}
-                longitude={event.longitude}
+                latitude={event.location[0].latitude}
+                longitude={event.location[0].longitude}
                 closeButton={true}
                 closeOnClick={false}
                 dynamicPosition={true}
@@ -178,7 +180,9 @@ const Map = () => {
                 anchor="top"
               >
                 <div className="popup">
-                  <h3>{event.title}</h3>
+                  <h3>{event.name}</h3>
+                  <p>{event.description}</p>
+                  <p>{event.date}</p>
                 </div>
               </Popup>
             ) : null}
@@ -222,17 +226,11 @@ const Map = () => {
               <div className="popup">
                 <EntryForm
                   onClose={() => {
-                    // setEventLocation(null);
-                    getEvents();
-                  }}
-                />
-                {/* <LogEntryForm
-                  onClose={() => {
                     setEventLocation(null);
                     getEvents();
                   }}
                   location={addEventLocation}
-                /> */}
+                />
               </div>
             </Popup>
           </>
