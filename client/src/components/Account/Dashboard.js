@@ -9,7 +9,7 @@ const cardStyles = {
 const Dashboard = () => {
   return (
     <>
-      <h1>Your Events</h1>
+      <h1 className="text-center">Your Events</h1>
       <div className="container">
         <div className="card" style={cardStyles}>
           <h1 className="card-title text-center">Event.title</h1>
@@ -19,14 +19,20 @@ const Dashboard = () => {
             <h5>Event.longitude</h5>
             <h5>Event.date</h5>
           </div>
-
-
+          <div className="card-footer">
+            <button
+              className="btn btn-info"
+              onClick={() => console.log("Delete")}
+            >
+              View Event
+            </button>
+          </div>
           <div className="card-footer">
             <button
               className="btn btn-danger"
               onClick={() => console.log("Delete")}
             >
-              Delete Profile
+              Delete Event
             </button>
           </div>
         </div>
