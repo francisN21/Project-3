@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 
-import { createLogEntry } from "./API";
+// import { createLogEntry } from "./API";
 
 const EntryForm = () => {
   return (

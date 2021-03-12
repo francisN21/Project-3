@@ -5,6 +5,7 @@ import ReactMapGL, {
   GeolocateControl,
   NavigationControl,
 } from "react-map-gl";
+import EntryForm from "./EntryForm";
 import { listEvents } from "../../utils/API";
 import ControlPanel from "./Control-Panel";
 import Pin from "./pin";
@@ -12,6 +13,7 @@ import Geocoder from "react-map-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "./Map.css";
+
 require("dotenv").config();
 
 const Map = () => {
@@ -219,7 +221,12 @@ const Map = () => {
               anchor="top"
             >
               <div className="popup">
-                <p>hello</p>
+                <EntryForm
+                  onClose={() => {
+                    // setEventLocation(null);
+                    getEvents();
+                  }}
+                />
                 {/* <LogEntryForm
                   onClose={() => {
                     setEventLocation(null);
