@@ -5,6 +5,7 @@ import Profile from "./components/Account/Profile";
 import Dashboard from "./components/Account/Dashboard";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import FormAuthentication from "./components/Forms/FormAuthenticate";
+import SignUp from "./components/Forms/SignUp";
 // import axios from "axios";
 
 function App() {
