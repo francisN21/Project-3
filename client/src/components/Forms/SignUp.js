@@ -9,7 +9,6 @@ const SignUp = () => {
     lastName: "",
     username: "",
     email: "",
-
     password: "",
   });
 
@@ -61,18 +60,6 @@ const SignUp = () => {
           placeholder="First Name"
           onChange={onChange}
         ></input>
-        <div className="form-group">
-          <label>Email address</label>
-          <br></br>
-          <input
-            type="email"
-            name="email"
-            className="form-control"
-            id="email-input"
-            placeholder="Email"
-            onChange={onChange}
-          ></input>
-        </div>
         <div className="form-group">
           <label>Email address</label>
           <br></br>

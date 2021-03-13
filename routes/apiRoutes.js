@@ -1,3 +1,5 @@
+const bcrypt = require("bcrypt");
+
 const axios = require("axios");
 const router = require("express").Router();
 const db = require("../models");
@@ -66,6 +68,23 @@ router.post("/location/", function (req, res) {
     })
     .then(function (dbSaved) {
       res.json(dbSaved);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
+router.post("/login", function (req, res) {
+  console.log(req.body);
+  db.User.find({})
+    .then(function (dbUsers) {
+      console.log(dbUsers);
+      const dbUser = dbUsers.find((user) => user.email === req.body.email);
+      console.log(dbUser);
+      bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
+        res.json(dbUser);
+      });
     })
     .catch(function (err) {
       // If an error occurred, send it to the client
