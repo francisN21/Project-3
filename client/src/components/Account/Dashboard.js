@@ -26,7 +26,7 @@ const Dashboard = () => {
 
   // Styles for the cards.
   const cardStyles = {
-    margin: "20px",
+    margin: "10px",
     width: "18rem"
   }
 
@@ -37,31 +37,42 @@ const Dashboard = () => {
     <>
       <h1 className="text-center">Your Events</h1>
       <div className="container">
-        <div className="card" style={cardStyles}>
-          <h1 className="card-title text-center">Event.title</h1>
-          <hr></hr>
-          <div className="card-body">
-            <h5>Event.latitude</h5>
-            <h5>Event.longitude</h5>
-            <h5>Event.date</h5>
+        {dashboardList.map((dashboardEvent) => (
+
+          <div className="card"
+            style={cardStyles}
+            key={dashboardEvent._id}>
+            <h2 className="card-title text-center">{dashboardEvent.title}</h2>
+            <hr></hr>
+            <div className="card-body">
+              <h5>{dashboardEvent.latitude}</h5>
+              <h5>{dashboardEvent.longitude}</h5>
+              <h5>{dashboardEvent.updatedAt}</h5>
+            </div>
+            <div className="card-footer">
+              <button
+                className="btn btn-info"
+                onClick={() => console.log(`VIEW ${dashboardEvent.title} ID: ${dashboardEvent._id}`)}
+              >
+                View Event
+              </button>
+            </div>
+            <div className="card-footer">
+              <button
+                className="btn btn-danger"
+                onClick={() => console.log(`DELETE ${dashboardEvent.title} ID: ${dashboardEvent._id}`)}
+              >
+                Delete Event
+              </button>
+            </div>
+
           </div>
-          <div className="card-footer">
-            <button
-              className="btn btn-info"
-              onClick={() => console.log("View Event")}
-            >
-              View Event
-            </button>
-          </div>
-          <div className="card-footer">
-            <button
-              className="btn btn-danger"
-              onClick={() => console.log("Delete Event")}
-            >
-              Delete Event
-            </button>
-          </div>
-        </div>
+
+        ))
+
+
+        }
+
 
 
 
