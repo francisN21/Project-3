@@ -1,32 +1,38 @@
+// import axios from "axios";
 import React, { useState } from "react";
-import "../Forms/styles.css"
+import "../Forms/styles.css";
+import { loginUser } from "../../utils/API";
 
 const Login = () => {
-  const [name, setName] = useState();
-  const [password, setPassword] = useState();
-  const handleName = (e) => {
-    e.preventDefault();
-    setName({ [e.target.name]: e.target.value });
-  };
-  const handlePass = (e) => {
-    e.preventDefault();
-    setPassword({ [e.target.password]: e.target.value });
+  const [loginDetails, setLoginDetails] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onChange = (e) => {
+    setLoginDetails({ ...loginDetails, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
-    console.log(`Hello `);
+    try {
+      loginUser(loginDetails).then((res) => {
+        console.log(res);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="login-form">
-      <h2>Login</h2>
+      <h2>Log In</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Email address</label>
           <br></br>
           <input
-            onChange={(e) => handleName(e)}
+            onChange={onChange}
             type="email"
+            name="email"
             className="form-control"
             id="email-input"
             placeholder="Email"
@@ -36,8 +42,9 @@ const Login = () => {
           <label>Password</label>
           <br></br>
           <input
-            onChange={(e) => handlePass(e)}
+            onChange={onChange}
             type="password"
+            name="password"
             className="form-control"
             id="password-input"
             placeholder="Password"

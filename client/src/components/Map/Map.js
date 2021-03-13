@@ -33,9 +33,13 @@ const Map = () => {
   // useeffect for calling API to load saved events to markers on the map
   // reusable backend call to fetch event database
   const getEvents = async () => {
-    const showMarkers = await listEvents();
-    console.log(showMarkers);
-    setEvents(showMarkers);
+    try {
+      const showMarkers = await listEvents();
+      console.log(showMarkers);
+      setEvents(showMarkers);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -57,33 +61,7 @@ const Map = () => {
     right: 30,
     padding: "10px",
   };
-  const controlStyle = {
-    position: "auto",
-    top: 150,
-    left: 0,
-    padding: "10px",
-  };
-  const [marker, setMarker] = useState({
-    latitude: 40,
-    longitude: -100,
-  });
-  const [events, logEvents] = useState({});
 
-  const onMarkerDragStart = useCallback((event) => {
-    logEvents((_events) => ({ ..._events, onDragStart: event.lngLat }));
-  }, []);
-
-  const onMarkerDrag = useCallback((event) => {
-    logEvents((_events) => ({ ..._events, onDrag: event.lngLat }));
-  }, []);
-
-  const onMarkerDragEnd = useCallback((event) => {
-    logEvents((_events) => ({ ..._events, onDragEnd: event.lngLat }));
-    setMarker({
-      longitude: event.lngLat[0],
-      latitude: event.lngLat[1],
-    });
-  }, []);
   // ===========ENDS HERE============ //
   //  GeoCoder Location //
   const mapRef = useRef();
@@ -104,15 +82,7 @@ const Map = () => {
     },
     [handleViewportChange]
   );
-  // navyblue color for the events
-  const navyblue = {
-    fill: "#1f4980",
-    stroke: "none",
-  };
-  const red = {
-    fill: "red",
-    stroke: "none",
-  };
+
   // new Event section //
 
   const addEventPopup = (event) => {
@@ -122,8 +92,9 @@ const Map = () => {
       longitude,
     });
   };
+  //  delete and edit popup ==== //
   return (
-    <div id="map">
+    <div className="map">
       <ReactMapGL
         ref={mapRef}
         {...viewport}
@@ -138,8 +109,8 @@ const Map = () => {
           <React.Fragment key={event._id}>
             <Marker
               // className="event-pin"
-              latitude={event.latitude}
-              longitude={event.longitude}
+              latitude={event.location[0].latitude}
+              longitude={event.location[0].longitude}
               offsetTop={-20}
               offsetLeft={-10}
             >
@@ -152,25 +123,13 @@ const Map = () => {
                   })
                 }
               >
-                <svg
-                  style={navyblue}
-                  height="20"
-                  viewBox="0 0 24 24"
-                  x="0px"
-                  y="0px"
-                >
-                  <path
-                    d="M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
-            c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
-            C20.1,15.8,20.2,15.8,20.2,15.7z"
-                  />
-                </svg>
+                <Pin color="#1f4980" />
               </div>
             </Marker>
             {showPopup[event._id] ? (
               <Popup
-                latitude={event.latitude}
-                longitude={event.longitude}
+                latitude={event.location[0].latitude}
+                longitude={event.location[0].longitude}
                 closeButton={true}
                 closeOnClick={false}
                 dynamicPosition={true}
@@ -178,7 +137,11 @@ const Map = () => {
                 anchor="top"
               >
                 <div className="popup">
-                  <h3>{event.title}</h3>
+                  <h3>{event.name}</h3>
+                  <p>{event.description}</p>
+                  <p>{event.date}</p>
+                  <button className="btn btn-primary">edit</button>
+                  <button className="btn btn-danger">delete</button>
                 </div>
               </Popup>
             ) : null}
@@ -195,19 +158,7 @@ const Map = () => {
               offsetLeft={-10}
             >
               <div>
-                <svg
-                  style={red}
-                  height="20"
-                  viewBox="0 0 24 24"
-                  x="0px"
-                  y="0px"
-                >
-                  <path
-                    d="M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
-            c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
-            C20.1,15.8,20.2,15.8,20.2,15.7z"
-                  />
-                </svg>
+                <Pin color="red" />
               </div>
             </Marker>
             <Popup
@@ -222,17 +173,11 @@ const Map = () => {
               <div className="popup">
                 <EntryForm
                   onClose={() => {
-                    // setEventLocation(null);
-                    getEvents();
-                  }}
-                />
-                {/* <LogEntryForm
-                  onClose={() => {
                     setEventLocation(null);
                     getEvents();
                   }}
                   location={addEventLocation}
-                /> */}
+                />
               </div>
             </Popup>
           </>
@@ -246,19 +191,6 @@ const Map = () => {
           position="top-left"
         />
 
-        {/* Components for testing lat and long */}
-        <Marker
-          longitude={marker.longitude}
-          latitude={marker.latitude}
-          offsetTop={-20}
-          offsetLeft={-10}
-          draggable
-          onDragStart={onMarkerDragStart}
-          onDrag={onMarkerDrag}
-          onDragEnd={onMarkerDragEnd}
-        >
-          <Pin size={20} />
-        </Marker>
         {/* Utilities Section */}
 
         {/* looks for user location */}
@@ -272,7 +204,6 @@ const Map = () => {
         <div className="nav" style={navStyle}>
           <NavigationControl />
         </div>
-        <ControlPanel events={events} style={controlStyle} />
       </ReactMapGL>
     </div>
   );
