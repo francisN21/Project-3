@@ -7,7 +7,6 @@ import ReactMapGL, {
 } from "react-map-gl";
 import EntryForm from "./EntryForm";
 import { listEvents, listLocation } from "../../utils/API";
-import ControlPanel from "./Control-Panel";
 import Pin from "./pin";
 import Geocoder from "react-map-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -35,7 +34,16 @@ const Map = () => {
   const getEvents = async () => {
     try {
       const showMarkers = await listLocation();
-      console.log(showMarkers);
+      console.log("These are my markers: ", showMarkers);
+      setEvents(showMarkers);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getSavedEvents = async () => {
+    try {
+      const showMarkers = await listEvents();
       setEvents(showMarkers);
     } catch (error) {
       console.log(error);
@@ -43,7 +51,8 @@ const Map = () => {
   };
 
   useEffect(() => {
-    getEvents();
+    // getEvents();
+    getSavedEvents();
   }, []);
 
   //
@@ -137,7 +146,7 @@ const Map = () => {
                 anchor="top"
               >
                 <div className="popup">
-                  <h3>{event.name}</h3>
+                  <h3>{event.title}</h3>
                   <p>{event.description}</p>
                   <p>{event.date}</p>
                   <button className="btn btn-primary">edit</button>

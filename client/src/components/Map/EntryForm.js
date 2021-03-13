@@ -39,6 +39,7 @@ const EntryForm = ({ location, onClose }) => {
       <input type="time" onChange={onChange} />
       <label htmlFor="date">Date: </label>
       <input type="date" name="date" onChange={onChange} />
+      <input type="checkbox" />
       <button type="submit" className="btn btn-primary">
         Create event
       </button>
