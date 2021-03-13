@@ -58,7 +58,7 @@ router.post("/location/", function (req, res) {
     })
     .then(function (dbSaved) {
       res.json(dbSaved);
-      // console.log("saved:" + res.json(dbSaved));
+      console.log("saved:" + res.json(dbSaved));
     })
     .catch(function (err) {
       // If an error occurred, send it to the client
@@ -93,6 +93,8 @@ router.post("/location/update/", function (req, res) {
       res.json(err);
     });
 });
+
+
 // DELETE /events/:id by id for deleting an event from the database
 router.delete("/location/:id", (req, res) => {
   // console.log(req.params.id)
@@ -106,5 +108,26 @@ router.delete("/location/:id", (req, res) => {
       res.json(err);
     });
 });
+
+// SEAN'S TEST POST ROUTE CAUSE I COULDN"T FIGURE IT OUT
+//Route for creating a new Event
+// router.post("/location/", (req, res) => {
+//   // Set event to a new variable
+//   const newEvent = req.body;
+//   console.log(newEvent)
+//   console.log("line 118")
+//   // Using the LogEvent Database in the Events Models File
+//   db.Saved.create(newEvent)
+//     .then((dbLogEvent) => {
+//       // Let the user know that the event was saved
+//       console.log("Event Saved"), res.json(dbLogEvent);
+//     })
+//     // Gotta catch them errors!
+//     .catch((err) => {
+//       res.json(err);
+//     });
+// });
+
+
 
 module.exports = router;

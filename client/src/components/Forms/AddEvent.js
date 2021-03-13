@@ -23,17 +23,16 @@ const AddEvent = () => {
     const saveEvent = (newEvent) => {
         // Set the event to an object and parse int the numbers
         newEvent = {
-            title: newEvent.title,
+            name: newEvent.title,
             description: newEvent.description,
-            latitude: parseInt(newEvent.latitude),
-            longitude: parseInt(newEvent.longitude),
+            location: [{ latitude: parseFloat(newEvent.latitude), longitude: parseFloat(newEvent.longitude) }],
             date: newEvent.date,
             timestamps: true,
         }
         console.log(newEvent)
 
         // Send fetch request to post it to the database
-        fetch(`/api/events`, {
+        fetch(`/api/location/`, {
             method: 'POST',
             body: JSON.stringify(newEvent),
             headers: { "Content-Type": "application/json" }
@@ -41,7 +40,7 @@ const AddEvent = () => {
             // json that response and let the user know that it was saved
             .then((response) => response.json())
             .then((data) => {
-                console.log(`${newEvent.title} saved`)
+                console.log(`${newEvent.name} saved`)
             })
     }
 
@@ -106,7 +105,7 @@ const AddEvent = () => {
                             onClick={() => saveEvent(newEvent)}
                             className="btn btn-primary">
                             Save Event
-                         </button>
+                        </button>
                     </div>
                 </div>
             </form>

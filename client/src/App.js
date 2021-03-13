@@ -6,6 +6,7 @@ import Dashboard from "./components/Account/Dashboard";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import FormAuthentication from "./components/Forms/FormAuthenticate";
 import { updateEvent } from "./utils/API";
+import AddEvent from "./components/Forms/AddEvent"
 // import SignUp from "./components/Forms/SignUp";
 // import axios from "axios";
 
@@ -16,7 +17,7 @@ function App() {
         <Nav />
         <Switch>
           <Route path="/dashboard" component={Dashboard} />
-          <Route path="/addevent" component={AddForm} />
+          <Route path="/addevent" component={AddEvent} />
           <Route path="/profile" component={Profile} />
           <Route path="/login" component={FormAuthentication} />
           <Route path="/" component={Map} />

@@ -4,9 +4,9 @@ import { listEvents } from "../../utils/API";
 
 
 
-// Function to delete the book from the database by ID
+// Function to delete the event from the database by ID
 const deleteEvent = (id) => {
-  fetch(`/api/events/${id}`, {
+  fetch(`/api/location/${id}`, {
     method: 'DELETE'
     // Json that response
   })
@@ -32,7 +32,7 @@ const Dashboard = () => {
     // Await the List events function in Utils/API
     const showList = await listEvents();
     // Console.log it
-    // console.log(showList);
+    console.log(showList);
     // Set State for the event list
     setDashboardList(showList);
   };
@@ -71,8 +71,9 @@ const Dashboard = () => {
           <thead>
             <tr >
               <th>Event Name</th>
-              <th>Latitude</th>
-              <th>Longitude</th>
+              <th>Latitude/Longitude
+              </th>
+
               <th>Date</th>
               <th>Description</th>
               {/* <th>View Event</th> */}
@@ -88,9 +89,11 @@ const Dashboard = () => {
                 dashboardList.map((dashboardEvent) => (
 
                   <tr key={dashboardEvent._id}>
-                    <td><h2>{dashboardEvent.title}</h2></td>
-                    <td><p>{dashboardEvent.latitude}</p></td>
-                    <td><p>{dashboardEvent.longitude}</p></td>
+                    <td><h4>{dashboardEvent.name}</h4></td>
+                    <td>
+                      <p>{dashboardEvent.location[0].latitude}</p>
+                      <p>{dashboardEvent.location[0].longitude}</p>
+                    </td>
                     <td><p>{dashboardEvent.date}</p></td>
                     <td><p>{dashboardEvent.description}</p></td>
 
