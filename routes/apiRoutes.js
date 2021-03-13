@@ -7,35 +7,10 @@ router.get("/test", (req, res) => {
 });
 
 //Route to get /events to get all the saved events
-router.get("/events", (req, res) => {
-  db.Saved.find({})
-    .then((dbLogEvent) => {
-      res.json(dbLogEvent);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
-
 router.get("/location", (req, res) => {
   db.Saved.find({})
     .then((dbLogEvent) => {
       res.json(dbLogEvent);
-    })
-    // Gotta catch them errors!
-    .catch((err) => {
-      res.json(err);
-    });
-});
-
-//Route for creating a new Event
-router.post("/events/", (req, res) => {
-  const newEvent = req.body;
-  // Using the LogEvent Database in the Events Models File
-  db.LogEvent.create(newEvent)
-    .then((dbLogEvent) => {
-      // Let the user know that the event was saved
-      console.log("Event Saved"), res.json(dbLogEvent);
     })
     // Gotta catch them errors!
     .catch((err) => {
@@ -90,10 +65,10 @@ router.post("/location/", function (req, res) {
 });
 
 // DELETE /events/:id by id for deleting an event from the database
-router.delete("/events/:id", (req, res) => {
+router.delete("/location/:id", (req, res) => {
   // console.log(req.params.id)
   // Using the LogEvent Database in the Events Models File
-  db.LogEvent.deleteOne({ _id: req.params.id })
+  db.Saved.deleteOne({ _id: req.params.id })
     .then((dbLogEvent) => {
       console.log("event deleted"), res.json(dbLogEvent);
     })

@@ -35,9 +35,7 @@ const Map = () => {
   const getEvents = async () => {
     try {
       const showMarkers = await listLocation();
-      const test = await listEvents();
-      console.log(test);
-
+      console.log(showMarkers);
       setEvents(showMarkers);
     } catch (error) {
       console.log(error);
@@ -63,33 +61,7 @@ const Map = () => {
     right: 30,
     padding: "10px",
   };
-  const controlStyle = {
-    position: "auto",
-    top: 150,
-    left: 0,
-    padding: "10px",
-  };
-  const [marker, setMarker] = useState({
-    latitude: 40,
-    longitude: -100,
-  });
-  const [events, logEvents] = useState({});
 
-  const onMarkerDragStart = useCallback((event) => {
-    logEvents((_events) => ({ ..._events, onDragStart: event.lngLat }));
-  }, []);
-
-  const onMarkerDrag = useCallback((event) => {
-    logEvents((_events) => ({ ..._events, onDrag: event.lngLat }));
-  }, []);
-
-  const onMarkerDragEnd = useCallback((event) => {
-    logEvents((_events) => ({ ..._events, onDragEnd: event.lngLat }));
-    setMarker({
-      longitude: event.lngLat[0],
-      latitude: event.lngLat[1],
-    });
-  }, []);
   // ===========ENDS HERE============ //
   //  GeoCoder Location //
   const mapRef = useRef();
@@ -120,6 +92,7 @@ const Map = () => {
       longitude,
     });
   };
+  //  delete and edit popup ==== //
   return (
     <div className="map">
       <ReactMapGL
@@ -167,6 +140,8 @@ const Map = () => {
                   <h3>{event.name}</h3>
                   <p>{event.description}</p>
                   <p>{event.date}</p>
+                  <button className="btn btn-primary">edit</button>
+                  <button className="btn btn-danger">delete</button>
                 </div>
               </Popup>
             ) : null}
@@ -216,19 +191,6 @@ const Map = () => {
           position="top-left"
         />
 
-        {/* Components for testing lat and long */}
-        <Marker
-          longitude={marker.longitude}
-          latitude={marker.latitude}
-          offsetTop={-20}
-          offsetLeft={-10}
-          draggable
-          onDragStart={onMarkerDragStart}
-          onDrag={onMarkerDrag}
-          onDragEnd={onMarkerDragEnd}
-        >
-          <Pin size={20} />
-        </Marker>
         {/* Utilities Section */}
 
         {/* looks for user location */}
@@ -242,7 +204,6 @@ const Map = () => {
         <div className="nav" style={navStyle}>
           <NavigationControl />
         </div>
-        <ControlPanel events={events} style={controlStyle} />
       </ReactMapGL>
     </div>
   );
