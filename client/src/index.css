@@ -6,7 +6,9 @@ body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-
+  background-image: url(http://www.userlogos.org/files/backgrounds/Mafia_Penguin/Map1280x800.jpg);
+  background-size: cover;
+  background-repeat: np-repeat;
 }
 
 
@@ -39,4 +41,7 @@ body {
   margin: 0.5rem 0;
   display: block;
   width: 100%;
+}
+.mapboxgl-ctrl-geocoder--button{
+  width: auto;
 }
