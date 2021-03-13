@@ -66,7 +66,6 @@ router.post("/location/", function (req, res) {
     });
 });
 
-
 router.post("/login", function (req, res) {
   console.log(req.body);
   db.User.find({})
@@ -80,7 +79,20 @@ router.post("/login", function (req, res) {
     })
     .catch(function (err) {
       // If an error occurred, send it to the client
-=======
+    });
+});
+
+router.post("/location/update/", function (req, res) {
+  console.log(req.body);
+  db.Saved.updateOne({ title: req.body.name }, { $set: req.body.query })
+    .then((dbLogEvent) => {
+      console.log("event updated"), res.json(dbLogEvent);
+    })
+    // Gotta catch all them errors!
+    .catch((err) => {
+      res.json(err);
+    });
+});
 // DELETE /events/:id by id for deleting an event from the database
 router.delete("/location/:id", (req, res) => {
   // console.log(req.params.id)
@@ -91,7 +103,6 @@ router.delete("/location/:id", (req, res) => {
     })
     // Gotta catch all them errors!
     .catch((err) => {
-
       res.json(err);
     });
 });
