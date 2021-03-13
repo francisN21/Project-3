@@ -49,15 +49,18 @@ const Dashboard = () => {
     width: "18rem"
   }
 
-  // const pageStyles = {
-  //   height: "5000px"
-  // }
+  const pageStyles = {
+    height: "5000px !important",
+    margin: "auto",
+    position: "absolute",
+    overFlow: "scroll !important"
+  }
 
   // Console log to show that the axios request is working
   // console.log(dashboardList);
 
   return (
-    <div>
+    <div style={pageStyles}>
       {/* Title of page */}
       <h1 className="text-center">Your Events</h1>
       {/* Set up a div for the table */}
