@@ -42,3 +42,6 @@ body {
   display: block;
   width: 100%;
 }
+.mapboxgl-ctrl-geocoder--button{
+  width: auto;
+}
