@@ -36,46 +36,74 @@ const Dashboard = () => {
   return (
     <>
       <h1 className="text-center">Your Events</h1>
-      <div className="container">
-        {dashboardList.map((dashboardEvent) => (
+      {/* <div className="container"> */}
 
-          <div className="card"
-            style={cardStyles}
-            key={dashboardEvent._id}>
-            <h2 className="card-title text-center">{dashboardEvent.title}</h2>
-            <hr></hr>
-            <div className="card-body">
-              <h5>{dashboardEvent.latitude}</h5>
-              <h5>{dashboardEvent.longitude}</h5>
-              <h5>{dashboardEvent.updatedAt}</h5>
-            </div>
-            <div className="card-footer">
-              <button
-                className="btn btn-info"
-                onClick={() => console.log(`VIEW ${dashboardEvent.title} ID: ${dashboardEvent._id}`)}
-              >
-                View Event
-              </button>
-            </div>
-            <div className="card-footer">
-              <button
-                className="btn btn-danger"
-                onClick={() => console.log(`DELETE ${dashboardEvent.title} ID: ${dashboardEvent._id}`)}
-              >
-                Delete Event
-              </button>
-            </div>
+      <div className="table-responsive">
+        <table className="table table-striped text-center table-hover">
+          <thead>
+            <tr >
+              <th>Event Name</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>Created At</th>
+              <th>View Event</th>
+              <th>Delete Event</th>
+            </tr>
+          </thead>
 
-          </div>
+          {dashboardList.length ? (
 
-        ))
+            <tbody>
+
+              {
+                dashboardList.map((dashboardEvent) => (
+
+                  <tr key={dashboardEvent._id}>
+                    <td><h2>{dashboardEvent.title}</h2></td>
 
 
-        }
+                    <td><p>{dashboardEvent.latitude}</p></td>
+                    <td><p>{dashboardEvent.longitude}</p></td>
+                    <td><p>{dashboardEvent.updatedAt}</p></td>
 
 
+                    <td>
+                      <button
+                        className="btn btn-info"
+                        onClick={() => console.log(`VIEW ${dashboardEvent.title} ID: ${dashboardEvent._id}`)}
+                      >
+                        View Event
+                      </button>
+                    </td>
 
 
+                    <td>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => console.log(`DELETE ${dashboardEvent.title} ID: ${dashboardEvent._id}`)}
+                      >
+                        Delete Event
+                    </button>
+                    </td>
+
+                  </tr>
+
+                ))
+
+
+              }
+            </tbody>
+          ) : (
+              <tbody>
+                <tr>
+                  <td><h1>No Events yet, save some events!  Have some fun!</h1></td>
+                </tr>
+              </tbody>
+            )
+          }
+
+          {/* </div> */}
+        </table>
       </div>
     </>
   )
