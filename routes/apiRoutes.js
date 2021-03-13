@@ -8,7 +8,7 @@ router.get("/test", (req, res) => {
 
 //Route to get /events to get all the saved events
 router.get("/events", (req, res) => {
-  db.LogEvent.find({})
+  db.Saved.find({})
     .then((dbLogEvent) => {
       res.json(dbLogEvent);
     })
