@@ -10,17 +10,16 @@ const deleteEvent = (id) => {
     method: 'DELETE'
     // Json that response
   })
+    // Json the response
     .then((response) => response.json())
     .then((data) => {
       // Console log the data
-      console.log(data)
+      // console.log(data)
     })
-  // Refresh the page so that the book is no longer shown
+  // Refresh the page so that the event is no longer shown
   window.location.reload()
 
 }
-
-
 
 // Dashboard Page Component
 const Dashboard = () => {
@@ -55,15 +54,17 @@ const Dashboard = () => {
   // }
 
   // Console log to show that the axios request is working
-  console.log(dashboardList);
+  // console.log(dashboardList);
 
   return (
     <div>
+      {/* Title of page */}
       <h1 className="text-center">Your Events</h1>
-      {/* <div className="container"> */}
-
+      {/* Set up a div for the table */}
       <div className="table-responsive">
+        {/* Table */}
         <table className="table table-striped text-center table-hover">
+          {/* Table header */}
           <thead>
             <tr >
               <th>Event Name</th>
@@ -71,53 +72,54 @@ const Dashboard = () => {
               <th>Longitude</th>
               <th>Date</th>
               <th>Description</th>
-              <th>View Event</th>
+              {/* <th>View Event</th> */}
               <th>Delete Event</th>
             </tr>
           </thead>
-
+          {/* If there is an event, display it */}
           {dashboardList.length ? (
 
             <tbody>
-
+              {/* Map through the events and display them*/}
               {
                 dashboardList.map((dashboardEvent) => (
 
                   <tr key={dashboardEvent._id}>
                     <td><h2>{dashboardEvent.title}</h2></td>
-
-
                     <td><p>{dashboardEvent.latitude}</p></td>
                     <td><p>{dashboardEvent.longitude}</p></td>
                     <td><p>{dashboardEvent.date}</p></td>
                     <td><p>{dashboardEvent.description}</p></td>
 
-
-                    <td>
+                    {/* Button to view the event if we want it */}
+                    {/* <td>
                       <button
                         className="btn btn-info"
                         onClick={() => console.log(`VIEW ${dashboardEvent.title} ID: ${dashboardEvent._id}`)}
                       >
                         View Event
                       </button>
-                    </td>
+                    </td> */}
 
+                    {/* Button to delete the event */}
                     <td>
                       <button
                         className="btn btn-danger"
+                        // Call the delete Event by it's ID function on click
                         onClick={() => deleteEvent(dashboardEvent._id)}
                       >
                         Delete Event
                     </button>
                     </td>
                   </tr>
-
+                  // End of each event
                 ))
 
 
               }
             </tbody>
           ) : (
+              // If no events, display this
               <tbody>
                 <tr>
                   <td><h1>No Events yet, save some events!  Have some fun!</h1></td>
@@ -126,7 +128,6 @@ const Dashboard = () => {
             )
           }
 
-          {/* </div> */}
         </table>
       </div>
     </div>

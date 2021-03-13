@@ -13,6 +13,7 @@ router.get("/events", (req, res) => {
     .then((dbLogEvent) => {
       res.json(dbLogEvent);
     })
+    // Gotta catch them errors!
     .catch((err) => {
       res.json(err);
     });
@@ -20,11 +21,15 @@ router.get("/events", (req, res) => {
 
 //Route for creating a new Event
 router.post("/events", (req, res) => {
+  // Set event to a new variable
   const newEvent = req.body;
+  // Using the LogEvent Database in the Events Models File
   db.LogEvent.create(newEvent)
     .then((dbLogEvent) => {
+      // Let the user know that the event was saved
       console.log("Event Saved"), res.json(dbLogEvent);
     })
+    // Gotta catch them errors!
     .catch((err) => {
       res.json(err);
     });
@@ -77,11 +82,13 @@ router.post("/location/", function (req, res) {
 // DELETE /events/:id by id for deleting an event from the database
 router.delete("/events/:id", (req, res) => {
   // console.log(req.params.id)
+  // Using the LogEvent Database in the Events Models File
   db.LogEvent.deleteOne({ "_id": req.params.id })
     .then(dbLogEvent => {
       console.log("event deleted"),
         res.json(dbLogEvent)
     })
+    // Gotta catch all them errors!
     .catch(err => {
       res.json(err)
     })
