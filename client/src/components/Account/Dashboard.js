@@ -2,6 +2,26 @@
 import React, { useEffect, useState } from "react";
 import { listEvents } from "../../utils/API";
 
+
+
+// Function to delete the book from the database by ID
+const deleteEvent = (id) => {
+  fetch(`/api/events/${id}`, {
+    method: 'DELETE'
+    // Json that response
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Console log the data
+      console.log(data)
+    })
+  // Refresh the page so that the book is no longer shown
+  window.location.reload()
+
+}
+
+
+
 // Dashboard Page Component
 const Dashboard = () => {
 
@@ -30,11 +50,15 @@ const Dashboard = () => {
     width: "18rem"
   }
 
+  // const pageStyles = {
+  //   height: "5000px"
+  // }
+
   // Console log to show that the axios request is working
   console.log(dashboardList);
 
   return (
-    <>
+    <div>
       <h1 className="text-center">Your Events</h1>
       {/* <div className="container"> */}
 
@@ -45,7 +69,8 @@ const Dashboard = () => {
               <th>Event Name</th>
               <th>Latitude</th>
               <th>Longitude</th>
-              <th>Created At</th>
+              <th>Date</th>
+              <th>Description</th>
               <th>View Event</th>
               <th>Delete Event</th>
             </tr>
@@ -64,7 +89,8 @@ const Dashboard = () => {
 
                     <td><p>{dashboardEvent.latitude}</p></td>
                     <td><p>{dashboardEvent.longitude}</p></td>
-                    <td><p>{dashboardEvent.updatedAt}</p></td>
+                    <td><p>{dashboardEvent.date}</p></td>
+                    <td><p>{dashboardEvent.description}</p></td>
 
 
                     <td>
@@ -79,12 +105,11 @@ const Dashboard = () => {
                     <td>
                       <button
                         className="btn btn-danger"
-                        onClick={() => console.log(`DELETE ${dashboardEvent.title} ID: ${dashboardEvent._id}`)}
+                        onClick={() => deleteEvent(dashboardEvent._id)}
                       >
                         Delete Event
                     </button>
                     </td>
-
                   </tr>
 
                 ))
@@ -104,7 +129,7 @@ const Dashboard = () => {
           {/* </div> */}
         </table>
       </div>
-    </>
+    </div>
   )
 };
 
