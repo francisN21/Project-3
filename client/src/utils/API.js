@@ -1,7 +1,10 @@
+import axios from "axios";
+
 const API_URL = "http://localhost:5000";
 const axios = require("axios");
 
 // will be added soon once I have server working
+
 async function listEvents() {
   const response = await fetch(`${API_URL}/api/events`);
   return response.json();
@@ -10,7 +13,7 @@ async function listEvents() {
 async function createEvent() {
   const response = await fetch(`${API_URL}/api/events`);
   return response.json();
-}
+
 
 async function fetchUser() {
   const response = await fetch(`${API_URL}/api/user`);
