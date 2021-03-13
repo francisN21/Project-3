@@ -56,7 +56,7 @@ const AddEvent = () => {
                 onSubmit={onSubmit}
             >
                 <div className="form-group">
-                    <div className="col-md-9">
+                    <div >
                         {/* Input forms to add the event */}
                         {/* Input for title */}
                         <input
