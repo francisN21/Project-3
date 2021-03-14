@@ -9,6 +9,7 @@ export async function listEvents() {
 
 export async function createEvent() {
   const response = await fetch(`${API_URL}/api/location`);
+  console.log(response)
   return response.json();
 }
 export async function fetchUser() {

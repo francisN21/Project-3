@@ -29,7 +29,7 @@ const EntryForm = ({ location, onClose }) => {
       timestamps: eventForm.time,
     }
 
-    // Send fetch request to post it to the database
+    // // Send fetch request to post it to the database
     fetch(`/api/location/`, {
       method: 'POST',
       body: JSON.stringify(newEvent),

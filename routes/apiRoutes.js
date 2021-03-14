@@ -66,21 +66,21 @@ router.post("/location/", function (req, res) {
     });
 });
 
-router.post("/login", function (req, res) {
-  console.log(req.body);
-  db.User.find({})
-    .then(function (dbUsers) {
-      console.log(dbUsers);
-      const dbUser = dbUsers.find((user) => user.email === req.body.email);
-      console.log(dbUser);
-      bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
-        res.json(dbUser);
-      });
-    })
-    .catch(function (err) {
-      // If an error occurred, send it to the client
-    });
-});
+// router.post("/login", function (req, res) {
+//   console.log(req.body);
+//   db.User.find({})
+//     .then(function (dbUsers) {
+//       console.log(dbUsers);
+//       const dbUser = dbUsers.find((user) => user.email === req.body.email);
+//       console.log(dbUser);
+//       bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
+//         res.json(dbUser);
+//       });
+//     })
+//     .catch(function (err) {
+//       // If an error occurred, send it to the client
+//     });
+// });
 
 router.post("/location/update/", function (req, res) {
   console.log(req.body);
@@ -109,8 +109,8 @@ router.delete("/location/:id", (req, res) => {
     });
 });
 
-// SEAN'S TEST POST ROUTE CAUSE I COULDN"T FIGURE IT OUT
-//Route for creating a new Event
+// SEAN'S TEST POST ROUTE FOR WHEN NO USER ID
+// Route for creating a new Event
 // router.post("/location/", (req, res) => {
 //   // Set event to a new variable
 //   const newEvent = req.body;
