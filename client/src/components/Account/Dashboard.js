@@ -19,8 +19,10 @@ const deleteEvent = (dashboardEvent) => {
 
 
     })
-  // Refresh the page so that the event is no longer shown
+  //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
   alert(`${dashboardEvent.name} Deleted`)
+
+  // Refresh the page so that the event is no longer shown
   window.location.reload()
 
 }
@@ -120,15 +122,15 @@ const Dashboard = () => {
                       >
                         Delete Event
                     </button>
-                      <button
+                      {/* <button
 
                         className="btn btn-info"
                         onClick={() => console.log(`VIEW ${dashboardEvent.name} ID: {dashboardEvent._id}`)}
                         onClick={() => console.log(dashboardEvent)}
                       >
                         View Event
-                      </button>
-                      <Link className="btn btn-secondary"
+                      </button> */}
+                      <Link className="btn btn-info"
                         to={{
                           pathname: "/editEvent",
                           editEventProps: {
