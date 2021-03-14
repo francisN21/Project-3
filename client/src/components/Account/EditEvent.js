@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-
-
 // Function to Edit the event from the database by ID
 const editEvent = (newEditEvent) => {
     console.log(newEditEvent)
@@ -25,11 +23,14 @@ const editEvent = (newEditEvent) => {
             // Console log the data
             console.log(data)
 
-            alert(`${newEditEvent.name} Updated`)
-            //TOAST HERE FOR EVENT UPDATE
+
+            //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
+            alert(`${newEditEvent.name} Event Updated`)
+
         })
     // Refresh the page so that the event is no longer shown
     // window.location.reload()
+    // newEditEvent = {}
 
 }
 

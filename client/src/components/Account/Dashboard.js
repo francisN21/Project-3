@@ -6,8 +6,8 @@ import { Link } from "react-router-dom"
 
 
 // Function to delete the event from the database by ID
-const deleteEvent = (id) => {
-  fetch(`/api/location/${id}`, {
+const deleteEvent = (dashboardEvent) => {
+  fetch(`/api/location/${dashboardEvent._id}`, {
     method: 'DELETE'
     // Json that response
   })
@@ -18,9 +18,9 @@ const deleteEvent = (id) => {
       // console.log(data)
 
 
-      //TOAST HERE FOR EVENT DELETE
     })
   // Refresh the page so that the event is no longer shown
+  alert(`${dashboardEvent.name} Deleted`)
   window.location.reload()
 
 }
@@ -116,14 +116,14 @@ const Dashboard = () => {
                       <button
                         className="btn btn-danger"
                         // Call the delete Event by it's ID function on click
-                        onClick={() => deleteEvent(dashboardEvent._id)}
+                        onClick={() => deleteEvent(dashboardEvent)}
                       >
                         Delete Event
                     </button>
                       <button
 
                         className="btn btn-info"
-                        onClick={() => console.log(`VIEW ${dashboardEvent.name} ID: ${dashboardEvent._id}`)}
+                        onClick={() => console.log(`VIEW ${dashboardEvent.name} ID: {dashboardEvent._id}`)}
                         onClick={() => console.log(dashboardEvent)}
                       >
                         View Event
