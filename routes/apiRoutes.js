@@ -150,4 +150,11 @@ router.post("/location/", (req, res) => {
     });
 });
 
+
+// PUT route for updating Event
+router.put("/location/:id", (req, res) => {
+  console.log(req.params)
+  console.log(req.body)
+})
+
 module.exports = router;

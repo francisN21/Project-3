@@ -1,27 +1,79 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+
+
+
+// Function to Edit the event from the database by ID
+const editEvent = (newEditEvent) => {
+    console.log(newEditEvent)
+    // fetch(`/api/location/${newEditEvent._id}`, {
+    //     method: 'PUT'
+    //     // Json that response
+    // })
+
+
+    fetch(`/api/location/:${newEditEvent._id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newEditEvent),
+        // Json that response
+    })
+        //   // Json the response
+        .then((response) => response.json())
+        .then((data) => {
+            // Console log the data
+            console.log(data)
+        })
+    // Refresh the page so that the event is no longer shown
+    // window.location.reload()
+
+}
+
+
+
+
+
+
+
 
 const EditEvent = (props) => {
 
-    console.log(props.location.editEventProps)
-    console.log(props.location.editEventProps.dashboardEvent.name)
 
-    let editEventForm = props.location.editEventProps.dashboardEvent
-    console.log(editEventForm)
+    const [newEditEvent, setNewEditEvent] = useState();
+    // console.log(props.location.editEventProps)
+    // console.log(props.location.editEventProps.dashboardEvent.name)
+
+
+    const onEditChange = (e) => {
+        setNewEditEvent({ ...newEditEvent, [e.target.name]: e.target.value });
+    };
+
+
+    let editEventForm = ""
+    editEventForm = props.location.editEventProps.dashboardEvent
+    // console.log(editEventForm)
 
     // State for adding an event to the Log Event database
-    const [editEvent, setEditEvent] = useState();
+    // const [editEvent, setEditEvent] = useState();
 
     // On change to set the value of the form to state
-    const onChange = (e) => {
-        setEditEvent({ ...editEvent, [e.target.name]: e.target.value });
-    };
+    // const onChange = (e) => {
+    //     setEditEvent({ ...editEvent, [e.target.name]: e.target.value });
+    // };
 
     // On Submit to prevent default behavior of the form
     const onSubmit = (e) => {
         // Gotta prevent the default!
         e.preventDefault()
+        // console.log(newEditEvent)
 
     };
+
+    // UseEffect to call the function when the page loads
+    useEffect(() => {
+        setNewEditEvent(editEventForm)
+    }, []);
 
     return (
         // Div to center the content
@@ -37,55 +89,62 @@ const EditEvent = (props) => {
                     {/* Input forms to add the event */}
                     {/* Input for title */}
                     <input
-                        onChange={onChange}
-                        name="title"
+                        onChange={onEditChange}
+                        name="name"
                         type="text"
-                        placeholder={props.location.editEventProps.dashboardEvent.name}
+                        placeholder={editEventForm.name}
                         className="form-control text-center border border-dark"
                     />
                     {/* Input for description */}
                     <input
-                        onChange={onChange}
+                        onChange={onEditChange}
                         name="description"
                         type="text"
-                        placeholder="description"
+                        placeholder={editEventForm.description}
                         className="form-control text-center border border-dark"
+                    // value={editEventForm.description}
                     />
                     {/* Input for latitude */}
                     <input
-                        onChange={onChange}
+                        onChange={onEditChange}
                         name="latitude"
                         type="number"
                         step="0.00001"
-                        placeholder="latitude"
+                        placeholder={editEventForm.location[0].latitude}
                         className="form-control text-center border border-dark"
+                    // value={editEventForm.location[0].latitude}
                     />
                     {/* Input for longitude */}
                     <input
-                        onChange={onChange}
+                        onChange={onEditChange}
                         name="longitude"
                         type="number"
                         step="0.00001"
-                        placeholder="longitude"
+                        placeholder={editEventForm.location[0].longitude}
                         className="form-control text-center border border-dark"
+                    // value={editEventForm.location[0].longitude}
                     />
                     {/* Input for date */}
                     <input
-                        onChange={onChange}
+                        onChange={onEditChange}
                         name="date"
                         type="date"
-                        placeholder="date of event"
+                        placeholder={editEventForm.date}
                         className="form-control text-center border border-dark"
+                    // value={editEventForm.date}
                     />
 
                     {/* Button to save the event */}
-                    <button
+                    < button
                         // onClick={() => saveEvent(newEvent)}
-                        onClick={() => console.log(editEvent)}
-                        onClick={() => console.log("edits")}
+                        onClick={() => editEvent(newEditEvent)}
+                        // onClick={() => console.log("edits")}
                         className="btn btn-primary">
+
                         Save Edits
-                        </button>
+                    </button>
+
+
 
 
                 </div>
@@ -95,7 +154,7 @@ const EditEvent = (props) => {
             </form>
 
 
-        </div>
+        </div >
     )
 }
 
