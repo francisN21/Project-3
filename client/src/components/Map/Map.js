@@ -93,6 +93,24 @@ const Map = () => {
     });
   };
   //  delete and edit popup ==== //
+
+  // Function to delete the event from the database by ID
+  const deleteEvent = (id) => {
+    fetch(`/api/location/${id}`, {
+      method: 'DELETE'
+      // Json that response
+    })
+      // Json the response
+      .then((response) => response.json())
+      .then((data) => {
+        // Console log the data
+        // console.log(data)
+      })
+    // Refresh the page so that the event is no longer shown
+    window.location.reload()
+  }
+
+
   return (
     <div className="map">
       <ReactMapGL
@@ -140,8 +158,12 @@ const Map = () => {
                   <h3>{event.name}</h3>
                   <p>{event.description}</p>
                   <p>{event.date}</p>
-                  <button className="btn btn-primary">edit</button>
-                  <button className="btn btn-danger">delete</button>
+                  <button className="btn btn-primary"
+                    onClick={() => console.log(event)}
+                  >edit</button>
+                  <button className="btn btn-danger"
+                    onClick={() => deleteEvent(event._id)}
+                  >delete</button>
                 </div>
               </Popup>
             ) : null}

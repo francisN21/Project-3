@@ -1,12 +1,13 @@
 // Import all the React Goodness!
 import React, { useEffect, useState } from "react";
 import { listEvents } from "../../utils/API";
+import { Link } from "react-router-dom"
 
 
 
-// Function to delete the book from the database by ID
+// Function to delete the event from the database by ID
 const deleteEvent = (id) => {
-  fetch(`/api/events/${id}`, {
+  fetch(`/api/location/${id}`, {
     method: 'DELETE'
     // Json that response
   })
@@ -32,7 +33,7 @@ const Dashboard = () => {
     // Await the List events function in Utils/API
     const showList = await listEvents();
     // Console.log it
-    // console.log(showList);
+    console.log(showList);
     // Set State for the event list
     setDashboardList(showList);
   };
@@ -49,15 +50,18 @@ const Dashboard = () => {
     width: "18rem"
   }
 
-  // const pageStyles = {
-  //   height: "5000px"
-  // }
+  const pageStyles = {
+    height: "5000px !important",
+    margin: "auto",
+    position: "absolute",
+    overFlow: "scroll !important"
+  }
 
   // Console log to show that the axios request is working
   // console.log(dashboardList);
 
   return (
-    <div>
+    <div style={pageStyles}>
       {/* Title of page */}
       <h1 className="text-center">Your Events</h1>
       {/* Set up a div for the table */}
@@ -68,8 +72,9 @@ const Dashboard = () => {
           <thead>
             <tr >
               <th>Event Name</th>
-              <th>Latitude</th>
-              <th>Longitude</th>
+              <th>Latitude/Longitude
+              </th>
+
               <th>Date</th>
               <th>Description</th>
               {/* <th>View Event</th> */}
@@ -85,9 +90,11 @@ const Dashboard = () => {
                 dashboardList.map((dashboardEvent) => (
 
                   <tr key={dashboardEvent._id}>
-                    <td><h2>{dashboardEvent.title}</h2></td>
-                    <td><p>{dashboardEvent.latitude}</p></td>
-                    <td><p>{dashboardEvent.longitude}</p></td>
+                    <td><h4>{dashboardEvent.name}</h4></td>
+                    <td>
+                      <p>{dashboardEvent.location[0].latitude}</p>
+                      <p>{dashboardEvent.location[0].longitude}</p>
+                    </td>
                     <td><p>{dashboardEvent.date}</p></td>
                     <td><p>{dashboardEvent.description}</p></td>
 
@@ -110,6 +117,24 @@ const Dashboard = () => {
                       >
                         Delete Event
                     </button>
+                      <button
+
+                        className="btn btn-info"
+                        onClick={() => console.log(`VIEW ${dashboardEvent.name} ID: ${dashboardEvent._id}`)}
+                        onClick={() => console.log(dashboardEvent)}
+                      >
+                        View Event
+                      </button>
+                      <Link className="btn btn-secondary"
+                        to={{
+                          pathname: "/editEvent",
+                          editEventProps: {
+                            dashboardEvent
+                            // name: dashboardEvent.name
+                          }
+                        }} >
+                        Edit Event
+                        </Link>
                     </td>
                   </tr>
                   // End of each event
@@ -130,7 +155,7 @@ const Dashboard = () => {
 
         </table>
       </div>
-    </div>
+    </div >
   )
 };
 

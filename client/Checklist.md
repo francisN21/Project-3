@@ -7,19 +7,21 @@
 - [~] POST / Events/Log - Brandon
   - Create a new Event/ Log entry
 - [~] GET / Event/logs - Brandon
-  - List all Events!
+  -[x] List all Events!
+  -[x] Delete Event
 - [x] Setup Client
-- [] Create Form to add a new Event
+- [x] Create Form to add a new Event
 - [x] Setup Map SDK on client
 - [x] List all log entries on map
 - [] Setup Authentication - Edgar
-- [] Profile - Sean
-- [] Dashboard -
+- [x] Profile 
+- [x] Dashboard /List of Events
 - [] more features
   -[] add friends
   -[] make events public or private
   -[] invite friends to an event
+  -[] Clusters
 - [] Styling
 - [] DEPLOY!
 - [] README
-  -Yeay! part 2
+
