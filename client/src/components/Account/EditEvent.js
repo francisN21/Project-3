@@ -55,7 +55,7 @@ const EditEvent = (props) => {
 
 
     let editEventForm = ""
-    editEventForm = props.location.editEventProps.dashboardEvent
+    editEventForm = props.location.editEventProps.event
     // console.log(editEventForm)
 
     // State for adding an event to the Log Event database

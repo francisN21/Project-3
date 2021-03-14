@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom"
 import ReactMapGL, {
   Marker,
   Popup,
@@ -14,6 +15,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "./Map.css";
 require("dotenv").config();
+
 
 const Map = () => {
   // map setup
@@ -95,8 +97,8 @@ const Map = () => {
   //  delete and edit popup ==== //
 
   // Function to delete the event from the database by ID
-  const deleteEvent = (id) => {
-    fetch(`/api/location/${id}`, {
+  const deleteEvent = (event) => {
+    fetch(`/api/location/${event._id}`, {
       method: 'DELETE'
       // Json that response
     })
@@ -108,6 +110,44 @@ const Map = () => {
       })
     // Refresh the page so that the event is no longer shown
     window.location.reload()
+
+
+    //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
+    alert(`${event.name} Deleted`)
+  }
+
+
+  const editEvent = (event) => {
+    console.log(event)
+    // fetch(`/api/location/${newEditEvent._id}`, {
+    //     method: 'PUT'
+    //     // Json that response
+    // })
+
+
+    // fetch(`/api/location/${newEditEvent._id}`, {
+    //     method: 'PUT',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(newEditEvent),
+    //     // Json that response
+    // })
+    //     //   // Json the response
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //         // Console log the data
+    //         console.log(data)
+
+
+    //         //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
+    //         alert(`${newEditEvent.name} Event Updated`)
+
+    //     })
+    // Refresh the page so that the event is no longer shown
+    // window.location.reload()
+    // newEditEvent = {}
+
   }
 
 
@@ -158,11 +198,21 @@ const Map = () => {
                   <h3>{event.name}</h3>
                   <p>{event.description}</p>
                   <p>{event.date}</p>
+                  <Link className="btn btn-info"
+                    to={{
+                      pathname: "/editEvent",
+                      editEventProps: {
+                        event
+                        // name: dashboardEvent.name
+                      }
+                    }} >
+                    Edit Event
+                        </Link>
                   <button className="btn btn-primary"
-                    onClick={() => console.log(event)}
+                    onClick={() => editEvent(event)}
                   >edit</button>
                   <button className="btn btn-danger"
-                    onClick={() => deleteEvent(event._id)}
+                    onClick={() => deleteEvent(event)}
                   >delete</button>
                 </div>
               </Popup>

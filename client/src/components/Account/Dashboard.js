@@ -92,22 +92,22 @@ const Dashboard = () => {
             <tbody>
               {/* Map through the events and display them*/}
               {
-                dashboardList.map((dashboardEvent) => (
+                dashboardList.map((event) => (
 
-                  <tr key={dashboardEvent._id}>
-                    <td><h4>{dashboardEvent.name}</h4></td>
+                  <tr key={event._id}>
+                    <td><h4>{event.name}</h4></td>
                     <td>
-                      <p>{dashboardEvent.location[0].latitude}</p>
-                      <p>{dashboardEvent.location[0].longitude}</p>
+                      <p>{event.location[0].latitude}</p>
+                      <p>{event.location[0].longitude}</p>
                     </td>
-                    <td><p>{dashboardEvent.date}</p></td>
-                    <td><p>{dashboardEvent.description}</p></td>
+                    <td><p>{event.date}</p></td>
+                    <td><p>{event.description}</p></td>
 
                     {/* Button to view the event if we want it */}
                     {/* <td>
                       <button
                         className="btn btn-info"
-                        onClick={() => console.log(`VIEW ${dashboardEvent.title} ID: ${dashboardEvent._id}`)}
+                        onClick={() => console.log(`VIEW ${event.title} ID: ${event._id}`)}
                       >
                         View Event
                       </button>
@@ -118,15 +118,15 @@ const Dashboard = () => {
                       <button
                         className="btn btn-danger"
                         // Call the delete Event by it's ID function on click
-                        onClick={() => deleteEvent(dashboardEvent)}
+                        onClick={() => deleteEvent(event)}
                       >
                         Delete Event
                     </button>
                       {/* <button
 
                         className="btn btn-info"
-                        onClick={() => console.log(`VIEW ${dashboardEvent.name} ID: {dashboardEvent._id}`)}
-                        onClick={() => console.log(dashboardEvent)}
+                        onClick={() => console.log(`VIEW ${event.name} ID: {event._id}`)}
+                        onClick={() => console.log(event)}
                       >
                         View Event
                       </button> */}
@@ -134,7 +134,7 @@ const Dashboard = () => {
                         to={{
                           pathname: "/editEvent",
                           editEventProps: {
-                            dashboardEvent
+                            event
                             // name: dashboardEvent.name
                           }
                         }} >
