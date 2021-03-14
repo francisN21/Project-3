@@ -11,7 +11,7 @@ const editEvent = (newEditEvent) => {
     // })
 
 
-    fetch(`/api/location/:${newEditEvent._id}`, {
+    fetch(`/api/location/${newEditEvent._id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -24,6 +24,9 @@ const editEvent = (newEditEvent) => {
         .then((data) => {
             // Console log the data
             console.log(data)
+
+            alert(`${newEditEvent.name} Updated`)
+            //TOAST HERE FOR EVENT UPDATE
         })
     // Refresh the page so that the event is no longer shown
     // window.location.reload()

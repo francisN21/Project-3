@@ -16,6 +16,9 @@ const deleteEvent = (id) => {
     .then((data) => {
       // Console log the data
       // console.log(data)
+
+
+      //TOAST HERE FOR EVENT DELETE
     })
   // Refresh the page so that the event is no longer shown
   window.location.reload()
