@@ -7,7 +7,6 @@ import ReactMapGL, {
 } from "react-map-gl";
 import EntryForm from "./EntryForm";
 import { listEvents } from "../../utils/API";
-import ControlPanel from "./Control-Panel";
 import Pin from "./pin";
 import Geocoder from "react-map-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
