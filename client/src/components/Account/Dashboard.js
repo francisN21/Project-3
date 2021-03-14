@@ -121,11 +121,18 @@ const Dashboard = () => {
 
                         className="btn btn-info"
                         onClick={() => console.log(`VIEW ${dashboardEvent.name} ID: ${dashboardEvent._id}`)}
+                        onClick={() => console.log(dashboardEvent)}
                       >
                         View Event
                       </button>
                       <Link className="btn btn-secondary"
-                        to="/editEvent">
+                        to={{
+                          pathname: "/editEvent",
+                          editEventProps: {
+                            dashboardEvent
+                            // name: dashboardEvent.name
+                          }
+                        }} >
                         Edit Event
                         </Link>
                     </td>
@@ -148,7 +155,7 @@ const Dashboard = () => {
 
         </table>
       </div>
-    </div>
+    </div >
   )
 };
 

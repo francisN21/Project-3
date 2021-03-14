@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 
-const EditEvent = () => {
+const EditEvent = (props) => {
+
+    console.log(props.location.editEventProps)
+    console.log(props.location.editEventProps.dashboardEvent.name)
+
+    let editEventForm = props.location.editEventProps.dashboardEvent
+    console.log(editEventForm)
 
     // State for adding an event to the Log Event database
     const [editEvent, setEditEvent] = useState();
@@ -10,14 +16,22 @@ const EditEvent = () => {
         setEditEvent({ ...editEvent, [e.target.name]: e.target.value });
     };
 
+    // On Submit to prevent default behavior of the form
+    const onSubmit = (e) => {
+        // Gotta prevent the default!
+        e.preventDefault()
+
+    };
 
     return (
         // Div to center the content
         <div className="container text-center justify-content-center">
             {/* Title of page */}
-            <h1>Hi from Edit Event</h1>
+            <h1>Edit Event</h1>
 
-            <form className="border-dark">
+            <form className="border-dark"
+                onSubmit={onSubmit}
+            >
                 <div className="form-group">
 
                     {/* Input forms to add the event */}
@@ -26,7 +40,7 @@ const EditEvent = () => {
                         onChange={onChange}
                         name="title"
                         type="text"
-                        placeholder="Event Title"
+                        placeholder={props.location.editEventProps.dashboardEvent.name}
                         className="form-control text-center border border-dark"
                     />
                     {/* Input for description */}
@@ -67,6 +81,8 @@ const EditEvent = () => {
                     {/* Button to save the event */}
                     <button
                         // onClick={() => saveEvent(newEvent)}
+                        onClick={() => console.log(editEvent)}
+                        onClick={() => console.log("edits")}
                         className="btn btn-primary">
                         Save Edits
                         </button>
