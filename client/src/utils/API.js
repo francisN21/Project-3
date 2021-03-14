@@ -32,6 +32,22 @@ export async function updateUser(query) {
   });
   return response.json();
 }
+//How to call update:
+//  var query = {
+// You can change description to any parameter you want to update, or include an array of multiple params
+//  username: "Ferris Wheel",
+//  query: { description: "Does this work?" },
+//};
+//updateEvent(query);
+export async function updateUser(query) {
+  console.log(query);
+  axios.post(`${API_URL}/api/user/update`, query);
+  const response = await fetch(`${API_URL}/api/user/update`, {
+    method: "POST",
+    body: JSON.stringify(query),
+  });
+  return response.json();
+}
 
 export async function loginUser(login) {
   axios.post(`${API_URL}/api/login`, login);
