@@ -198,19 +198,19 @@ const Map = () => {
                   <h3>{event.name}</h3>
                   <p>{event.description}</p>
                   <p>{event.date}</p>
-                  <Link className="btn btn-info"
+                  <Link
+                    className="btn btn-primary"
                     to={{
                       pathname: "/editEvent",
                       editEventProps: {
                         event
-                        // name: dashboardEvent.name
                       }
                     }} >
-                    Edit Event
-                        </Link>
-                  <button className="btn btn-primary"
+                    edit
+                  </Link>
+                  {/* <button className="btn btn-primary"
                     onClick={() => editEvent(event)}
-                  >edit</button>
+                  >edit</button> */}
                   <button className="btn btn-danger"
                     onClick={() => deleteEvent(event)}
                   >delete</button>
@@ -277,7 +277,7 @@ const Map = () => {
           <NavigationControl />
         </div>
       </ReactMapGL>
-    </div>
+    </div >
   );
 };
 
