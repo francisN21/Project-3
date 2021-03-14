@@ -3,22 +3,18 @@ import React, { useEffect, useState } from "react";
 import { listEvents } from "../../utils/API";
 import { Link } from "react-router-dom"
 
-
-
 // Function to delete the event from the database by ID
 const deleteEvent = (dashboardEvent) => {
   fetch(`/api/location/${dashboardEvent._id}`, {
     method: 'DELETE'
     // Json that response
   })
-    // Json the response
     .then((response) => response.json())
     .then((data) => {
       // Console log the data
       // console.log(data)
-
-
     })
+
   //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
   alert(`${dashboardEvent.name} Deleted`)
 
@@ -115,24 +111,11 @@ const Dashboard = () => {
 
                     {/* Button to delete the event */}
                     <td>
-                      <button
-                        className="btn btn-danger"
-                        // Call the delete Event by it's ID function on click
-                        onClick={() => deleteEvent(event)}
-                      >
-                        Delete Event
-                    </button>
-                      {/* <button
-
-                        className="btn btn-info"
-                        onClick={() => console.log(`VIEW ${event.name} ID: {event._id}`)}
-                        onClick={() => console.log(event)}
-                      >
-                        View Event
-                      </button> */}
+                      {/* Link to send you to edit event page  */}
                       <Link className="btn btn-info"
                         to={{
                           pathname: "/editEvent",
+                          // event sent via props
                           editEventProps: {
                             event
                             // name: dashboardEvent.name
@@ -140,6 +123,13 @@ const Dashboard = () => {
                         }} >
                         Edit Event
                         </Link>
+                      <button
+                        className="btn btn-danger"
+                        // Call the delete Event by it's ID function on click
+                        onClick={() => deleteEvent(event)}
+                      >
+                        Delete Event
+                    </button>
                     </td>
                   </tr>
                   // End of each event

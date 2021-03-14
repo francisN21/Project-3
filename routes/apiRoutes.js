@@ -153,9 +153,11 @@ router.post("/location/", (req, res) => {
 
 // PUT route for updating Event
 router.put("/location/:id", (req, res) => {
-  console.log(req.params.id)
-  console.log(req.body)
+  // console.log(req.params.id)
+  // console.log(req.body)
   // console.log(req.body.location[0].latitude)
+
+  // Update One by the ID
   db.Saved.updateOne({ _id: req.params.id }, {
     name: req.body.name,
     description: req.body.description,
@@ -163,29 +165,11 @@ router.put("/location/:id", (req, res) => {
     date: req.body.date,
     timestamp: req.body.timestamp
   })
-    //   //   // })
+    // then JSON it and console log it
     .then((dbSaved) => {
       console.log(dbSaved), res.json(dbSaved)
     })
 
-
-  //   .catch(err => {
-  //     console.log(err)
-  //   })
-
-  // db.Saved.updateOne(
-  //   { event: req.body },
-  //   { where: { id: req.params.id } })
-  //   .then((dbSaved) => res.json(dbSaved))
-  //   .then(() => console.log(dbSaved));
-  // db.Saved.updateOne({ _id: req.body }})
-  // .then((dbLogEvent) => {
-  //   console.log("event updated"), res.json(dbLogEvent);
-  // })
-  // db.Saved.updateOne({ _id: req.body }})
-  // .then((dbLogEvent) => {
-  //   console.log("event updated"), res.json(dbLogEvent);
-  // })
 })
 
 

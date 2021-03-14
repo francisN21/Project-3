@@ -96,6 +96,7 @@ const Map = () => {
   };
   //  delete and edit popup ==== //
 
+
   // Function to delete the event from the database by ID
   const deleteEvent = (event) => {
     fetch(`/api/location/${event._id}`, {
@@ -112,44 +113,9 @@ const Map = () => {
     window.location.reload()
 
 
-    //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
+    //SWITCH ALERT TO TOAST HERE FOR EVENT DELETE
     alert(`${event.name} Deleted`)
   }
-
-
-  const editEvent = (event) => {
-    console.log(event)
-    // fetch(`/api/location/${newEditEvent._id}`, {
-    //     method: 'PUT'
-    //     // Json that response
-    // })
-
-
-    // fetch(`/api/location/${newEditEvent._id}`, {
-    //     method: 'PUT',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(newEditEvent),
-    //     // Json that response
-    // })
-    //     //   // Json the response
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //         // Console log the data
-    //         console.log(data)
-
-
-    //         //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
-    //         alert(`${newEditEvent.name} Event Updated`)
-
-    //     })
-    // Refresh the page so that the event is no longer shown
-    // window.location.reload()
-    // newEditEvent = {}
-
-  }
-
 
   return (
     <div className="map">
@@ -198,10 +164,12 @@ const Map = () => {
                   <h3>{event.name}</h3>
                   <p>{event.description}</p>
                   <p>{event.date}</p>
+                  {/* Link to send you to edit event page */}
                   <Link
                     className="btn btn-primary"
                     to={{
                       pathname: "/editEvent",
+                      // Send event to edit event page via props
                       editEventProps: {
                         event
                       }
