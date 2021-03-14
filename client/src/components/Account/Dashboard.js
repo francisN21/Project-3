@@ -1,6 +1,7 @@
 // Import all the React Goodness!
 import React, { useEffect, useState } from "react";
 import { listEvents } from "../../utils/API";
+import { Link } from "react-router-dom"
 
 
 
@@ -116,6 +117,17 @@ const Dashboard = () => {
                       >
                         Delete Event
                     </button>
+                      <button
+
+                        className="btn btn-info"
+                        onClick={() => console.log(`VIEW ${dashboardEvent.name} ID: ${dashboardEvent._id}`)}
+                      >
+                        View Event
+                      </button>
+                      <Link className="btn btn-secondary"
+                        to="/editEvent">
+                        Edit Event
+                        </Link>
                     </td>
                   </tr>
                   // End of each event

@@ -108,8 +108,9 @@ const Map = () => {
       })
     // Refresh the page so that the event is no longer shown
     window.location.reload()
-
   }
+
+
   return (
     <div className="map">
       <ReactMapGL
@@ -157,7 +158,9 @@ const Map = () => {
                   <h3>{event.name}</h3>
                   <p>{event.description}</p>
                   <p>{event.date}</p>
-                  <button className="btn btn-primary">edit</button>
+                  <button className="btn btn-primary"
+                    onClick={() => console.log(event)}
+                  >edit</button>
                   <button className="btn btn-danger"
                     onClick={() => deleteEvent(event._id)}
                   >delete</button>

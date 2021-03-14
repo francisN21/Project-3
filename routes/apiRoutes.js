@@ -150,6 +150,4 @@ router.post("/location/", (req, res) => {
     });
 });
 
-
-
 module.exports = router;
