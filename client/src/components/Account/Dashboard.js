@@ -1,31 +1,29 @@
 // Import all the React Goodness!
 import React, { useEffect, useState } from "react";
 import { listEvents } from "../../utils/API";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 // Function to delete the event from the database by ID
 const deleteEvent = (dashboardEvent) => {
   fetch(`/api/location/${dashboardEvent._id}`, {
-    method: 'DELETE'
+    method: "DELETE",
     // Json that response
   })
     .then((response) => response.json())
     .then((data) => {
       // Console log the data
       // console.log(data)
-    })
+    });
 
   //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
-  alert(`${dashboardEvent.name} Deleted`)
+  alert(`${dashboardEvent.name} Deleted`);
 
   // Refresh the page so that the event is no longer shown
-  window.location.reload()
-
-}
+  window.location.reload();
+};
 
 // Dashboard Page Component
 const Dashboard = () => {
-
   // State for getting the list of events saved for the dashboardPage
   const [dashboardList, setDashboardList] = useState([]);
 
@@ -44,19 +42,18 @@ const Dashboard = () => {
     getListEvents();
   }, []);
 
-
   // Styles for the cards.
   const cardStyles = {
     margin: "10px",
-    width: "18rem"
-  }
+    width: "18rem",
+  };
 
   const pageStyles = {
     height: "5000px !important",
     margin: "auto",
     position: "absolute",
-    overFlow: "scroll !important"
-  }
+    overFlow: "scroll !important",
+  };
 
   // Console log to show that the axios request is working
   // console.log(dashboardList);
@@ -71,10 +68,9 @@ const Dashboard = () => {
         <table className="table table-striped text-center table-hover">
           {/* Table header */}
           <thead>
-            <tr >
+            <tr>
               <th>Event Name</th>
-              <th>Latitude/Longitude
-              </th>
+              <th>Latitude/Longitude</th>
 
               <th>Date</th>
               <th>Description</th>
@@ -84,23 +80,26 @@ const Dashboard = () => {
           </thead>
           {/* If there is an event, display it */}
           {dashboardList.length ? (
-
             <tbody>
               {/* Map through the events and display them*/}
-              {
-                dashboardList.map((event) => (
+              {dashboardList.map((event) => (
+                <tr key={event._id}>
+                  <td>
+                    <h4>{event.name}</h4>
+                  </td>
+                  <td>
+                    <p>{event.location[0].latitude}</p>
+                    <p>{event.location[0].longitude}</p>
+                  </td>
+                  <td>
+                    <p>{event.date}</p>
+                  </td>
+                  <td>
+                    <p>{event.description}</p>
+                  </td>
 
-                  <tr key={event._id}>
-                    <td><h4>{event.name}</h4></td>
-                    <td>
-                      <p>{event.location[0].latitude}</p>
-                      <p>{event.location[0].longitude}</p>
-                    </td>
-                    <td><p>{event.date}</p></td>
-                    <td><p>{event.description}</p></td>
-
-                    {/* Button to view the event if we want it */}
-                    {/* <td>
+                  {/* Button to view the event if we want it */}
+                  {/* <td>
                       <button
                         className="btn btn-info"
                         onClick={() => console.log(`VIEW ${event.title} ID: ${event._id}`)}
@@ -109,49 +108,48 @@ const Dashboard = () => {
                       </button>
                     </td> */}
 
-                    {/* Button to delete the event */}
-                    <td>
-                      {/* Link to send you to edit event page  */}
-                      <Link className="btn btn-info"
-                        to={{
-                          pathname: "/editEvent",
-                          // event sent via props
-                          editEventProps: {
-                            event
-                            // name: dashboardEvent.name
-                          }
-                        }} >
-                        Edit Event
-                        </Link>
-                      <button
-                        className="btn btn-danger"
-                        // Call the delete Event by it's ID function on click
-                        onClick={() => deleteEvent(event)}
-                      >
-                        Delete Event
+                  {/* Button to delete the event */}
+                  <td>
+                    {/* Link to send you to edit event page  */}
+                    <Link
+                      className="btn btn-info"
+                      to={{
+                        pathname: "/editEvent",
+                        // event sent via props
+                        editEventProps: {
+                          event,
+                          // name: dashboardEvent.name
+                        },
+                      }}
+                    >
+                      Edit Event
+                    </Link>
+                    <button
+                      className="btn btn-danger"
+                      // Call the delete Event by it's ID function on click
+                      onClick={() => deleteEvent(event)}
+                    >
+                      Delete Event
                     </button>
-                    </td>
-                  </tr>
-                  // End of each event
-                ))
-
-
-              }
+                  </td>
+                </tr>
+                // End of each event
+              ))}
             </tbody>
           ) : (
-              // If no events, display this
-              <tbody>
-                <tr>
-                  <td><h1>No Events yet, save some events!  Have some fun!</h1></td>
-                </tr>
-              </tbody>
-            )
-          }
-
+            // If no events, display this
+            <tbody>
+              <tr>
+                <td>
+                  <h1>No Events yet, save some events! Have some fun!</h1>
+                </td>
+              </tr>
+            </tbody>
+          )}
         </table>
       </div>
-    </div >
-  )
+    </div>
+  );
 };
 
 export default Dashboard;
