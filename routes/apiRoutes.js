@@ -70,7 +70,7 @@ router.post("/login", function (req, res) {
   console.log(req.body);
   db.User.find({})
     .then(function (dbUsers) {
-      console.log(dbUsers);
+      // console.log(dbUsers);
       const dbUser = dbUsers.find((user) => user.email === req.body.email);
       console.log(dbUser);
       bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
@@ -78,6 +78,7 @@ router.post("/login", function (req, res) {
       });
     })
     .catch(function (err) {
+      console.log(err);
       // If an error occurred, send it to the client
     });
 });

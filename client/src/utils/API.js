@@ -74,12 +74,13 @@ async function updateUser(query) {
 }
 
 async function loginUser(login) {
-  // axios.post(`${API_URL}/api/login`, login);
-  const response = await fetch(`${API_URL}/api/login`, {
-    method: "POST",
-    body: JSON.stringify(login),
-  });
-  return response.json();
+  console.log(login);
+  return axios.post(`${API_URL}/api/login`, login);
+  // const response = await fetch(`${API_URL}/api/login`, {
+  //   method: "POST",
+  //   body: JSON.stringify(login),
+  // });
+  // return response.json();
 }
 
 module.exports = {
