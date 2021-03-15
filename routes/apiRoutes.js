@@ -136,8 +136,8 @@ router.delete("/location/:id", (req, res) => {
 router.post("/location/", (req, res) => {
   // Set event to a new variable
   const newEvent = req.body;
-  console.log(newEvent)
-  console.log("line 118")
+  console.log(newEvent);
+  console.log("line 118");
   // Using the LogEvent Database in the Events Models File
   db.Saved.create(newEvent)
     .then((dbSaved) => {

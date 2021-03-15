@@ -8,12 +8,12 @@ import ReactMapGL, {
 } from "react-map-gl";
 import EntryForm from "./EntryForm";
 import { listEvents } from "../../utils/API";
-import ControlPanel from "./Control-Panel";
 import Pin from "./pin";
 import Geocoder from "react-map-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "./Map.css";
+import Details from "./Details";
 require("dotenv").config();
 
 
@@ -37,7 +37,7 @@ const Map = () => {
   const getEvents = async () => {
     try {
       const showMarkers = await listEvents();
-      console.log(showMarkers);
+
       setEvents(showMarkers);
     } catch (error) {
       console.log(error);
@@ -96,29 +96,8 @@ const Map = () => {
   };
   //  delete and edit popup ==== //
 
-
-  // Function to delete the event from the database by ID
-  const deleteEvent = (event) => {
-    fetch(`/api/location/${event._id}`, {
-      method: 'DELETE'
-      // Json that response
-    })
-      // Json the response
-      .then((response) => response.json())
-      .then((data) => {
-        // Console log the data
-        // console.log(data)
-      })
-    // Refresh the page so that the event is no longer shown
-    window.location.reload()
-
-
-    //SWITCH ALERT TO TOAST HERE FOR EVENT DELETE
-    alert(`${event.name} Deleted`)
-  }
-
   return (
-    <div className="map">
+    <div className="map" id="map">
       <ReactMapGL
         ref={mapRef}
         {...viewport}
@@ -160,29 +139,12 @@ const Map = () => {
                 onClose={() => setShowPopup({})}
                 anchor="top"
               >
-                <div className="popup">
-                  <h3>{event.name}</h3>
-                  <p>{event.description}</p>
-                  <p>{event.date}</p>
-                  {/* Link to send you to edit event page */}
-                  <Link
-                    className="btn btn-primary"
-                    to={{
-                      pathname: "/editEvent",
-                      // Send event to edit event page via props
-                      editEventProps: {
-                        event
-                      }
-                    }} >
-                    edit
-                  </Link>
-                  {/* <button className="btn btn-primary"
-                    onClick={() => editEvent(event)}
-                  >edit</button> */}
-                  <button className="btn btn-danger"
-                    onClick={() => deleteEvent(event)}
-                  >delete</button>
-                </div>
+                <Details
+                  value={event}
+                  onClose={() => {
+                    getEvents();
+                  }}
+                />
               </Popup>
             ) : null}
           </React.Fragment>
@@ -215,6 +177,7 @@ const Map = () => {
                   onClose={() => {
                     setEventLocation(null);
                     getEvents();
+                    console.log(addEventLocation);
                   }}
                   location={addEventLocation}
                 />
