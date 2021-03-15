@@ -6,13 +6,13 @@ import ReactMapGL, {
   NavigationControl,
 } from "react-map-gl";
 import EntryForm from "./EntryForm";
-import { listEvents, listLocation } from "../../utils/API";
-import ControlPanel from "./Control-Panel";
+import { listEvents } from "../../utils/API";
 import Pin from "./pin";
 import Geocoder from "react-map-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "./Map.css";
+import Details from "./Details";
 require("dotenv").config();
 
 const Map = () => {
@@ -34,8 +34,8 @@ const Map = () => {
   // reusable backend call to fetch event database
   const getEvents = async () => {
     try {
-      const showMarkers = await listLocation();
-      console.log(showMarkers);
+      const showMarkers = await listEvents();
+
       setEvents(showMarkers);
     } catch (error) {
       console.log(error);
@@ -93,8 +93,9 @@ const Map = () => {
     });
   };
   //  delete and edit popup ==== //
+
   return (
-    <div className="map">
+    <div className="map" id="map">
       <ReactMapGL
         ref={mapRef}
         {...viewport}
@@ -136,13 +137,12 @@ const Map = () => {
                 onClose={() => setShowPopup({})}
                 anchor="top"
               >
-                <div className="popup">
-                  <h3>{event.name}</h3>
-                  <p>{event.description}</p>
-                  <p>{event.date}</p>
-                  <button className="btn btn-primary">edit</button>
-                  <button className="btn btn-danger">delete</button>
-                </div>
+                <Details
+                  value={event}
+                  onClose={() => {
+                    getEvents();
+                  }}
+                />
               </Popup>
             ) : null}
           </React.Fragment>
@@ -175,6 +175,7 @@ const Map = () => {
                   onClose={() => {
                     setEventLocation(null);
                     getEvents();
+                    console.log(addEventLocation);
                   }}
                   location={addEventLocation}
                 />
