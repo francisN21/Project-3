@@ -3,3 +3,6 @@ p {
     margin-left: 0;
     margin-right: 0;
 }
+button.icon{
+    width: 50%;
+}
