@@ -95,7 +95,7 @@ const Map = () => {
   //  delete and edit popup ==== //
 
   return (
-    <div className="map">
+    <div className="map" id="map">
       <ReactMapGL
         ref={mapRef}
         {...viewport}

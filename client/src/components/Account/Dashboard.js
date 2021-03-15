@@ -59,7 +59,7 @@ const Dashboard = () => {
   // console.log(dashboardList);
 
   return (
-    <div style={pageStyles}>
+    <div style={pageStyles} className="account-overflow">
       {/* Title of page */}
       <h1 className="text-center">Your Events</h1>
       {/* Set up a div for the table */}

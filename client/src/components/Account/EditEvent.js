@@ -54,7 +54,7 @@ const EditEvent = (props) => {
   // Return the component
   return (
     // Div to center the content
-    <div className="container text-center justify-content-center">
+    <div className="container text-center justify-content-center account-overflow">
       {/* Title of page */}
       <h1>Edit Event</h1>
 

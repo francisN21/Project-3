@@ -38,17 +38,21 @@ const EntryForm = ({ location, onClose }) => {
       <input type="text" name="special" onChange={onChange} />
       <label htmlFor="category">Select Category: </label>
       <select name="category" id="category" onChange={onChange}>
-        optgroup
         <option value="n/a">Please Select one</option>
         <option value="beach">Beach</option>
+        <option value="car">Car</option>
+        <option value="default">Default</option>
+        <option value="disco">Disco</option>
         <option value="drinks">Drinks</option>
         <option value="food">Food</option>
         <option value="games">Games</option>
         <option value="general">General</option>
         <option value="home">Home</option>
+        <option value="karaoke">Karaoke</option>
         <option value="outdoor">Outdoor</option>
         <option value="park">Park</option>
         <option value="party">Party</option>
+        <option value="theme-park">Theme Park</option>
         <option value="zoo">Zoo</option>
       </select>
       <label htmlFor="description">Description: </label>
