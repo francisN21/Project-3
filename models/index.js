@@ -2,4 +2,5 @@
 module.exports = {
   User: require("./User"),
   Saved: require("./Saved"),
+  PersonalEvents: require("./PersonalEvents"),
 };

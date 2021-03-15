@@ -14,7 +14,7 @@ function isLongitude(maybeLon) {
 
 const Schema = mongoose.Schema;
 
-const SavedSchema = new Schema({
+const PersonalEventsSchema = new Schema({
   name: {
     type: String,
     required: [true, "You must enter a name."],
@@ -56,6 +56,6 @@ const SavedSchema = new Schema({
   },
 });
 
-const Saved = mongoose.model("Saved", SavedSchema);
+const PersonalEvents = mongoose.model("PersonalEvents", PersonalEventsSchema);
 
-module.exports = Saved;
+module.exports = PersonalEvents;
