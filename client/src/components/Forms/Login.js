@@ -1,7 +1,7 @@
 // import axios from "axios";
 import React, { useState } from "react";
 import "../Forms/styles.css";
-import { loginUser } from "../../utils/API";
+import API from "../../utils/API";
 
 const Login = () => {
   const [loginDetails, setLoginDetails] = useState({
@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      loginUser(loginDetails).then((res) => {
+      API.loginUser(loginDetails).then((res) => {
         console.log(res);
       });
     } catch (error) {

@@ -6,7 +6,7 @@ import ReactMapGL, {
   NavigationControl,
 } from "react-map-gl";
 import EntryForm from "./EntryForm";
-import { listEvents } from "../../utils/API";
+import { listEvents, listLocation } from "../../utils/API";
 import ControlPanel from "./Control-Panel";
 import Pin from "./pin";
 import Geocoder from "react-map-gl-geocoder";
@@ -34,7 +34,7 @@ const Map = () => {
   // reusable backend call to fetch event database
   const getEvents = async () => {
     try {
-      const showMarkers = await listEvents();
+      const showMarkers = await listLocation();
       console.log(showMarkers);
       setEvents(showMarkers);
     } catch (error) {

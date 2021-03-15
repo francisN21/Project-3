@@ -19,8 +19,9 @@ const SignUp = () => {
   const submit = async (e) => {
     e.preventDefault();
     try {
+      console.log("submit runs");
       await axios.post("/api/user", signUpForm);
-      console.log(signUpForm);
+      console.log(signUpForm, "user info");
     } catch (error) {
       console.log(error);
     }

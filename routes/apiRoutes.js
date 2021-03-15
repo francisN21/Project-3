@@ -23,12 +23,12 @@ router.get("/location", (req, res) => {
 // Route for creating a new User
 router.post("/user", function (req, res) {
   db.User.create(req.body)
-    .then(function (dbUser) {
+    .then((dbUser) => {
       // If we were able to successfully create a User, send it back to the client
       res.json(dbUser);
       console.log("saved:" + dbUser);
     })
-    .catch(function (err) {
+    .catch((err) => {
       // If an error occurred, send it to the client
       res.json(err);
     });
@@ -77,20 +77,9 @@ router.post("/login", function (req, res) {
         res.json(dbUser);
       });
     })
-    .catch(function (err) {
-      // If an error occurred, send it to the client
-    });
-});
-
-router.post("/location/update/", function (req, res) {
-  console.log(req.body);
-  db.Saved.updateOne({ title: req.body.name }, { $set: req.body.query })
-    .then((dbLogEvent) => {
-      console.log("event updated"), res.json(dbLogEvent);
-    })
-    // Gotta catch all them errors!
     .catch((err) => {
-      res.json(err);
+      // If an error occurred, send it to the client
+      console.log(err);
     });
 });
 // DELETE /events/:id by id for deleting an event from the database

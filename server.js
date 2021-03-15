@@ -32,5 +32,3 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/project-3", {
 app.listen(PORT, () => {
   console.log(`listening at http://localhost:${PORT}`);
 });
-
-//test
