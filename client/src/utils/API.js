@@ -3,18 +3,36 @@ const API_URL = "http://localhost:5000";
 
 // will be added soon once I have server working
 export async function listEvents() {
-  const response = await fetch(`${API_URL}/api/location`);
-  return response.json();
+  try {
+    const response = await fetch(`${API_URL}/api/location`);
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-export async function createEvent() {
-  const response = await fetch(`${API_URL}/api/location`);
-  console.log(response)
-  return response.json();
+export async function createEvent(query) {
+  try {
+    const response = await axios.post(`${API_URL}/api/location`, query);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteEvent(query) {
+  try {
+    const response = await axios.delete(`${API_URL}/api/location/${query}`);
+  } catch (error) {
+    console.log(error);
+  }
 }
 export async function fetchUser() {
-  const response = await fetch(`${API_URL}/api/user`);
-  return response.json();
+  try {
+    const response = await fetch(`${API_URL}/api/user`);
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
 }
 //How to call update:
 //  var query = {
@@ -40,13 +58,17 @@ export async function fetchUser() {
 //};
 //updateEvent(query);
 export async function updateUser(query) {
-  console.log(query);
-  axios.post(`${API_URL}/api/user/update`, query);
-  const response = await fetch(`${API_URL}/api/user/update`, {
-    method: "POST",
-    body: JSON.stringify(query),
-  });
-  return response.json();
+  try {
+    console.log(query);
+    axios.post(`${API_URL}/api/user/update`, query);
+    const response = await fetch(`${API_URL}/api/user/update`, {
+      method: "POST",
+      body: JSON.stringify(query),
+    });
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function loginUser(login) {

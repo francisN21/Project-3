@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 import { createEvent } from "../../utils/API";
 
 const EntryForm = ({ location, onClose }) => {
-  //   const createEvent = () => {
-  //   use onSubmit
   const [eventForm, setEvent] = useState({
     name: "",
+    special: "",
+    category: "",
     location: location,
     description: "",
-    time: "",
+    // private: false,
     date: "",
   });
 
@@ -19,47 +18,45 @@ const EntryForm = ({ location, onClose }) => {
   };
 
   const submit = async (e) => {
-
-    console.log(eventForm)
-    let newEvent = {
-      name: eventForm.name,
-      description: eventForm.description,
-      location: eventForm.location,
-      date: eventForm.date,
-      timestamps: eventForm.time,
+    e.preventDefault(e);
+    try {
+      //   await axios.post("/api/location/", eventForm);
+      await createEvent(eventForm);
+      onClose();
+      //   console.log(location);
+      console.log(eventForm);
+    } catch (error) {
+      console.log(error);
     }
-
-    // // Send fetch request to post it to the database
-    fetch(`/api/location/`, {
-      method: 'POST',
-      body: JSON.stringify(newEvent),
-      headers: { "Content-Type": "application/json" }
-    })
-      // json that response and let the user know that it was saved
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(`${newEvent.name} saved`)
-      })
-    // }
-    // e.preventDefault(e);
-    // try {
-    //   //   await axios.post("/api/location/", eventForm);
-    //   await createEvent(newEvent);
-    //   onClose();
-    //   //   console.log(location);
-    //   console.log(newEvent);
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
+
   return (
     <form className="new-event-f" onSubmit={submit}>
       <label htmlFor="name">Event Name: </label>
       <input type="text" name="name" onChange={onChange} />
+      <label htmlFor="special">Special Note: </label>
+      <input type="text" name="special" onChange={onChange} />
+      <label htmlFor="category">Select Category: </label>
+      <select name="category" id="category" onChange={onChange}>
+        optgroup
+        <option value="n/a">Please Select one</option>
+        <option value="beach">Beach</option>
+        <option value="drinks">Drinks</option>
+        <option value="food">Food</option>
+        <option value="games">Games</option>
+        <option value="general">General</option>
+        <option value="home">Home</option>
+        <option value="outdoor">Outdoor</option>
+        <option value="park">Park</option>
+        <option value="party">Party</option>
+        <option value="zoo">Zoo</option>
+      </select>
       <label htmlFor="description">Description: </label>
       <textarea type="text" name="description" onChange={onChange}></textarea>
       <label htmlFor="time">Time: </label>
       <input type="time" name="time" onChange={onChange} />
+      {/* <label htmlFor="private">Private: </label>
+      <input type="checkbox" name="private" value="true" onChange={onChange} /> */}
       <label htmlFor="date">Date: </label>
       <input type="date" name="date" onChange={onChange} />
       <button type="submit" className="btn btn-primary">
