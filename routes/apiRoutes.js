@@ -140,14 +140,37 @@ router.post("/location/", (req, res) => {
   console.log("line 118");
   // Using the LogEvent Database in the Events Models File
   db.Saved.create(newEvent)
-    .then((dbLogEvent) => {
+    .then((dbSaved) => {
       // Let the user know that the event was saved
-      console.log("Event Saved"), res.json(dbLogEvent);
+      console.log("Event Saved"), res.json(dbSaved);
     })
     // Gotta catch them errors!
     .catch((err) => {
       res.json(err);
     });
 });
+
+
+// PUT route for updating Event
+router.put("/location/:id", (req, res) => {
+  // console.log(req.params.id)
+  // console.log(req.body)
+  // console.log(req.body.location[0].latitude)
+
+  // Update One by the ID
+  db.Saved.updateOne({ _id: req.params.id }, {
+    name: req.body.name,
+    description: req.body.description,
+    location: [{ latitude: req.body.location[0].latitude, longitude: req.body.location[0].longitude }],
+    date: req.body.date,
+    timestamp: req.body.timestamp
+  })
+    // then JSON it and console log it
+    .then((dbSaved) => {
+      console.log(dbSaved), res.json(dbSaved)
+    })
+
+})
+
 
 module.exports = router;

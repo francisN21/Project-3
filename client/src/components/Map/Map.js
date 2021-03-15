@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import ReactMapGL, {
   Marker,
   Popup,
@@ -93,8 +94,6 @@ const Map = () => {
     });
   };
   //  delete and edit popup ==== //
-
-  // Function to delete the event from the database by ID
 
   return (
     <div className="map">

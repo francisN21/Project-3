@@ -3,20 +3,21 @@ import React, { useEffect, useState } from "react";
 import { listEvents } from "../../utils/API";
 import { Link } from "react-router-dom"
 
-
-
 // Function to delete the event from the database by ID
-const deleteEvent = (id) => {
-  fetch(`/api/location/${id}`, {
+const deleteEvent = (dashboardEvent) => {
+  fetch(`/api/location/${dashboardEvent._id}`, {
     method: 'DELETE'
     // Json that response
   })
-    // Json the response
     .then((response) => response.json())
     .then((data) => {
       // Console log the data
       // console.log(data)
     })
+
+  //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
+  alert(`${dashboardEvent.name} Deleted`)
+
   // Refresh the page so that the event is no longer shown
   window.location.reload()
 
@@ -87,22 +88,22 @@ const Dashboard = () => {
             <tbody>
               {/* Map through the events and display them*/}
               {
-                dashboardList.map((dashboardEvent) => (
+                dashboardList.map((event) => (
 
-                  <tr key={dashboardEvent._id}>
-                    <td><h4>{dashboardEvent.name}</h4></td>
+                  <tr key={event._id}>
+                    <td><h4>{event.name}</h4></td>
                     <td>
-                      <p>{dashboardEvent.location[0].latitude}</p>
-                      <p>{dashboardEvent.location[0].longitude}</p>
+                      <p>{event.location[0].latitude}</p>
+                      <p>{event.location[0].longitude}</p>
                     </td>
-                    <td><p>{dashboardEvent.date}</p></td>
-                    <td><p>{dashboardEvent.description}</p></td>
+                    <td><p>{event.date}</p></td>
+                    <td><p>{event.description}</p></td>
 
                     {/* Button to view the event if we want it */}
                     {/* <td>
                       <button
                         className="btn btn-info"
-                        onClick={() => console.log(`VIEW ${dashboardEvent.title} ID: ${dashboardEvent._id}`)}
+                        onClick={() => console.log(`VIEW ${event.title} ID: ${event._id}`)}
                       >
                         View Event
                       </button>
@@ -110,31 +111,25 @@ const Dashboard = () => {
 
                     {/* Button to delete the event */}
                     <td>
-                      <button
-                        className="btn btn-danger"
-                        // Call the delete Event by it's ID function on click
-                        onClick={() => deleteEvent(dashboardEvent._id)}
-                      >
-                        Delete Event
-                    </button>
-                      <button
-
-                        className="btn btn-info"
-                        onClick={() => console.log(`VIEW ${dashboardEvent.name} ID: ${dashboardEvent._id}`)}
-                        onClick={() => console.log(dashboardEvent)}
-                      >
-                        View Event
-                      </button>
-                      <Link className="btn btn-secondary"
+                      {/* Link to send you to edit event page  */}
+                      <Link className="btn btn-info"
                         to={{
                           pathname: "/editEvent",
+                          // event sent via props
                           editEventProps: {
-                            dashboardEvent
+                            event
                             // name: dashboardEvent.name
                           }
                         }} >
                         Edit Event
                         </Link>
+                      <button
+                        className="btn btn-danger"
+                        // Call the delete Event by it's ID function on click
+                        onClick={() => deleteEvent(event)}
+                      >
+                        Delete Event
+                    </button>
                     </td>
                   </tr>
                   // End of each event

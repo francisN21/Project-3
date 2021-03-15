@@ -8,6 +8,7 @@
   - Create a new Event/ Log entry
 - [~] GET / Event/logs - Brandon
   -[x] List all Events!
+  -[x] Edit event
   -[x] Delete Event
 - [x] Setup Client
 - [x] Create Form to add a new Event
