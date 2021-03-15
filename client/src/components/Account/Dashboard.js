@@ -85,7 +85,7 @@ const Dashboard = () => {
               {dashboardList.map((event) => (
                 <tr key={event._id}>
                   <td>
-                    <h4>{event.name}</h4>
+                    <h4>{event.name || event.title}</h4>
                   </td>
                   <td>
                     <p>{event.location[0].latitude}</p>

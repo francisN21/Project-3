@@ -22,6 +22,7 @@
   -[] make events public or private
   -[] invite friends to an event
   -[] Clusters
+  -[] Convert Long and lat to real addresses
 - [] Styling
 - [] DEPLOY!
 - [] README
