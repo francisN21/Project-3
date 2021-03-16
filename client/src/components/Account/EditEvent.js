@@ -18,12 +18,10 @@ const editEvent = (newEditEvent) => {
     .then((data) => {
       // Console log the data
       // console.log(data)
-
-      //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
-      // alert(`${newEditEvent.name} Event Updated`);
     });
 };
 
+// Toast Notification Function to let the user know the event was deleted
 const notify = (eventTitle) => toast(`${eventTitle} Event Saved`);
 
 // Edit event Component using props
@@ -108,14 +106,14 @@ const EditEvent = (props) => {
             className="form-control text-center border border-dark"
           />
 
-          {/* Button to save the event */}
+          {/* Button to save the event and call the Toast Notify Function*/}
           <button
             onClick={() => { editEvent(newEditEvent); notify(newEditEvent.title) }}
             className="btn btn-primary"
           >
             Save Edits
           </button>
-          {/* <button onClick={notify}>Notify!</button> */}
+          {/* Toast Container Notification */}
           <ToastContainer />
         </div>
       </form>

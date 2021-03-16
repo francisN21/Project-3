@@ -6,6 +6,7 @@ import EditDetails from "./EditDetails";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Toast Notification Function to let the user know the event was deleted
 const notify = () => toast("Event Deleted");
 
 const Details = ({ value, onClose }) => {
@@ -68,10 +69,8 @@ const Details = ({ value, onClose }) => {
           </svg>
         </button>
       </div>
-
+      {/* Toast Container Notification */}
       <ToastContainer />
-
-
     </div >
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
+// Toast Notification Function to let the user know the event was updated
 const notify = () => toast(`Event Updated`);
 
 const EditDetails = (props) => {
@@ -45,6 +45,7 @@ const EditDetails = (props) => {
       >
         Save Edit
       </button>
+      {/* Toast Container Notification */}
       <ToastContainer />
     </form>
   );

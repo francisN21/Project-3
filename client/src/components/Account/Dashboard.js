@@ -6,14 +6,14 @@ import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// const apikey = `pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;
 
-// let address = ""
-
+// Function to change the location from lat/lon to an address
 const getAddress = async (lon, lat) => {
 
+  // Url for the mapbox API request
   const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?types=address&access_token=pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`
 
+  // Fetch Get request
   await fetch(url, {
     method: "GET",
     credentials: "same-origin",
@@ -38,7 +38,6 @@ const getAddress = async (lon, lat) => {
 
 }
 
-
 // Function to delete the event from the database by ID
 const deleteEvent = (dashboardEvent) => {
   fetch(`/api/location/${dashboardEvent._id}`, {
@@ -51,14 +50,11 @@ const deleteEvent = (dashboardEvent) => {
       // console.log(data)
     });
 
-  //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
-  // alert(`${dashboardEvent.name} Deleted`);
-
   // Refresh the page so that the event is no longer shown
   window.location.reload();
 };
 
-
+// Toast Notification Function to let the user know the event was deleted
 const notify = (event) => toast(`${event.title} Deleted`);
 
 // Dashboard Page Component
@@ -95,9 +91,7 @@ const Dashboard = () => {
     overFlow: "scroll !important",
   };
 
-  // Console log to show that the axios request is working
-  // console.log(dashboardList);
-  // let latLon = ""
+  // Return the component
   return (
     <div style={pageStyles} className="account-overflow">
       {/* Title of page */}
@@ -114,7 +108,6 @@ const Dashboard = () => {
 
               <th>Date</th>
               <th>Description</th>
-              {/* <th>View Event</th> */}
               <th>Delete Event</th>
             </tr>
           </ thead>
@@ -145,18 +138,6 @@ const Dashboard = () => {
                       <td>
                         <p>{event.description}</p>
                       </td>
-
-                      {/* Button to view the event if we want it */}
-                      {/* <td>
-                          <button
-                            className="btn btn-info"
-                            onClick={() => console.log(`VIEW ${event.title} ID: ${event._id}`)}
-                            >
-                            View Event
-                          </button>
-                        </td> */}
-
-                      {/* Button to delete the event */}
                       <td>
                         {/* Link to send you to edit event page  */}
                         <Link
@@ -172,12 +153,11 @@ const Dashboard = () => {
                         >
                           Edit Event
                         </Link>
+                        {/* Button to delete the event */}
                         <button
                           className="btn btn-danger"
-                          // Call the delete Event by it's ID function on click
-                          // onClick={notify}
+                          // Call the delete Event by it's ID function on click and Toast Notify Function
                           onClick={() => { deleteEvent(event); notify(event) }}
-                        // onClick={notify}
                         >
                           Delete Event
                         </button>
@@ -200,7 +180,7 @@ const Dashboard = () => {
           }
         </table >
       </div >
-      {/* <button onClick={notify}>Notify!</button> */}
+      {/* Toast Container Notification */}
       <ToastContainer />
     </div >
   );
