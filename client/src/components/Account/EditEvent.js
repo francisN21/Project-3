@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Function to Edit the event from the database by ID
 const editEvent = (newEditEvent) => {
@@ -18,9 +20,11 @@ const editEvent = (newEditEvent) => {
       // console.log(data)
 
       //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
-      alert(`${newEditEvent.name} Event Updated`);
+      // alert(`${newEditEvent.name} Event Updated`);
     });
 };
+
+const notify = () => toast("Event Edited");
 
 // Edit event Component using props
 const EditEvent = (props) => {
@@ -106,11 +110,13 @@ const EditEvent = (props) => {
 
           {/* Button to save the event */}
           <button
-            onClick={() => editEvent(newEditEvent)}
+            onClick={() => { editEvent(newEditEvent); notify() }}
             className="btn btn-primary"
           >
             Save Edits
           </button>
+          {/* <button onClick={notify}>Notify!</button> */}
+          <ToastContainer />
         </div>
       </form>
     </div>

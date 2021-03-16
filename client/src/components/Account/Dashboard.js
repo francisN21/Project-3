@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { listEvents } from "../../utils/API";
 import { Link } from "react-router-dom";
 import axios from "axios"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // const apikey = `pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;
 
@@ -25,10 +27,12 @@ const getAddress = (lon, lat) => {
     .then(function (data) {
       // console.log(data);
       // console.log(data.features[0].place_name)
+      // let address = ""
       let addressTest = data.features[0].place_name
       console.log(addressTest)
       address = data.features[0].place_name
-      // setAddress(addressTest)
+
+      // setAddress(adressTest)
     })
 
 }
@@ -47,11 +51,14 @@ const deleteEvent = (dashboardEvent) => {
     });
 
   //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
-  alert(`${dashboardEvent.name} Deleted`);
+  // alert(`${dashboardEvent.name} Deleted`);
 
   // Refresh the page so that the event is no longer shown
   window.location.reload();
 };
+
+
+const notify = () => toast("Event Deleted");
 
 // Dashboard Page Component
 const Dashboard = () => {
@@ -163,7 +170,9 @@ const Dashboard = () => {
                       <button
                         className="btn btn-danger"
                         // Call the delete Event by it's ID function on click
-                        onClick={() => deleteEvent(event)}
+                        // onClick={notify}
+                        onClick={() => { deleteEvent(event); notify() }}
+                      // onClick={notify}
                       >
                         Delete Event
                     </button>
@@ -185,6 +194,8 @@ const Dashboard = () => {
           }
         </table >
       </div >
+      {/* <button onClick={notify}>Notify!</button> */}
+      <ToastContainer />
     </div >
   );
 };
