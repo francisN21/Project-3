@@ -23,12 +23,12 @@ router.get("/location", (req, res) => {
 // Route for creating a new User
 router.post("/user", function (req, res) {
   db.User.create(req.body)
-    .then(function (dbUser) {
+    .then((dbUser) => {
       // If we were able to successfully create a User, send it back to the client
       res.json(dbUser);
       console.log("saved:" + dbUser);
     })
-    .catch(function (err) {
+    .catch((err) => {
       // If an error occurred, send it to the client
       res.json(err);
     });
@@ -66,21 +66,22 @@ router.get("/user", function (req, res) {
 //     });
 // });
 
-// router.post("/login", function (req, res) {
-//   console.log(req.body);
-//   db.User.find({})
-//     .then(function (dbUsers) {
-//       console.log(dbUsers);
-//       const dbUser = dbUsers.find((user) => user.email === req.body.email);
-//       console.log(dbUser);
-//       bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
-//         res.json(dbUser);
-//       });
-//     })
-//     .catch(function (err) {
-//       // If an error occurred, send it to the client
-//     });
-// });
+router.post("/login", function (req, res) {
+  console.log(req.body);
+  db.User.find({})
+    .then(function (dbUsers) {
+      // console.log(dbUsers);
+      const dbUser = dbUsers.find((user) => user.email === req.body.email);
+      console.log(dbUser);
+      bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
+        res.json(dbUser);
+      });
+    })
+    .catch(function (err) {
+      console.log(err);
+      // If an error occurred, send it to the client
+    });
+});
 
 router.post("/location/update/", function (req, res) {
   console.log(req.body);
@@ -114,7 +115,8 @@ router.post("/user/update/", function (req, res) {
     })
     // Gotta catch all them errors!
     .catch((err) => {
-      res.json(err);
+      // If an error occurred, send it to the client
+      console.log(err);
     });
 });
 // DELETE /events/:id by id for deleting an event from the database
@@ -150,7 +152,6 @@ router.post("/location/", (req, res) => {
     });
 });
 
-
 // PUT route for updating Event
 router.put("/location/:id", (req, res) => {
   // console.log(req.params.id)
@@ -158,19 +159,25 @@ router.put("/location/:id", (req, res) => {
   // console.log(req.body.location[0].latitude)
 
   // Update One by the ID
-  db.Saved.updateOne({ _id: req.params.id }, {
-    name: req.body.name,
-    description: req.body.description,
-    location: [{ latitude: req.body.location[0].latitude, longitude: req.body.location[0].longitude }],
-    date: req.body.date,
-    timestamp: req.body.timestamp
-  })
+  db.Saved.updateOne(
+    { _id: req.params.id },
+    {
+      name: req.body.name,
+      description: req.body.description,
+      location: [
+        {
+          latitude: req.body.location[0].latitude,
+          longitude: req.body.location[0].longitude,
+        },
+      ],
+      date: req.body.date,
+      timestamp: req.body.timestamp,
+    }
+  )
     // then JSON it and console log it
     .then((dbSaved) => {
-      console.log(dbSaved), res.json(dbSaved)
-    })
-
-})
-
+      console.log(dbSaved), res.json(dbSaved);
+    });
+});
 
 module.exports = router;
