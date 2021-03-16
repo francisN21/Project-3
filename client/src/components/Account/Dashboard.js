@@ -2,6 +2,37 @@
 import React, { useEffect, useState } from "react";
 import { listEvents } from "../../utils/API";
 import { Link } from "react-router-dom";
+import axios from "axios"
+
+// const apikey = `pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;
+
+let address = ""
+
+const getAddress = (lon, lat) => {
+
+  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?types=address&access_token=pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`
+
+  fetch(url, {
+    method: "GET",
+    credentials: "same-origin",
+    redirect: "follow",
+    cache: "reload",
+  })
+    // return to json format
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // console.log(data);
+      // console.log(data.features[0].place_name)
+      let addressTest = data.features[0].place_name
+      console.log(addressTest)
+      address = data.features[0].place_name
+      // setAddress(addressTest)
+    })
+
+}
+
 
 // Function to delete the event from the database by ID
 const deleteEvent = (dashboardEvent) => {
@@ -26,6 +57,7 @@ const deleteEvent = (dashboardEvent) => {
 const Dashboard = () => {
   // State for getting the list of events saved for the dashboardPage
   const [dashboardList, setDashboardList] = useState([]);
+  // const [address, setAddress] = useState([]);
 
   // getListEvents function gets the list of events from the Mongo Database
   const getListEvents = async () => {
@@ -57,17 +89,17 @@ const Dashboard = () => {
 
   // Console log to show that the axios request is working
   // console.log(dashboardList);
-
+  // let latLon = ""
   return (
     <div style={pageStyles} className="account-overflow">
       {/* Title of page */}
-      <h1 className="text-center">Your Events</h1>
+      <h1 className="text-center" > Your Events</h1 >
       {/* Set up a div for the table */}
-      <div className="table-responsive">
+      < div className="table-responsive" >
         {/* Table */}
-        <table className="table table-striped text-center table-hover">
+        < table className="table table-striped text-center table-hover" >
           {/* Table header */}
-          <thead>
+          < thead >
             <tr>
               <th>Event Name</th>
               <th>Latitude/Longitude</th>
@@ -77,29 +109,33 @@ const Dashboard = () => {
               {/* <th>View Event</th> */}
               <th>Delete Event</th>
             </tr>
-          </thead>
+          </ thead>
+          {/* <h1>{(address)}</h1> */}
           {/* If there is an event, display it */}
-          {dashboardList.length ? (
-            <tbody>
-              {/* Map through the events and display them*/}
-              {dashboardList.map((event) => (
-                <tr key={event._id}>
-                  <td>
-                    <h4>{event.name || event.title}</h4>
-                  </td>
-                  <td>
-                    <p>{event.location[0].latitude}</p>
-                    <p>{event.location[0].longitude}</p>
-                  </td>
-                  <td>
-                    <p>{event.date}</p>
-                  </td>
-                  <td>
-                    <p>{event.description}</p>
-                  </td>
+          {
+            dashboardList.length ? (
+              <tbody>
+                {/* Map through the events and display them*/}
+                {dashboardList.map((event) => (
+                  <tr key={event._id}>
+                    <td>
+                      <h4>{event.name || event.title}</h4>
+                    </td>
+                    <td>
+                      {/* Change to real address */}
+                      {getAddress(event.location[0].longitude, event.location[0].latitude)}
+                      {/* <p>{event.location[0].latitude}</p> */}
+                      <p>{address}</p>
+                    </td>
+                    <td>
+                      <p>{event.date}</p>
+                    </td>
+                    <td>
+                      <p>{event.description}</p>
+                    </td>
 
-                  {/* Button to view the event if we want it */}
-                  {/* <td>
+                    {/* Button to view the event if we want it */}
+                    {/* <td>
                       <button
                         className="btn btn-info"
                         onClick={() => console.log(`VIEW ${event.title} ID: ${event._id}`)}
@@ -108,47 +144,48 @@ const Dashboard = () => {
                       </button>
                     </td> */}
 
-                  {/* Button to delete the event */}
-                  <td>
-                    {/* Link to send you to edit event page  */}
-                    <Link
-                      className="btn btn-info"
-                      to={{
-                        pathname: "/editEvent",
-                        // event sent via props
-                        editEventProps: {
-                          event,
-                          // name: dashboardEvent.name
-                        },
-                      }}
-                    >
-                      Edit Event
+                    {/* Button to delete the event */}
+                    <td>
+                      {/* Link to send you to edit event page  */}
+                      <Link
+                        className="btn btn-info"
+                        to={{
+                          pathname: "/editEvent",
+                          // event sent via props
+                          editEventProps: {
+                            event,
+                            // name: dashboardEvent.name
+                          },
+                        }}
+                      >
+                        Edit Event
                     </Link>
-                    <button
-                      className="btn btn-danger"
-                      // Call the delete Event by it's ID function on click
-                      onClick={() => deleteEvent(event)}
-                    >
-                      Delete Event
+                      <button
+                        className="btn btn-danger"
+                        // Call the delete Event by it's ID function on click
+                        onClick={() => deleteEvent(event)}
+                      >
+                        Delete Event
                     </button>
-                  </td>
-                </tr>
-                // End of each event
-              ))}
-            </tbody>
-          ) : (
-              // If no events, display this
-              <tbody>
-                <tr>
-                  <td>
-                    <h1>No Events yet, save some events! Have some fun!</h1>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
+                  // End of each event
+                ))}
               </tbody>
-            )}
-        </table>
-      </div>
-    </div>
+            ) : (
+                // If no events, display this
+                <tbody>
+                  <tr>
+                    <td>
+                      <h1>No Events yet, save some events! Have some fun!</h1>
+                    </td>
+                  </tr>
+                </tbody>
+              )
+          }
+        </table >
+      </div >
+    </div >
   );
 };
 
