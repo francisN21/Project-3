@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { createEvent } from "../../utils/API";
-
-const notify = () => toast("Event Created");
 
 const EntryForm = ({ location, onClose }) => {
   const [eventForm, setEvent] = useState({
@@ -67,11 +62,9 @@ const EntryForm = ({ location, onClose }) => {
       <input type="checkbox" name="private" value="true" onChange={onChange} /> */}
       <label htmlFor="date">Date: </label>
       <input type="date" name="date" onChange={onChange} />
-      <button type="submit" className="btn btn-primary"
-        onClick={() => notify()}>
+      <button type="submit" className="btn btn-primary">
         Create event
       </button>
-      <ToastContainer />
     </form>
   );
 };

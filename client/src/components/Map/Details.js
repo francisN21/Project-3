@@ -6,10 +6,11 @@ import EditDetails from "./EditDetails";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const notify = () => toast("Event Deleted");
+
 const Details = ({ value, onClose }) => {
   const [details, setDetails] = useState(true);
 
-  const notify = () => toast("Event Deleted");
   const delEvent = async (event) => {
     try {
       await deleteEvent(event);
@@ -67,7 +68,10 @@ const Details = ({ value, onClose }) => {
           </svg>
         </button>
       </div>
+
       <ToastContainer />
+
+
     </div >
   );
 };
