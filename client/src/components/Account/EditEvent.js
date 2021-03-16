@@ -24,7 +24,7 @@ const editEvent = (newEditEvent) => {
     });
 };
 
-const notify = () => toast("Event Edited");
+const notify = (eventName) => toast(`${eventName} Event Edited`);
 
 // Edit event Component using props
 const EditEvent = (props) => {
@@ -68,9 +68,9 @@ const EditEvent = (props) => {
           {/* Input for title */}
           <input
             onChange={onEditChange}
-            name="name"
+            name="title"
             type="text"
-            placeholder={editEventForm.name}
+            placeholder={editEventForm.title}
             className="form-control text-center border border-dark"
           />
           {/* Input for description */}
@@ -110,7 +110,7 @@ const EditEvent = (props) => {
 
           {/* Button to save the event */}
           <button
-            onClick={() => { editEvent(newEditEvent); notify() }}
+            onClick={() => { editEvent(newEditEvent); notify(newEditEvent.name) }}
             className="btn btn-primary"
           >
             Save Edits

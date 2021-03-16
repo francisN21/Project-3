@@ -8,13 +8,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // const apikey = `pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;
 
-let address = ""
+// let address = ""
 
-const getAddress = (lon, lat) => {
+const getAddress = async (lon, lat) => {
 
   const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?types=address&access_token=pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`
 
-  fetch(url, {
+  await fetch(url, {
     method: "GET",
     credentials: "same-origin",
     redirect: "follow",
@@ -30,7 +30,8 @@ const getAddress = (lon, lat) => {
       // let address = ""
       let addressTest = data.features[0].place_name
       console.log(addressTest)
-      address = data.features[0].place_name
+      // let address = data.features[0].place_name
+      return addressTest
 
       // setAddress(adressTest)
     })
@@ -123,63 +124,68 @@ const Dashboard = () => {
             dashboardList.length ? (
               <tbody>
                 {/* Map through the events and display them*/}
-                {dashboardList.map((event) => (
-                  <tr key={event._id}>
-                    <td>
-                      <h4>{event.name || event.title}</h4>
-                    </td>
-                    <td>
-                      {/* Change to real address */}
-                      {getAddress(event.location[0].longitude, event.location[0].latitude)}
-                      {/* <p>{event.location[0].latitude}</p> */}
-                      <p>{address}</p>
-                    </td>
-                    <td>
-                      <p>{event.date}</p>
-                    </td>
-                    <td>
-                      <p>{event.description}</p>
-                    </td>
+                {dashboardList.map((event) => {
+                  let address = "test" //getAddress(event.location[0].longitude, event.location[0].latitude)
 
-                    {/* Button to view the event if we want it */}
-                    {/* <td>
-                      <button
-                        className="btn btn-info"
-                        onClick={() => console.log(`VIEW ${event.title} ID: ${event._id}`)}
-                      >
-                        View Event
-                      </button>
-                    </td> */}
+                  return (
+                    <tr key={event._id}>
+                      <td>
+                        <h4>{event.name || event.title}</h4>
+                      </td>
+                      <td>
+                        {/* Change to real address */}
+                        {/* {getAddress(event.location[0].longitude, event.location[0].latitude)} */}
+                        {/* <p>{event.location[0].latitude}</p> */}
+                        {/* {() => { getAddress(event.location[0].longitude, event.location[0].latitude) }} */}
+                        {address && address}
+                      </td>
+                      <td>
+                        <p>{event.date}</p>
+                      </td>
+                      <td>
+                        <p>{event.description}</p>
+                      </td>
 
-                    {/* Button to delete the event */}
-                    <td>
-                      {/* Link to send you to edit event page  */}
-                      <Link
-                        className="btn btn-info"
-                        to={{
-                          pathname: "/editEvent",
-                          // event sent via props
-                          editEventProps: {
-                            event,
-                            // name: dashboardEvent.name
-                          },
-                        }}
-                      >
-                        Edit Event
-                    </Link>
-                      <button
-                        className="btn btn-danger"
-                        // Call the delete Event by it's ID function on click
+                      {/* Button to view the event if we want it */}
+                      {/* <td>
+  <button
+    className="btn btn-info"
+    onClick={() => console.log(`VIEW ${event.title} ID: ${event._id}`)}
+  >
+    View Event
+  </button>
+</td> */}
+
+                      {/* Button to delete the event */}
+                      <td>
+                        {/* Link to send you to edit event page  */}
+                        <Link
+                          className="btn btn-info"
+                          to={{
+                            pathname: "/editEvent",
+                            // event sent via props
+                            editEventProps: {
+                              event,
+                              // name: dashboardEvent.name
+                            },
+                          }}
+                        >
+                          Edit Event
+</Link>
+                        <button
+                          className="btn btn-danger"
+                          // Call the delete Event by it's ID function on click
+                          // onClick={notify}
+                          onClick={() => { deleteEvent(event); notify() }}
                         // onClick={notify}
-                        onClick={() => { deleteEvent(event); notify() }}
-                      // onClick={notify}
-                      >
-                        Delete Event
-                    </button>
-                    </td>
-                  </tr>
+                        >
+                          Delete Event
+</button>
+                      </td>
+                    </tr>
+                  )
                   // End of each event
-                ))}
+                })}
               </tbody>
             ) : (
                 // If no events, display this
