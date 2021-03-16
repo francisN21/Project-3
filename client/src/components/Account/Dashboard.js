@@ -59,7 +59,7 @@ const deleteEvent = (dashboardEvent) => {
 };
 
 
-const notify = () => toast("Event Deleted");
+const notify = (event) => toast(`${event.title} Deleted`);
 
 // Dashboard Page Component
 const Dashboard = () => {
@@ -148,13 +148,13 @@ const Dashboard = () => {
 
                       {/* Button to view the event if we want it */}
                       {/* <td>
-  <button
-    className="btn btn-info"
-    onClick={() => console.log(`VIEW ${event.title} ID: ${event._id}`)}
-  >
-    View Event
-  </button>
-</td> */}
+                          <button
+                            className="btn btn-info"
+                            onClick={() => console.log(`VIEW ${event.title} ID: ${event._id}`)}
+                            >
+                            View Event
+                          </button>
+                        </td> */}
 
                       {/* Button to delete the event */}
                       <td>
@@ -171,16 +171,16 @@ const Dashboard = () => {
                           }}
                         >
                           Edit Event
-</Link>
+                        </Link>
                         <button
                           className="btn btn-danger"
                           // Call the delete Event by it's ID function on click
                           // onClick={notify}
-                          onClick={() => { deleteEvent(event); notify() }}
+                          onClick={() => { deleteEvent(event); notify(event) }}
                         // onClick={notify}
                         >
                           Delete Event
-</button>
+                        </button>
                       </td>
                     </tr>
                   )
