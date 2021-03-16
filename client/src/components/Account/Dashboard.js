@@ -8,13 +8,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 // Function to change the location from lat/lon to an address
-const getAddress = async (lon, lat) => {
+const getAddress = (lon, lat) => {
 
   // Url for the mapbox API request
   const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?types=address&access_token=pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`
 
   // Fetch Get request
-  await fetch(url, {
+  fetch(url, {
     method: "GET",
     credentials: "same-origin",
     redirect: "follow",
@@ -117,55 +117,51 @@ const Dashboard = () => {
             dashboardList.length ? (
               <tbody>
                 {/* Map through the events and display them*/}
-                {dashboardList.map((event) => {
-                  let address = "test" //getAddress(event.location[0].longitude, event.location[0].latitude)
-
-                  return (
-                    <tr key={event._id}>
-                      <td>
-                        <h4>{event.name || event.title}</h4>
-                      </td>
-                      <td>
-                        {/* Change to real address */}
-                        {/* {getAddress(event.location[0].longitude, event.location[0].latitude)} */}
-                        {/* <p>{event.location[0].latitude}</p> */}
-                        {/* {() => { getAddress(event.location[0].longitude, event.location[0].latitude) }} */}
-                        {address && address}
-                      </td>
-                      <td>
-                        <p>{event.date}</p>
-                      </td>
-                      <td>
-                        <p>{event.description}</p>
-                      </td>
-                      <td>
-                        {/* Link to send you to edit event page  */}
-                        <Link
-                          className="btn btn-info"
-                          to={{
-                            pathname: "/editEvent",
-                            // event sent via props
-                            editEventProps: {
-                              event,
-                              // name: dashboardEvent.name
-                            },
-                          }}
-                        >
-                          Edit Event
+                {dashboardList.map((event) => (
+                  <tr key={event._id}>
+                    <td>
+                      <h4>{event.name || event.title}</h4>
+                    </td>
+                    <td>
+                      {/* Change to real address */}
+                      <p>{event.location[0].latitude}</p>
+                      <p>{event.location[0].longitude}</p>
+                      {/* Call the get address function to get change lat/lon to real address */}
+                      {getAddress(event.location[0].longitude, event.location[0].latitude)}
+                    </td>
+                    <td>
+                      <p>{event.date}</p>
+                    </td>
+                    <td>
+                      <p>{event.description}</p>
+                    </td>
+                    <td>
+                      {/* Link to send you to edit event page  */}
+                      <Link
+                        className="btn btn-info"
+                        to={{
+                          pathname: "/editEvent",
+                          // event sent via props
+                          editEventProps: {
+                            event,
+                            // name: dashboardEvent.name
+                          },
+                        }}
+                      >
+                        Edit Event
                         </Link>
-                        {/* Button to delete the event */}
-                        <button
-                          className="btn btn-danger"
-                          // Call the delete Event by it's ID function on click and Toast Notify Function
-                          onClick={() => { deleteEvent(event); notify(event) }}
-                        >
-                          Delete Event
+                      {/* Button to delete the event */}
+                      <button
+                        className="btn btn-danger"
+                        // Call the delete Event by it's ID function on click and Toast Notify Function
+                        onClick={() => { deleteEvent(event); notify(event) }}
+                      >
+                        Delete Event
                         </button>
-                      </td>
-                    </tr>
-                  )
+                    </td>
+                  </tr>
                   // End of each event
-                })}
+                ))}
               </tbody>
             ) : (
                 // If no events, display this
