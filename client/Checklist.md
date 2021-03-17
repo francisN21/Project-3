@@ -8,6 +8,7 @@
   - Create a new Event/ Log entry
 - [~] GET / Event/logs - Brandon
   -[x] List all Events!
+  -[x] Edit event
   -[x] Delete Event
 - [x] Setup Client
 - [x] Create Form to add a new Event
@@ -21,6 +22,7 @@
   -[] make events public or private
   -[] invite friends to an event
   -[] Clusters
+  -[] Convert Long and lat to real addresses
 - [] Styling
 - [] DEPLOY!
 - [] README
