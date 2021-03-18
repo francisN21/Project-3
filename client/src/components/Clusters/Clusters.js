@@ -42,8 +42,20 @@ const Clusters = () => {
             mapboxApiAccessToken={MAPBOX_TOKEN}
             onViewportChange={setViewport}
             mapStyle={map_style}
+            interactiveLayerIds={[clusterLayer.id]}
         >
-
+            <Source
+                id="earthquakes"
+                type="geojson"
+                data="https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson"
+                cluster={true}
+                clusterMaxZoom={14}
+                clusterRadius={50}
+            >
+                <Layer {...clusterLayer} />
+                <Layer {...clusterCountLayer} />
+                <Layer {...unclusteredPointLayer} />
+            </Source>
 
 
         </ReactMapGL>
