@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { render } from 'react-dom';
-import ReactMapGL, { Source, Layer } from 'react-map-gl';
+import ReactMapGL, { Marker, Source, Layer } from 'react-map-gl';
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer } from './ClusterLayers';
 import { listEvents } from "../../utils/API";
+import Pin from "../Map/pin";
 
 
 const Clusters = () => {
@@ -44,6 +45,22 @@ const Clusters = () => {
             mapStyle={map_style}
             interactiveLayerIds={[clusterLayer.id]}
         >
+            {showevents.map((event) => (
+                <React.Fragment key={event._id}>
+                    <Marker
+                        // className="event-pin"
+                        latitude={event.location[0].latitude}
+                        longitude={event.location[0].longitude}
+                        offsetTop={-20}
+                        offsetLeft={-10}
+                    >
+                        {/* div wrapper to add onclick to the markers on the map to show the event info */}
+
+                        <Pin color="#1f4980" />
+
+                    </Marker>
+                </React.Fragment>
+            ))}
             <Source
                 id="earthquakes"
                 type="geojson"
