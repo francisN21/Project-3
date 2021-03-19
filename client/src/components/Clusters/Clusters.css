@@ -1,0 +1,20 @@
+.cluster-marker {
+    color: black;
+    background: rgb(21, 238, 238);
+    border-radius: 50%;
+    border: 1px solid black;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cluster-large {
+    color: black;
+    background: rgb(250, 5, 217);
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

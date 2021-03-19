@@ -33,3 +33,15 @@ export const unclusteredPointLayer = {
         'circle-stroke-color': '#fff'
     }
 };
+export const pointLayer = {
+    id: 'point-layer',
+    type: 'circle',
+    source: 'events',
+    filter: ['!', ['has', 'point_count']],
+    paint: {
+        'circle-color': '#da11b4',
+        'circle-radius': 4,
+        'circle-stroke-width': 1,
+        'circle-stroke-color': '#fff'
+    }
+};
