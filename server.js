@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const db = require("./models");
 require("dotenv").config();
 const cors = require("cors");
+const session = require("express-session");
 
 //Port 5000 cause I'm crazy!
 const PORT = process.env.PORT || 5000;
@@ -17,6 +18,7 @@ app.use(cors());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+app.use(session({ secret: "secret" }));
 
 // API Routes start with API and live at apiRoutes.js
 app.use("/api", require("./routes/apiRoutes"));
