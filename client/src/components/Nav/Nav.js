@@ -24,7 +24,7 @@ const Navigation = () => {
         <Nav className="mr-auto collapse navbar-collapse justify-content-end">
           <NavDropdown title="Generate" id="basic-nav-dropdown">
             <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
-            <NavDropdown.Item href="/">something</NavDropdown.Item>
+            <NavDropdown.Item href="/clusters">Clusters</NavDropdown.Item>
             <NavDropdown.Item href="/AddEvent">Add Event</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.4">

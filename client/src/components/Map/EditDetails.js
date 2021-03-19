@@ -1,6 +1,12 @@
 import React from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// Toast Notification Function to let the user know the event was updated
+const notify = () => toast(`Event Updated`);
 
 const EditDetails = (props) => {
+
   return (
     <form className="new-event-f">
       <label htmlFor="name">Event Name: </label>
@@ -34,9 +40,13 @@ const EditDetails = (props) => {
   <input type="checkbox" name="private" value="true" onChange={onChange} /> */}
       <label htmlFor="date">Date: </label>
       <input type="date" name="date" />
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary"
+        onClick={() => notify()}
+      >
         Save Edit
       </button>
+      {/* Toast Container Notification */}
+      <ToastContainer />
     </form>
   );
 };

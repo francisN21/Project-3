@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Function to Edit the event from the database by ID
 const editEvent = (newEditEvent) => {
@@ -16,11 +18,11 @@ const editEvent = (newEditEvent) => {
     .then((data) => {
       // Console log the data
       // console.log(data)
-
-      //SWITCH ALERT TO TOAST HERE FOR EVENT UPDATE
-      alert(`${newEditEvent.name} Event Updated`);
     });
 };
+
+// Toast Notification Function to let the user know the event was deleted
+const notify = (eventTitle) => toast(`${eventTitle} Event Saved`);
 
 // Edit event Component using props
 const EditEvent = (props) => {
@@ -64,9 +66,9 @@ const EditEvent = (props) => {
           {/* Input for title */}
           <input
             onChange={onEditChange}
-            name="name"
+            name="title"
             type="text"
-            placeholder={editEventForm.name}
+            placeholder={editEventForm.title}
             className="form-control text-center border border-dark"
           />
           {/* Input for description */}
@@ -104,13 +106,15 @@ const EditEvent = (props) => {
             className="form-control text-center border border-dark"
           />
 
-          {/* Button to save the event */}
+          {/* Button to save the event and call the Toast Notify Function*/}
           <button
-            onClick={() => editEvent(newEditEvent)}
+            onClick={() => { editEvent(newEditEvent); notify(newEditEvent.title) }}
             className="btn btn-primary"
           >
             Save Edits
           </button>
+          {/* Toast Container Notification */}
+          <ToastContainer />
         </div>
       </form>
     </div>
