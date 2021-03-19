@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom"
 import ReactMapGL, {
   Marker,
   Popup,
@@ -7,13 +8,16 @@ import ReactMapGL, {
 } from "react-map-gl";
 import EntryForm from "./EntryForm";
 import { listEvents } from "../../utils/API";
-import ControlPanel from "./Control-Panel";
 import Pin from "./pin";
 import Geocoder from "react-map-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "./Map.css";
+import Details from "./Details";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 require("dotenv").config();
+
 
 const Map = () => {
   // map setup
@@ -29,13 +33,14 @@ const Map = () => {
     longitude: -95.7129,
     zoom: 10,
   });
-
+  // toastify
+  const success = () => toast("Hello !");
   // useeffect for calling API to load saved events to markers on the map
   // reusable backend call to fetch event database
   const getEvents = async () => {
     try {
       const showMarkers = await listEvents();
-      console.log(showMarkers);
+
       setEvents(showMarkers);
     } catch (error) {
       console.log(error);
@@ -93,8 +98,10 @@ const Map = () => {
     });
   };
   //  delete and edit popup ==== //
+
   return (
-    <div className="map">
+    <div className="map" id="map">
+      <ToastContainer />
       <ReactMapGL
         ref={mapRef}
         {...viewport}
@@ -123,7 +130,7 @@ const Map = () => {
                   })
                 }
               >
-                <Pin color="#1f4980" />
+                <Pin type={event} />
               </div>
             </Marker>
             {showPopup[event._id] ? (
@@ -136,13 +143,12 @@ const Map = () => {
                 onClose={() => setShowPopup({})}
                 anchor="top"
               >
-                <div className="popup">
-                  <h3>{event.name}</h3>
-                  <p>{event.description}</p>
-                  <p>{event.date}</p>
-                  <button className="btn btn-primary">edit</button>
-                  <button className="btn btn-danger">delete</button>
-                </div>
+                <Details
+                  value={event}
+                  onClose={() => {
+                    getEvents();
+                  }}
+                />
               </Popup>
             ) : null}
           </React.Fragment>
@@ -158,7 +164,19 @@ const Map = () => {
               offsetLeft={-10}
             >
               <div>
-                <Pin color="red" />
+                <svg
+                  style={{ fill: "red" }}
+                  height="20"
+                  viewBox="0 0 24 24"
+                  x="0px"
+                  y="0px"
+                >
+                  <path
+                    d="M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
+      c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
+      C20.1,15.8,20.2,15.8,20.2,15.7z"
+                  />
+                </svg>
               </div>
             </Marker>
             <Popup
@@ -167,7 +185,10 @@ const Map = () => {
               closeButton={true}
               closeOnClick={false}
               dynamicPosition={true}
-              onClose={() => setEventLocation(null)}
+              onClose={() => {
+                setEventLocation(null);
+                // success();
+              }}
               anchor="top"
             >
               <div className="popup">
@@ -175,6 +196,7 @@ const Map = () => {
                   onClose={() => {
                     setEventLocation(null);
                     getEvents();
+                    console.log(addEventLocation);
                   }}
                   location={addEventLocation}
                 />
@@ -205,7 +227,7 @@ const Map = () => {
           <NavigationControl />
         </div>
       </ReactMapGL>
-    </div>
+    </div >
   );
 };
 

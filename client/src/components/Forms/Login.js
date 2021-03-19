@@ -1,7 +1,8 @@
 // import axios from "axios";
 import React, { useState } from "react";
+import { Redirect, useHistory } from "react-router-dom";
 import "../Forms/styles.css";
-import { loginUser } from "../../utils/API";
+import API from "../../utils/API";
 
 const Login = () => {
   const [loginDetails, setLoginDetails] = useState({
@@ -9,14 +10,17 @@ const Login = () => {
     password: "",
   });
 
+  const history = useHistory();
+
   const onChange = (e) => {
     setLoginDetails({ ...loginDetails, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      loginUser(loginDetails).then((res) => {
-        console.log(res);
+      console.log(loginDetails);
+      API.loginUser(loginDetails).then((res) => {
+        return history.push("/profile");
       });
     } catch (error) {
       console.log(error);

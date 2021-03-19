@@ -3,14 +3,27 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+  height: auto;
+  width: auto;
+
   background-image: url(http://www.userlogos.org/files/backgrounds/Mafia_Penguin/Map1280x800.jpg);
   background-size: cover;
   background-repeat: np-repeat;
 }
 
+p {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.map{
+
+  overflow: hidden;
+}
+#map{
+  overflow: hidden;
+}
 
 .marker.red svg path {
   fill: #f05305;
@@ -21,7 +34,8 @@ body {
 }
 
 .popup {
-  width: auto;
+  max-width: 20rem;
+width: auto;
   padding: 1rem;
 }
 
