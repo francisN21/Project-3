@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom"
 import ReactMapGL, {
   Marker,
   Popup,
@@ -16,6 +17,7 @@ import Details from "./Details";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 require("dotenv").config();
+
 
 const Map = () => {
   // map setup
@@ -225,7 +227,7 @@ const Map = () => {
           <NavigationControl />
         </div>
       </ReactMapGL>
-    </div>
+    </div >
   );
 };
 

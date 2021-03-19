@@ -3,9 +3,15 @@ import { deleteEvent } from "../../utils/API";
 import DefaultDetails from "./DefaultDetails";
 import "./Details.css";
 import EditDetails from "./EditDetails";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// Toast Notification Function to let the user know the event was deleted
+const notify = () => toast("Event Deleted");
 
 const Details = ({ value, onClose }) => {
   const [details, setDetails] = useState(true);
+
   const delEvent = async (event) => {
     try {
       await deleteEvent(event);
@@ -19,8 +25,8 @@ const Details = ({ value, onClose }) => {
       {details ? (
         <DefaultDetails value={value} />
       ) : (
-        <EditDetails value={value} />
-      )}
+          <EditDetails value={value} />
+        )}
       {/* <h3>{value.name || value.title}</h3>
       {value.special ? <p>{value.special}</p> : null}
       <p className="text-wrap">{value.description}</p>
@@ -44,7 +50,7 @@ const Details = ({ value, onClose }) => {
             </svg>
           </div>
         </button>
-        <button className="icon btn-danger" onClick={() => delEvent(value._id)}>
+        <button className="icon btn-danger" onClick={() => { delEvent(value._id); notify() }}>
           <svg
             viewBox="0 0 24 24"
             width="24"
@@ -63,7 +69,9 @@ const Details = ({ value, onClose }) => {
           </svg>
         </button>
       </div>
-    </div>
+      {/* Toast Container Notification */}
+      <ToastContainer />
+    </div >
   );
 };
 
