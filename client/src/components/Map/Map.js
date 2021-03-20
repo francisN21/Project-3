@@ -124,6 +124,7 @@ const Map = () => {
         {...viewport}
         mapboxApiAccessToken={api}
         mapStyle={mapstyle}
+        doubleClickZoom={false}
         onClick={() => setShowPopup({})}
         onDblClick={addEventPopup}
         onViewportChange={handleViewportChange}

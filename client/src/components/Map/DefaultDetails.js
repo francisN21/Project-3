@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../../.env";
 require("dotenv").config();
 const DefaultDetails = (props) => {
   let x = props.value.location[0].longitude;
@@ -13,7 +14,7 @@ const DefaultDetails = (props) => {
 
   const getAddress = async (lon, lat) => {
     // Url for the mapbox API request
-    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?types=address&access_token=${Access_Token}`;
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?types=address&access_token=${process.env.ACCESS_TOKEN}`;
     try {
       await fetch(url, {
         method: "GET",
