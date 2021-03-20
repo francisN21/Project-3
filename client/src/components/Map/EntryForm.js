@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 import { createEvent } from "../../utils/API";
 
 const EntryForm = ({ location, onClose }) => {
@@ -8,10 +11,19 @@ const EntryForm = ({ location, onClose }) => {
     category: "",
     location: location,
     description: "",
-    // private: false,
+    // private: ,
     date: "",
   });
-
+  const success = () =>
+    toast("Event Created", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   const onChange = (e) => {
     setEvent({ ...eventForm, [e.target.name]: e.target.value });
   };
@@ -62,8 +74,9 @@ const EntryForm = ({ location, onClose }) => {
       <input type="checkbox" name="private" value="true" onChange={onChange} /> */}
       <label htmlFor="date">Date: </label>
       <input type="date" name="date" onChange={onChange} />
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary" onClick={success}>
         Create event
+        <ToastContainer />
       </button>
     </form>
   );

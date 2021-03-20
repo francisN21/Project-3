@@ -14,6 +14,8 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "./Map.css";
 import Details from "./Details";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 require("dotenv").config();
 
 
@@ -31,7 +33,8 @@ const Map = () => {
     longitude: -95.7129,
     zoom: 10,
   });
-
+  // toastify
+  const success = () => toast("Hello !");
   // useeffect for calling API to load saved events to markers on the map
   // reusable backend call to fetch event database
   const getEvents = async () => {
@@ -98,6 +101,7 @@ const Map = () => {
 
   return (
     <div className="map" id="map">
+      <ToastContainer />
       <ReactMapGL
         ref={mapRef}
         {...viewport}
@@ -126,7 +130,7 @@ const Map = () => {
                   })
                 }
               >
-                <Pin color="#1f4980" />
+                <Pin type={event} />
               </div>
             </Marker>
             {showPopup[event._id] ? (
@@ -160,7 +164,19 @@ const Map = () => {
               offsetLeft={-10}
             >
               <div>
-                <Pin color="red" />
+                <svg
+                  style={{ fill: "red" }}
+                  height="20"
+                  viewBox="0 0 24 24"
+                  x="0px"
+                  y="0px"
+                >
+                  <path
+                    d="M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
+      c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
+      C20.1,15.8,20.2,15.8,20.2,15.7z"
+                  />
+                </svg>
               </div>
             </Marker>
             <Popup
@@ -169,7 +185,10 @@ const Map = () => {
               closeButton={true}
               closeOnClick={false}
               dynamicPosition={true}
-              onClose={() => setEventLocation(null)}
+              onClose={() => {
+                setEventLocation(null);
+                // success();
+              }}
               anchor="top"
             >
               <div className="popup">
