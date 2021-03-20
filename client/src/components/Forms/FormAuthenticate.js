@@ -30,9 +30,9 @@ const FormAuthenticate = () => {
 
         <div>
           <p>{formText}</p>
-          <button className="btn btn-primary" onClick={() => setform(!form)}>
+          <button2 className="btn btn-primary" onClick={() => setform(!form)}>
             {formButton}
-          </button>
+          </button2>
         </div>
       </div>
     </div>
