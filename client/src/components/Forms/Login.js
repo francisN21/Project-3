@@ -18,7 +18,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      console.log(loginDetails);
+      console.log(loginDetails, "FROM LOGIN.js");
       API.loginUser(loginDetails).then((res) => {
         return history.push("/profile");
       });

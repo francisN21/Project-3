@@ -6,6 +6,7 @@ const Profile = () => {
   const [users, setUsers] = useState([
     {
       firstName: "",
+      // email: "",
       lastName: "",
       username: "",
       saved: [],
@@ -15,25 +16,26 @@ const Profile = () => {
 
   // Function to get the the user from the database
   // Will need to change to ID so we don't get all users
-  const getUsers = () => {
-    fetch("/api/user", {
+  const getLogin = () => {
+    fetch("/api/login", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(),
     })
-      .then((response) => response.json())
+      .then((res) => res.json())
       // Then get the data
       .then((data) => {
         // Console log the data
-        console.log(data);
+        console.log(data, "from get login//Profile.js");
         //Set the data to users!
         setUsers(data);
       });
   };
   // use Effect to call the get users function when the page loads
   useEffect(() => {
-    getUsers();
+    getLogin();
     // eslint-disable-line no-alert
   }, []);
 

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import ReactMapGL, {
   Marker,
   Popup,
@@ -18,11 +18,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 require("dotenv").config();
 
-
 const Map = () => {
   // map setup
   const api = `pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;
-  const mapstyle = "mapbox://styles/francisn21/cklv81byf44mx17ql4bv4chxl";
+  // mapbox://styles/francisn21/cklv81byf44mx17ql4bv4chxl
+  const mapstyle = "mapbox://styles/mapbox/dark-v9";
   const [showevents, setEvents] = useState([]);
   const [showPopup, setShowPopup] = useState({});
   const [addEventLocation, setEventLocation] = useState(null);
@@ -140,12 +140,16 @@ const Map = () => {
                 closeButton={true}
                 closeOnClick={false}
                 dynamicPosition={true}
-                onClose={() => setShowPopup({})}
+                onClose={() => {
+                  setShowPopup({});
+                  getEvents();
+                }}
                 anchor="top"
               >
                 <Details
                   value={event}
                   onClose={() => {
+                    setShowPopup({});
                     getEvents();
                   }}
                 />
@@ -227,7 +231,7 @@ const Map = () => {
           <NavigationControl />
         </div>
       </ReactMapGL>
-    </div >
+    </div>
   );
 };
 
