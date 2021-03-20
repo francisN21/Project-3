@@ -28,6 +28,18 @@ async function deleteEvent(query) {
   }
 }
 
+async function updateEvent(query) {
+  try {
+    const response = await axios.put(
+      `${API_URL}/api/location/${query._id}`,
+      query
+    );
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function fetchUser() {
   try {
     const response = await fetch(`${API_URL}/api/user`);
@@ -84,6 +96,7 @@ async function loginUser(login) {
 }
 
 module.exports = {
+  updateEvent,
   listEvents,
   createEvent,
   deleteEvent,

@@ -10,7 +10,7 @@ import AddEvent from "./components/Forms/AddEvent";
 // import SignUp from "./components/Forms/SignUp";
 // import axios from "axios";
 import EditEvent from "./components/Account/EditEvent";
-import Clusters from "./components/Clusters/Clusters"
+import Clusters from "./components/Clusters/Clusters";
 
 function App() {
   return (
