@@ -20,8 +20,7 @@
     "react-toastify": "^7.0.3",
     "supercluster": "^7.1.2",
     "use-supercluster": "^0.2.9",
-    "web-vitals": "^1.1.0",
-    "yarn": "^1.22.10"
+    "web-vitals": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
