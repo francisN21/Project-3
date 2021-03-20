@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import ReactMapGL, { Marker, FlyToInterpolator } from 'react-map-gl';
 // import { clusterLayer, clusterCountLayer, unclusteredPointLayer, pointLayer } from './ClusterLayers';
 import { listEvents } from "../../utils/API";
-import Pin from "../Map/pin";
+import ClusterPins from "./ClusterPins";
 import useSupercluster from "use-supercluster"
 import "./Clusters.css"
 
@@ -61,7 +61,7 @@ const Clusters = () => {
     const getEvents = async () => {
         try {
             const showMarkers = await listEvents();
-            console.log(showMarkers)
+            // console.log(showMarkers)
             setEvents(showMarkers);
         } catch (error) {
             console.log(error);
@@ -134,7 +134,7 @@ const Clusters = () => {
                         longitude={longitude}
                     >
                         {/* Pin component to dispaly an event, color is white */}
-                        <Pin color="#FFFFFF" />
+                        <ClusterPins color="#FFFFFF" />
 
                     </Marker>
                 )
