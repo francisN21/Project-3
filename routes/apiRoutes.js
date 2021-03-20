@@ -66,13 +66,13 @@ router.get("/user", function (req, res) {
 // });
 
 router.post("/login", function (req, res) {
-  console.log(req.body.password, "apiRoutes");
+  console.log(req.body.password, "apiRoutes line 69");
   db.User.find({})
     .then(function (dbUsers) {
       // console.log(dbUsers);
       const dbUser = dbUsers.find((user) => user.email === req.body.email);
       console.log(dbUser, "from apiRoutes.js  74");
-      // console.log(req.body.password, dbUser.password);
+      console.log(req.body.password, dbUser.password, "line 75");
       bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
         req.session.isLoggedIn = isEqual;
         req.session.user = dbUser;
@@ -90,21 +90,9 @@ router.post("/login", function (req, res) {
 
 //route for getting login data that has been stored
 router.get("/login", function (req, res) {
-  console.log(req.body.password, "apiRoutes");
   db.User.find({})
     .then(function (dbUsers) {
-      // console.log(dbUsers);
-      const dbUser = dbUsers.find((user) => user.email === req.body.email);
-      console.log(dbUser, "from apiRoutes.js  74");
-      // console.log(req.body.password, dbUser.password);
-      bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
-        req.session.isLoggedIn = isEqual;
-        req.session.user = dbUser;
-        return req.session.save((err) => {
-          if (err) throw err;
-          res.json(dbUser);
-        });
-      });
+      res.json(dbUsers);
     })
     .catch(function (err) {
       console.log(err);
@@ -192,7 +180,9 @@ router.put("/location/:id", (req, res) => {
     { _id: req.params.id },
     {
       name: req.body.name,
+      special: req.body.special,
       description: req.body.description,
+      category: req.body.category,
       location: [
         {
           latitude: req.body.location[0].latitude,
