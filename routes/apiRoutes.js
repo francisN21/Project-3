@@ -192,7 +192,9 @@ router.put("/location/:id", (req, res) => {
     { _id: req.params.id },
     {
       name: req.body.name,
+      special: req.body.special,
       description: req.body.description,
+      category: req.body.category,
       location: [
         {
           latitude: req.body.location[0].latitude,

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 import { createEvent } from "../../utils/API";
 
 const EntryForm = ({ location, onClose }) => {
@@ -9,10 +11,19 @@ const EntryForm = ({ location, onClose }) => {
     category: "",
     location: location,
     description: "",
-    // private: false,
+    // private: ,
     date: "",
   });
-
+  const success = () =>
+    toast("Event Created", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   const onChange = (e) => {
     setEvent({ ...eventForm, [e.target.name]: e.target.value });
   };
@@ -23,6 +34,7 @@ const EntryForm = ({ location, onClose }) => {
       //   await axios.post("/api/location/", eventForm);
       await createEvent(eventForm);
       onClose();
+      success();
       //   console.log(location);
       console.log(eventForm);
     } catch (error) {
@@ -39,7 +51,9 @@ const EntryForm = ({ location, onClose }) => {
       <label htmlFor="category">Select Category: </label>
       <select name="category" id="category" onChange={onChange}>
         <option value="n/a">Please Select one</option>
+        <option value="anime">Anime</option>
         <option value="beach">Beach</option>
+        <option value="birthday">Birthday</option>
         <option value="car">Car</option>
         <option value="default">Default</option>
         <option value="disco">Disco</option>
@@ -65,6 +79,7 @@ const EntryForm = ({ location, onClose }) => {
       <input type="date" name="date" onChange={onChange} />
       <button type="submit" className="btn btn-primary">
         Create event
+        <ToastContainer />
       </button>
     </form>
   );
