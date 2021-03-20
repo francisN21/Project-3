@@ -5,7 +5,6 @@ import ReactMapGL, { Marker, FlyToInterpolator } from 'react-map-gl';
 // import { clusterLayer, clusterCountLayer, unclusteredPointLayer, pointLayer } from './ClusterLayers';
 import { listEvents } from "../../utils/API";
 import Pin from "../Map/pin";
-import supercluster from 'supercluster'
 import useSupercluster from "use-supercluster"
 import "./Clusters.css"
 
