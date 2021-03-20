@@ -86,7 +86,7 @@ async function updateUser(query) {
 }
 
 async function loginUser(login) {
-  console.log(login);
+  console.log(login, "from API JS");
   return axios.post(`${API_URL}/api/login`, login);
   // const response = await fetch(`${API_URL}/api/login`, {
   //   method: "POST",
@@ -95,6 +95,15 @@ async function loginUser(login) {
   // return response.json();
 }
 
+async function loginInfo(login) {
+  console.log(login, "from API JS");
+  return axios.get(`${API_URL}/api/login`, login);
+  // const response = await fetch(`${API_URL}/api/login`, {
+  //   method: "POST",
+  //   body: JSON.stringify(login),
+  // });
+  // return response.json();
+}
 module.exports = {
   updateEvent,
   listEvents,
@@ -103,4 +112,5 @@ module.exports = {
   fetchUser,
   updateUser,
   loginUser,
+  loginInfo,
 };

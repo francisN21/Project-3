@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-
 const axios = require("axios");
 const router = require("express").Router();
 const db = require("../models");
@@ -67,14 +66,44 @@ router.get("/user", function (req, res) {
 // });
 
 router.post("/login", function (req, res) {
-  console.log(req.body);
+  console.log(req.body.password, "apiRoutes");
   db.User.find({})
     .then(function (dbUsers) {
       // console.log(dbUsers);
       const dbUser = dbUsers.find((user) => user.email === req.body.email);
-      console.log(dbUser);
+      console.log(dbUser, "from apiRoutes.js  74");
+      // console.log(req.body.password, dbUser.password);
       bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
-        res.json(dbUser);
+        req.session.isLoggedIn = isEqual;
+        req.session.user = dbUser;
+        return req.session.save((err) => {
+          if (err) throw err;
+          res.json(dbUser);
+        });
+      });
+    })
+    .catch(function (err) {
+      console.log(err);
+      // If an error occurred, send it to the client
+    });
+});
+
+//route for getting login data that has been stored
+router.get("/login", function (req, res) {
+  console.log(req.body.password, "apiRoutes");
+  db.User.find({})
+    .then(function (dbUsers) {
+      // console.log(dbUsers);
+      const dbUser = dbUsers.find((user) => user.email === req.body.email);
+      console.log(dbUser, "from apiRoutes.js  74");
+      // console.log(req.body.password, dbUser.password);
+      bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
+        req.session.isLoggedIn = isEqual;
+        req.session.user = dbUser;
+        return req.session.save((err) => {
+          if (err) throw err;
+          res.json(dbUser);
+        });
       });
     })
     .catch(function (err) {

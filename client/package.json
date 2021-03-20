@@ -18,7 +18,10 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "react-toastify": "^7.0.3",
-    "web-vitals": "^1.1.0"
+    "supercluster": "^7.1.2",
+    "use-supercluster": "^0.2.9",
+    "web-vitals": "^1.1.0",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "start": "react-scripts start",
