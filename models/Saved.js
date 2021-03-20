@@ -54,6 +54,9 @@ const SavedSchema = new Schema({
     min: "2021-01-28",
     max: "2023-05-23",
   },
+  authorID: {
+    type: String,
+  },
 });
 
 const Saved = mongoose.model("Saved", SavedSchema);

@@ -2,6 +2,8 @@ const bcrypt = require("bcrypt");
 const axios = require("axios");
 const router = require("express").Router();
 const db = require("../models");
+const jwt = require("jsonwebtoken");
+const auth = require("../middleware/auth");
 
 router.get("/test", (req, res) => {
   res.send({ msg: "success" });
@@ -65,39 +67,61 @@ router.get("/user", function (req, res) {
 //     });
 // });
 
-router.post("/login", function (req, res) {
-  console.log(req.body.password, "apiRoutes line 69");
-  db.User.find({})
-    .then(function (dbUsers) {
-      // console.log(dbUsers);
-      const dbUser = dbUsers.find((user) => user.email === req.body.email);
-      console.log(dbUser, "from apiRoutes.js  74");
-      console.log(req.body.password, dbUser.password, "line 75");
-      bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
-        req.session.isLoggedIn = isEqual;
-        req.session.user = dbUser;
-        return req.session.save((err) => {
-          if (err) throw err;
-          res.json(dbUser);
-        });
-      });
-    })
-    .catch(function (err) {
-      console.log(err);
-      // If an error occurred, send it to the client
-    });
-});
+// router.post("/login", function (req, res) {
+//   console.log(req.body.password, "apiRoutes line 69");
+//   db.User.find({})
+//     .then(function (dbUsers) {
+//       // console.log(dbUsers);
+//       const dbUser = dbUsers.find((user) => user.email === req.body.email);
+//       console.log(dbUser, "from apiRoutes.js  74");
+//       console.log(req.body.password, dbUser.password, "line 75");
+//       bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
+//         req.session.isLoggedIn = isEqual;
+//         req.session.user = dbUser;
+//         return req.session.save((err) => {
+//           if (err) throw err;
+//           res.json(dbUser);
+//         });
+//       });
+//     })
+//     .catch(function (err) {
+//       console.log(err);
+//       // If an error occurred, send it to the client
+//     });
+// });
 
 //route for getting login data that has been stored
-router.get("/login", function (req, res) {
-  db.User.find({})
-    .then(function (dbUsers) {
-      res.json(dbUsers);
-    })
-    .catch(function (err) {
-      console.log(err);
-      // If an error occurred, send it to the client
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ msg: "Not everything has been filled" });
+    }
+
+    const user = await db.User.findOne({ email: email });
+
+    console.log("user:", user);
+
+    if (!user) {
+      return res.status(400).json({ msg: "no user found" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({ msg: "password is incorrect" });
+    }
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
     });
+
+    res.json({ token, user: { id: user._id, username: user.username } });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: err });
+  }
 });
 
 router.post("/location/update/", function (req, res) {
@@ -155,10 +179,10 @@ router.delete("/location/:id", (req, res) => {
 router.post("/location/", (req, res) => {
   // Set event to a new variable
   const newEvent = req.body;
-  console.log(newEvent);
+  console.log("hello : ", req.user);
   console.log("line 118");
   // Using the LogEvent Database in the Events Models File
-  db.Saved.create(newEvent)
+  db.Saved.create({ ...newEvent, authorID: req.user })
     .then((dbSaved) => {
       // Let the user know that the event was saved
       console.log("Event Saved"), res.json(dbSaved);
@@ -197,6 +221,11 @@ router.put("/location/:id", (req, res) => {
     .then((dbSaved) => {
       console.log(dbSaved), res.json(dbSaved);
     });
+});
+
+router.get("/", auth, (req, res) => {
+  console.log(req.user);
+  res.send("success");
 });
 
 module.exports = router;

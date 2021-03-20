@@ -20,6 +20,8 @@ const Login = () => {
     try {
       console.log(loginDetails, "FROM LOGIN.js");
       API.loginUser(loginDetails).then((res) => {
+        console.log(res);
+        localStorage.setItem("auth-token", res.data.token);
         return history.push("/profile");
       });
     } catch (error) {

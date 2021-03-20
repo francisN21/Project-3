@@ -24,7 +24,16 @@ const EntryForm = ({ location, onClose }) => {
       draggable: true,
       progress: undefined,
     });
+  // let eventButton = document.querySelector(".create-event");
   const onChange = (e) => {
+    // console.log(eventForm);
+    // if ((e = unde)) {
+    //   console.log(e);
+    //   eventButton.classList.add("disabled");
+    // } else {
+    //   console.log(e);
+    //   eventButton.classList.remove("disabled");
+    // }
     setEvent({ ...eventForm, [e.target.name]: e.target.value });
   };
 
@@ -77,7 +86,7 @@ const EntryForm = ({ location, onClose }) => {
       <input type="checkbox" name="private" value="true" onChange={onChange} /> */}
       <label htmlFor="date">Date: </label>
       <input type="date" name="date" onChange={onChange} />
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary create-event">
         Create event
         <ToastContainer />
       </button>
