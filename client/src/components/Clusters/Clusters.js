@@ -133,8 +133,8 @@ const Clusters = () => {
                         latitude={latitude}
                         longitude={longitude}
                     >
-                        {/* Pin component to dispaly an event, color is white */}
-                        <ClusterPins color="#FFFFFF" />
+                        {/* Pin component to dispaly an event, color is yellow */}
+                        <ClusterPins color="#FFFF00" />
 
                     </Marker>
                 )

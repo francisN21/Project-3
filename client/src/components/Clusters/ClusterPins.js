@@ -1,10 +1,15 @@
+//USED FOR CLUSTERS PAGE, NOT MAIN MAP
+// Import Goodness
 import * as React from "react";
 
+// Cluster pins component
 function CLusterPins(props) {
+    // Return the component
     return (
+        //Pins
         <svg
             style={{ fill: props.color }}
-            height="20"
+            height="10"
             viewBox="0 0 24 24"
             x="0px"
             y="0px"
@@ -18,4 +23,5 @@ C20.1,15.8,20.2,15.8,20.2,15.7z"
     );
 }
 
+// Export the component
 export default React.memo(CLusterPins);
