@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../.env";
+// import "../../.env";
 require("dotenv").config();
 const DefaultDetails = (props) => {
   let x = props.value.location[0].longitude;
@@ -10,7 +10,7 @@ const DefaultDetails = (props) => {
 
     console.log(address);
   }, []);
-  const { Access_Token } = process.env;
+  // const { Access_Token } = process.env;
 
   const getAddress = async (lon, lat) => {
     // Url for the mapbox API request

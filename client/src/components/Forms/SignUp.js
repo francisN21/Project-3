@@ -38,7 +38,7 @@ const SignUp = () => {
             type="text"
             name="firstName"
             className="form-control"
-            id="name-input"
+            id="firstName-input"
             placeholder="First Name"
             onChange={onChange}
           ></input>
@@ -46,7 +46,7 @@ const SignUp = () => {
             type="text"
             name="lastName"
             className="form-control"
-            id="name-input"
+            id="lastName-input"
             placeholder="Last Name"
             onChange={onChange}
           ></input>
@@ -57,8 +57,8 @@ const SignUp = () => {
           type="text"
           name="username"
           className="form-control"
-          id="name-input"
-          placeholder="First Name"
+          id="username-input"
+          placeholder="user name"
           onChange={onChange}
         ></input>
         <div className="form-group">
