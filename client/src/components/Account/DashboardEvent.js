@@ -6,9 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const notify = (event) => toast(`${event.title} Deleted`);
 
-const DashboardEvent = (props) => {
-    let x = props.event.location[0].longitude;
-    let y = props.event.location[0].latitude;
+const DashboardEvent = ({event}) => {
+    let x = event.location[0].longitude;
+    let y = event.location[0].latitude;
     const [address, setAddress] = useState();
     useEffect(() => {
       getAddress(x, y);
@@ -62,43 +62,35 @@ const deleteEvent = (dashboardEvent) => {
   };
 
     return (
-        <tr key={props.event._id}>
-    <td><h5>{props.event.title}</h5></td>
-
-{/* <td> */}
-                  {/* Change to real address */}
-                  {/* <p>{props.event.location[0].latitude}</p>
-                  <p>{props.event.location[0].longitude}</p> */}
-                  {/* Call the get address function to get change lat/lon to real address */}
-                  {/* {getAddress(props.event.location[0].longitude, props.event.location[0].latitude)} */}
-                  {/* </td> */}
+        <tr key={event._id}>
+    <td><h5>{event.title}</h5></td>
                 <td>{address}</td>
                 <td>
-                  <p>{props.event.date}</p>
+                  <p>{event.date}</p>
                 </td>
                 <td>
-                  <p>{props.event.description}</p>
+                  <p>{event.description}</p>
                 </td>
                 <td>
                      {/* Link to send you to edit event page  */}
-                     {/* <Link
+                     <Link
                        className="btn btn-info"
                        to={{
                          pathname: "/editEvent",
                         // event sent via props
-                         editEventProps= {
-                           {props.event}
+                         editEventProps: {
+                           event
      
                          },
                        }}
                      >
                        Edit Event
-                       </Link> */}
+                       </Link>
                      {/* Button to delete the event */}
                      <button
                        className="btn btn-danger"
                     //   Call the delete Event by it's ID function on click and Toast Notify Function
-                    onClick={() => { deleteEvent(props.event); notify(props.event) }}
+                    onClick={() => { deleteEvent(event); notify(event) }}
                      >
                        Delete Event
                        </button>
