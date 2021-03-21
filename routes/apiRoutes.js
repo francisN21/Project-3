@@ -203,7 +203,7 @@ router.put("/location/:id", (req, res) => {
   db.Saved.updateOne(
     { _id: req.params.id },
     {
-      name: req.body.name,
+      title: req.body.title,
       special: req.body.special,
       description: req.body.description,
       category: req.body.category,

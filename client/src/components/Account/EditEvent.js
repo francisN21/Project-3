@@ -15,10 +15,6 @@ const editEvent = (newEditEvent) => {
     // Json that response
   })
     .then((response) => response.json())
-    .then((data) => {
-      // Console log the data
-      // console.log(data)
-    });
 };
 
 // Toast Notification Function to let the user know the event was deleted
@@ -28,8 +24,6 @@ const notify = (eventTitle) => toast(`${eventTitle} Event Saved`);
 const EditEvent = (props) => {
   // Set up state
   const [newEditEvent, setNewEditEvent] = useState();
-  // console.log(props.location.editEventProps)
-  // console.log(props.location.editEventProps.dashboardEvent.name)
 
   // On edit change to update state
   const onEditChange = (e) => {
@@ -39,13 +33,11 @@ const EditEvent = (props) => {
   // Set it to a variable
   let editEventForm = "";
   editEventForm = props.location.editEventProps.event;
-  // console.log(editEventForm)
 
   // On Submit to prevent default behavior of the form
   const onSubmit = (e) => {
     // Gotta prevent the default!
     e.preventDefault();
-    // console.log(newEditEvent)
   };
 
   // UseEffect to call the function when the page loads
@@ -53,6 +45,7 @@ const EditEvent = (props) => {
     setNewEditEvent(editEventForm);
   }, []);
 
+  
   // Return the component
   return (
     // Div to center the content
@@ -108,7 +101,7 @@ const EditEvent = (props) => {
 
           {/* Button to save the event and call the Toast Notify Function*/}
           <button
-            onClick={() => { editEvent(newEditEvent); notify(newEditEvent.title) }}
+            onClick={() => { editEvent(newEditEvent); notify(newEditEvent.title)}}
             className="btn btn-primary"
           >
             Save Edits
