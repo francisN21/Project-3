@@ -1,4 +1,5 @@
 // import the react goodness!
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const Profile = () => {
@@ -33,9 +34,23 @@ const Profile = () => {
         setUsers(data);
       });
   };
+
+  const getUserData = async () => {
+    try {
+      const res = await axios.get("/api", {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      });
+
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   // use Effect to call the get users function when the page loads
   useEffect(() => {
-    getLogin();
+    // getLogin();
+    getUserData();
+
     // eslint-disable-line no-alert
   }, []);
 

@@ -14,7 +14,7 @@ async function listEvents() {
 }
 async function createEvent(query) {
   try {
-    const response = await axios.post(`${API_URL}/api/location`, query);
+    const response = await axios.post(`${API_URL}/api/location/`, query);
   } catch (error) {
     console.log(error);
   }

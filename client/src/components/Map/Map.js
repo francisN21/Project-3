@@ -16,6 +16,8 @@ import "./Map.css";
 import Details from "./Details";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Redirect, useHistory } from "react-router-dom";
+import axios from "axios";
 require("dotenv").config();
 
 const Map = () => {
@@ -46,8 +48,23 @@ const Map = () => {
       console.log(error);
     }
   };
+  const history = useHistory();
+  const getUserData = async () => {
+    try {
+      const res = await axios.get("/api", {
+        headers: { "x-auth-token": localStorage.getItem("auth-token") },
+      });
+      if (!res) {
+        return history.push("/login");
+      }
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
+    getUserData();
     getEvents();
   }, []);
 
@@ -107,6 +124,7 @@ const Map = () => {
         {...viewport}
         mapboxApiAccessToken={api}
         mapStyle={mapstyle}
+        doubleClickZoom={false}
         onClick={() => setShowPopup({})}
         onDblClick={addEventPopup}
         onViewportChange={handleViewportChange}
