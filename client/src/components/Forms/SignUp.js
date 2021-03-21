@@ -85,7 +85,7 @@ const SignUp = () => {
             onChange={onChange}
           ></input>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary signup">
           Create account
         </button>
       </form>

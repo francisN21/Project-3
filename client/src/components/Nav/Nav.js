@@ -8,7 +8,13 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 const Navigation = () => {
   return (
     <>
-      <Navbar bg="dark" variant="dark" sticky="top">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+        sticky="top"
+      >
         <Navbar.Brand href="/">
           <img
             alt="#"
@@ -21,8 +27,13 @@ const Navigation = () => {
             Project 3
           </marquee>{" "}
         </Navbar.Brand>
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          className="navbar-button"
+        />
+        {/* <Navbar.Collapse id="responsive-navbar-nav"> */}
         <Nav className="mr-auto collapse navbar-collapse justify-content-end">
-          <NavDropdown title="Generate" id="basic-nav-dropdown">
+          <NavDropdown title="Generate" id="collasible-nav-dropdown">
             <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
             <NavDropdown.Item href="/clusters">Clusters</NavDropdown.Item>
             <NavDropdown.Item href="/AddEvent">Add Event</NavDropdown.Item>
@@ -35,6 +46,7 @@ const Navigation = () => {
           <Nav.Link href="/profile">Profile</Nav.Link>
           <Nav.Link href="/login">Login</Nav.Link>
         </Nav>
+        {/* </Navbar.Collapse> */}
       </Navbar>
     </>
   );
