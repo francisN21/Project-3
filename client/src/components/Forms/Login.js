@@ -56,7 +56,7 @@ const Login = () => {
             placeholder="Password"
           ></input>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary login">
           Login
         </button>
       </form>

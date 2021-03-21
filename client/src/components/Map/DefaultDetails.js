@@ -14,7 +14,7 @@ const DefaultDetails = (props) => {
 
   const getAddress = async (lon, lat) => {
     // Url for the mapbox API request
-    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?types=address&access_token=${process.env.ACCESS_TOKEN}`;
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?types=address&access_token=pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;
     try {
       await fetch(url, {
         method: "GET",
@@ -47,9 +47,11 @@ const DefaultDetails = (props) => {
       {props.value.special ? <p>{props.value.special}</p> : null}
       <p className="text-wrap">{props.value.description}</p>
       <p>{props.value.date}</p>
-      <a href={address} target={"_blank"} rel="noreferrer">
-        {address}
-      </a>
+      <p className="client-address">
+        <a href={address} target={"_blank"} rel="noreferrer">
+          {address}
+        </a>
+      </p>
     </>
   );
 };
