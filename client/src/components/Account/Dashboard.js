@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { listEvents } from "../../utils/API";
 import { Link } from "react-router-dom";
+import DashboardEvent from "./DashboardEvent"
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -84,16 +85,16 @@ const Dashboard = () => {
     width: "18rem",
   };
 
-  const pageStyles = {
-    height: "5000px !important",
-    margin: "auto",
-    position: "absolute",
-    overFlow: "scroll !important",
-  };
+  // const pageStyles = {
+  //   height: "5000px !important",
+  //   margin: "auto",
+  //   position: "absolute",
+  //   overFlow: "scroll !important",
+  // };
 
   // Return the component
   return (
-    <div style={pageStyles} className="account-overflow">
+    <div className="account-overflow">
       {/* Title of page */}
       <h1 className="text-center" > Your Events</h1 >
       {/* Set up a div for the table */}
@@ -111,73 +112,21 @@ const Dashboard = () => {
               <th>Delete Event</th>
             </tr>
           </ thead>
-          {/* <h1>{(address)}</h1> */}
-          {/* If there is an event, display it */}
-          {
-            dashboardList.length ? (
-              <tbody>
-                {/* Map through the events and display them*/}
-                {dashboardList.map((event) => (
-                  <tr key={event._id}>
-                    <td>
-                      <h4>{event.name || event.title}</h4>
-                    </td>
-                    <td>
-                      {/* Change to real address */}
-                      <p>{event.location[0].latitude}</p>
-                      <p>{event.location[0].longitude}</p>
-                      {/* Call the get address function to get change lat/lon to real address */}
-                      {getAddress(event.location[0].longitude, event.location[0].latitude)}
-                    </td>
-                    <td>
-                      <p>{event.date}</p>
-                    </td>
-                    <td>
-                      <p>{event.description}</p>
-                    </td>
-                    <td>
-                      {/* Link to send you to edit event page  */}
-                      <Link
-                        className="btn btn-info"
-                        to={{
-                          pathname: "/editEvent",
-                          // event sent via props
-                          editEventProps: {
-                            event,
-                            // name: dashboardEvent.name
-                          },
-                        }}
-                      >
-                        Edit Event
-                        </Link>
-                      {/* Button to delete the event */}
-                      <button
-                        className="btn btn-danger"
-                        // Call the delete Event by it's ID function on click and Toast Notify Function
-                        onClick={() => { deleteEvent(event); notify(event) }}
-                      >
-                        Delete Event
-                        </button>
-                    </td>
-                  </tr>
-                  // End of each event
-                ))}
-              </tbody>
-            ) : (
-                // If no events, display this
-                <tbody>
-                  <tr>
-                    <td>
-                      <h1>No Events yet, save some events! Have some fun!</h1>
-                    </td>
-                  </tr>
-                </tbody>
-              )
-          }
+            <tbody>
+              {/* <tr> */}
+              {dashboardList.map((event) => (
+             <DashboardEvent event={event}/>
+              ))}
+              {/* </tr> */}
+  
+        
+
+            </tbody>
+ 
         </table >
       </div >
       {/* Toast Container Notification */}
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </div >
   );
 };
