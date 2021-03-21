@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+
+const notify = (event) => toast(`${event.title} Deleted`);
 
 const DashboardEvent = (props) => {
     let x = props.event.location[0].longitude;
@@ -94,13 +98,14 @@ const deleteEvent = (dashboardEvent) => {
                      <button
                        className="btn btn-danger"
                     //   Call the delete Event by it's ID function on click and Toast Notify Function
-                       onClick={() => deleteEvent(props.event)}
+                    onClick={() => { deleteEvent(props.event); notify(props.event) }}
                      >
                        Delete Event
                        </button>
                    </td>
-           
-              
+           <td>
+                    <ToastContainer />
+                    </td>
     </tr>
     )
 }

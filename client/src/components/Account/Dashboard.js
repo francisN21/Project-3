@@ -85,16 +85,13 @@ const Dashboard = () => {
     width: "18rem",
   };
 
-  // const pageStyles = {
-  //   height: "5000px !important",
-  //   margin: "auto",
-  //   position: "absolute",
-  //   overFlow: "scroll !important",
-  // };
+  const pageStyles = {
+    backgroundColor: "rgba(255,255, 255, 0.8)"
+  };
 
   // Return the component
   return (
-    <div className="account-overflow">
+    <div  style={pageStyles}  className="account-overflow">
       {/* Title of page */}
       <h1 className="text-center" > Your Events</h1 >
       {/* Set up a div for the table */}
@@ -115,7 +112,7 @@ const Dashboard = () => {
             <tbody>
               {/* <tr> */}
               {dashboardList.map((event) => (
-             <DashboardEvent event={event}/>
+             <DashboardEvent event={event} key={event._id}/>
               ))}
               {/* </tr> */}
   
