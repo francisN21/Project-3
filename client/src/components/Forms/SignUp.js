@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import axios from "axios";
 
 const SignUp = () => {
@@ -19,9 +18,10 @@ const SignUp = () => {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      console.log("submit runs");
+      // console.log("submit runs");
       await axios.post("/api/user", signUpForm);
       console.log(signUpForm, "user info");
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
