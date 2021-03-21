@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-require("dotenv").config();
+
 
 // Function to change the location from lat/lon to an address
 const getAddress = (lon, lat) => {
