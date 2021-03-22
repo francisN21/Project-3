@@ -223,10 +223,23 @@ router.put("/location/:id", (req, res) => {
     });
 });
 
+// router.get("/", auth, (req, res) => {
+//   console.log(req.user);
+//   res.send("success");
+// });
+
 router.get("/", auth, (req, res) => {
-  console.log(req.user);
-  res.send("success");
-});
+  try {
+    const user = db.User.findById(req.user)
+    res.json({
+      username: user.username,
+      id: user._id
+    })
+  } catch (err) {
+    res.send(err.response)
+  }
+
+})
 
 // DELETE /User/:id by id for deleting a user from the database
 router.delete("/user/:id", (req, res) => {

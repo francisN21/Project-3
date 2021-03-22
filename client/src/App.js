@@ -11,6 +11,7 @@ import UserContext from "./Context/UserContext"
 // import axios from "axios";
 import EditEvent from "./components/Account/EditEvent";
 import Clusters from "./components/Clusters/Clusters";
+import axios from "axios";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -18,10 +19,17 @@ function App() {
     token: undefined
   })
 
-  const checkLoggedIn = () => {
+  const checkLoggedIn = async () => {
     let token = localStorage.getItem("auth-token");
     if (token === null) {
       localStorage.setItem("auth-token", "")
+    } else {
+      const userRes = await axios.get("/api/user", {
+        headers: {"x-auth-token" : token}
+      })
+      console.log("user", userRes)
+      setUserData({token, user: userRes.data})
+      // localStorage.getItem
     }
   }
 

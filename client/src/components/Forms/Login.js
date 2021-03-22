@@ -11,15 +11,15 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+  const history = useHistory();
   const {userData, setUserData} = useContext(UserContext)
 
   useEffect(() => {
-    console.log(userData)
+    if(userData.user) history.push("/")
 
-  }, [])
+  }, [userData.user, history])
 
-  const history = useHistory();
+
 
   const onChange = (e) => {
     setLoginDetails({ ...loginDetails, [e.target.name]: e.target.value });
