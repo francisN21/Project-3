@@ -10,7 +10,7 @@ const Navigation = () => {
     <>
       <Navbar
         collapseOnSelect
-        expand="lg"
+        // expand="lg"
         bg="dark"
         variant="dark"
         sticky="top"
@@ -27,10 +27,10 @@ const Navigation = () => {
             Project 3
           </marquee>{" "}
         </Navbar.Brand>
-        <Navbar.Toggle
+        {/* <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           className="navbar-button"
-        />
+        /> */}
         <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto collapse navbar-collapse justify-content-end">
           {/* {/* <NavDropdown title="Generate" id="collapsible-nav-dropdown"> */}
