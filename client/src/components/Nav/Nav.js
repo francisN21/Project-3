@@ -31,7 +31,7 @@ const Navigation = () => {
           aria-controls="responsive-navbar-nav"
           className="navbar-button"
         />
-        {/* <Navbar.Collapse id="responsive-navbar-nav"> */}
+        <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto collapse navbar-collapse justify-content-end">
           {/* {/* <NavDropdown title="Generate" id="collapsible-nav-dropdown"> */}
             {/* <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
@@ -48,7 +48,7 @@ const Navigation = () => {
           <Nav.Link href="/profile">Profile</Nav.Link>
           <Nav.Link href="/login">Login</Nav.Link>
         </Nav>
-        {/* </Navbar.Collapse> */}
+        </Navbar.Collapse>
       </Navbar>
     </>
   );
