@@ -45,7 +45,7 @@ const deleteUser = (user) => {
   .then((response) => response.json())
 .then((data) => console.log(data))
   // Refresh the page so that the event is no longer shown
-  // window.location.reload();
+  window.location.reload();
 };
 
 

@@ -46,7 +46,7 @@ const Navigation = () => {
           <Nav.Link href="/dashboard">Events</Nav.Link>
           <Nav.Link href="/clusters">Clusters</Nav.Link>
           <Nav.Link href="/profile">Profile</Nav.Link>
-          {/* <Nav.Link href="/login">Login</Nav.Link> */}
+          <Nav.Link href="/login">Login</Nav.Link>
         </Nav>
         {/* </Navbar.Collapse> */}
       </Navbar>
