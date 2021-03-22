@@ -234,7 +234,7 @@ router.delete("/user/:id", (req, res) => {
   // Using the User Collection
   db.User.deleteOne({ _id: req.params.id })
     .then((dbUser) => {
-      console.log("event deleted"), res.json(dbUser);
+      console.log("user deleted"), res.json(dbUser);
     })
     // Gotta catch all them errors!
     .catch((err) => {

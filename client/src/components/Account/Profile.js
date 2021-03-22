@@ -37,14 +37,15 @@ const Profile = () => {
 
 // Function to delete the event from the database by ID
 const deleteUser = (user) => {
-  fetch(`/api/user/${user._id}`, {
+  console.log(user)
+  fetch(`/api/user/${user}`, {
   method: "DELETE",
     // Json that response
   })
   .then((response) => response.json())
-
+.then((data) => console.log(data))
   // Refresh the page so that the event is no longer shown
-  window.location.reload();
+  // window.location.reload();
 };
 
 
