@@ -22,8 +22,8 @@ require("dotenv").config();
 
 const Map = () => {
 
-const {userData} = useContext(useContext)
-// const history = useHistory()
+const {userData} = useContext(UserContext)
+const history = useHistory()
 useEffect(() => {
   if(!userData.user) {
     history.push("/login");
@@ -58,23 +58,23 @@ useEffect(() => {
       console.log(error);
     }
   };
-  const history = useHistory();
-  const getUserData = async () => {
-    try {
-      const res = await axios.get("/api", {
-        headers: { "x-auth-token": localStorage.getItem("auth-token") },
-      });
-      if (!res) {
-        return history.push("/login");
-      }
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const history = useHistory();
+  // const getUserData = async () => {
+  //   try {
+  //     const res = await axios.get("/api", {
+  //       headers: { "x-auth-token": localStorage.getItem("auth-token") },
+  //     });
+  //     if (!res) {
+  //       return history.push("/login");
+  //     }
+  //     console.log(res);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   useEffect(() => {
-    getUserData();
+    // getUserData();
     getEvents();
   }, []);
 

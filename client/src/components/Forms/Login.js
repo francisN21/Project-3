@@ -1,14 +1,23 @@
 // import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
+import axios from "axios"
 import "../Forms/styles.css";
 import API from "../../utils/API";
+import UserContext from "../../Context/UserContext"
 
 const Login = () => {
   const [loginDetails, setLoginDetails] = useState({
     email: "",
     password: "",
   });
+
+  const {userData, setUserData} = useContext(UserContext)
+
+  useEffect(() => {
+    console.log(userData)
+
+  }, [])
 
   const history = useHistory();
 
@@ -20,7 +29,11 @@ const Login = () => {
     try {
       console.log(loginDetails, "FROM LOGIN.js");
       API.loginUser(loginDetails).then((res) => {
-        console.log(res);
+        console.log(res.data);
+        setUserData({
+          token: res.data.token,
+          user: res.data.user
+      })
         localStorage.setItem("auth-token", res.data.token);
         return history.push("/");
       });
