@@ -1,5 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState, useEffect, useCallback, useContext } from "react";
 import ReactMapGL, {
   Marker,
   Popup,
@@ -18,9 +17,20 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Redirect, useHistory } from "react-router-dom";
 import axios from "axios";
+import UserContext from "../../Context/UserContext"
 require("dotenv").config();
 
 const Map = () => {
+
+const {userData} = useContext(useContext)
+// const history = useHistory()
+useEffect(() => {
+  if(!userData.user) {
+    history.push("/login");
+  }
+
+}, [userData.user, history])
+
   // map setup
   const api = `pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;
   // mapbox://styles/francisn21/cklv81byf44mx17ql4bv4chxl
