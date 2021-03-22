@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Nav from "./components/Nav/Nav";
 import Map from "./components/Map/Map";
 import Profile from "./components/Account/Profile";
@@ -12,6 +12,18 @@ import EditEvent from "./components/Account/EditEvent";
 import Clusters from "./components/Clusters/Clusters";
 
 function App() {
+
+  const checkLoggedIn = () => {
+    let token = localStorage.getItem("auth-token");
+    if (token === null) {
+      localStorage.setItem("auth-token", "")
+    }
+  }
+
+useEffect(()=> {
+  checkLoggedIn()
+}, [])
+
   return (
     <div className="App">
       <BrowserRouter>

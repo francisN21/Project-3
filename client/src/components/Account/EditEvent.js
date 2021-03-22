@@ -32,6 +32,9 @@ const EditEvent = (props) => {
     setNewEditEvent(editEventForm);
   }, []);
 
+const formStyles = {
+  margin: "10px"
+}
   
   // Return the component
   return (
@@ -50,6 +53,7 @@ const EditEvent = (props) => {
             type="text"
             placeholder={editEventForm.name}
             className="form-control text-center border border-dark"
+            style={formStyles}
           />
           {/* Input for description */}
           <input
@@ -58,6 +62,7 @@ const EditEvent = (props) => {
             type="text"
             placeholder={editEventForm.description}
             className="form-control text-center border border-dark"
+            style={formStyles}
           />
           {/* Input for latitude */}
           <input
@@ -67,6 +72,7 @@ const EditEvent = (props) => {
             step="0.00001"
             placeholder={editEventForm.location[0].latitude}
             className="form-control text-center border border-dark"
+            style={formStyles}
           />
           {/* Input for longitude */}
           <input
@@ -76,6 +82,7 @@ const EditEvent = (props) => {
             step="0.00001"
             placeholder={editEventForm.location[0].longitude}
             className="form-control text-center border border-dark"
+            style={formStyles}
           />
           {/* Input for date */}
           <input
@@ -84,12 +91,14 @@ const EditEvent = (props) => {
             type="date"
             placeholder={editEventForm.date}
             className="form-control text-center border border-dark"
+            style={formStyles}
           />
 
           {/* Button to save the event and call the Toast Notify Function*/}
           <button
             onClick={() => { updateEvent(newEditEvent); notify(newEditEvent.name)}}
-            className="btn btn-primary"
+            className="justify-content-md-center col-md-12 btn btn-primary"
+            style={formStyles}
           >
             Save Edits
           </button>
