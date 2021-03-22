@@ -21,8 +21,9 @@
   -[] add friends
   -[] make events public or private
   -[] invite friends to an event
-  -[] Clusters
-  -[] Convert Long and lat to real addresses
+  -[x] Clusters
+  -[x] Convert Long and lat to real addresses
+  -[] Add password Check?
 - [] Styling
 - [] DEPLOY!
 - [] README

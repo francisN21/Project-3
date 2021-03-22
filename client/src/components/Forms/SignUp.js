@@ -26,6 +26,8 @@ const SignUp = () => {
       console.log(error);
     }
   };
+  
+  // ADD PASSWORD CHECK?
 
   return (
     <div className="signup-form">
