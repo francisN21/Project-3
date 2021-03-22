@@ -1,24 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { updateEvent } from "../../utils/API";
 
-// Function to Edit the event from the database by ID
-const editEvent = (newEditEvent) => {
-  console.log(newEditEvent);
-
-  fetch(`/api/location/${newEditEvent._id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newEditEvent),
-    // Json that response
-  })
-    .then((response) => response.json())
-};
 
 // Toast Notification Function to let the user know the event was deleted
-const notify = (eventTitle) => toast(`${eventTitle} Event Saved`);
+const notify = (eventName) => toast(`${eventName} Event Saved`);
 
 // Edit event Component using props
 const EditEvent = (props) => {
@@ -59,9 +46,9 @@ const EditEvent = (props) => {
           {/* Input for title */}
           <input
             onChange={onEditChange}
-            name="title"
+            name="name"
             type="text"
-            placeholder={editEventForm.title}
+            placeholder={editEventForm.name}
             className="form-control text-center border border-dark"
           />
           {/* Input for description */}
@@ -101,7 +88,7 @@ const EditEvent = (props) => {
 
           {/* Button to save the event and call the Toast Notify Function*/}
           <button
-            onClick={() => { editEvent(newEditEvent); notify(newEditEvent.title)}}
+            onClick={() => { updateEvent(newEditEvent); notify(newEditEvent.name)}}
             className="btn btn-primary"
           >
             Save Edits

@@ -30,6 +30,12 @@ const deleteEvent = (dashboardEvent) => {
     window.location.reload();
 };
 
+const buttonStyles = {
+    // height: '50px', 
+    width : '150px',
+    margin: "5px"
+  };
+
 const getAddress = async (lon, lat) => {
     // Url for the mapbox API request
     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?types=address&access_token=pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;
@@ -45,9 +51,9 @@ const getAddress = async (lon, lat) => {
         return response.json();
         })
         .then(function (data) {
-        let addressTest = data.features[0].place_name;
-        console.log(addressTest);
-        setAddress(addressTest);
+        let realAddress = data.features[0].place_name;
+        // console.log(realAddress);
+        setAddress(realAddress);
         });
         // Gotta catch them errors
     } catch (error) {
@@ -60,7 +66,7 @@ const getAddress = async (lon, lat) => {
     return (
         // Each event a table row
         <tr key={event._id}>
-                <td><h5>{event.title}</h5></td>
+                <td><h5>{event.name}</h5></td>
                 {/* Address from the get address function */}
                 <td>{address}</td>
                 <td>
@@ -71,7 +77,7 @@ const getAddress = async (lon, lat) => {
                 </td>
                 <td>
                      {/* Link to send you to edit event page  */}
-                    <Link
+                    <Link style={buttonStyles}
                     className="btn btn-info"
                     to={{
                         pathname: "/editEvent",
@@ -84,7 +90,7 @@ const getAddress = async (lon, lat) => {
                     Edit Event
                     </Link>
                      {/* Button to delete the event */}
-                    <button
+                    <button style={buttonStyles}
                     className="btn btn-danger"
                     //   Call the delete Event by it's ID function on click and Toast Notify Function
                     onClick={() => { deleteEvent(event); notify(event) }}

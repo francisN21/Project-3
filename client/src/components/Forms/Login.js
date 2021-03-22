@@ -22,7 +22,7 @@ const Login = () => {
       API.loginUser(loginDetails).then((res) => {
         console.log(res);
         localStorage.setItem("auth-token", res.data.token);
-        return history.push("/profile");
+        return history.push("/");
       });
     } catch (error) {
       console.log(error);

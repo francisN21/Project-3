@@ -10,7 +10,7 @@ mongoose.connect("mongodb://localhost/project-3", {
 
 let eventSeed = [
   {
-    title: "Goats",
+    name: "Goats",
     description: "Harley Farms Goat Dairy",
     category: "zoo",
     location: [{ latitude: 37.25672, longitude: -122.37105 }],
@@ -19,7 +19,7 @@ let eventSeed = [
     timestamps: true,
   },
   {
-    title: "Pizza",
+    name: "Pizza",
     special: "New Menu!",
     description: "Pizzeria Delfina",
 
@@ -29,7 +29,7 @@ let eventSeed = [
     date: "2021-11-10",
   },
   {
-    title: "Hikes",
+    name: "Hikes",
     description: "Angel Island",
     category: "outdoor",
     location: [{ latitude: 37.85858, longitude: -122.43071 }],
@@ -38,7 +38,7 @@ let eventSeed = [
     timestamps: true,
   },
   {
-    title: "Ferris Wheel",
+    name: "Ferris Wheel",
     special: "New games and food picks",
     description: "Golden Gate Park Ferris Wheel",
     category: "theme-park",
@@ -48,7 +48,7 @@ let eventSeed = [
     timestamps: true,
   },
   {
-    title: "Dance Party",
+    name: "Dance Party",
     special: "Special guest will be announced soon",
     description: "Flash Mob Dance Party",
     category: "disco",
@@ -58,7 +58,7 @@ let eventSeed = [
     timestamps: true,
   },
   {
-    title: "Big Wheel Race",
+    name: "Big Wheel Race",
     description: "Bring your own Big Wheel Race",
     category: "car",
     location: [{ latitude: 37.75905, longitude: -122.40393 }],
@@ -67,7 +67,7 @@ let eventSeed = [
     timestamps: true,
   },
   {
-    title: "Beers in the Sun",
+    name: "Beers in the Sun",
     description: "Dolores Park",
     category: "liquor",
     location: [{ latitude: 37.7602, longitude: -122.42756 }],
@@ -76,7 +76,7 @@ let eventSeed = [
     timestamps: true,
   },
   {
-    title: "Movie Sing a Long",
+    name: "Movie Sing a Long",
     description: "Disney Movie Sing a Long at the Castro Theater",
     category: "sing",
     location: [{ latitude: 37.76219, longitude: -122.43473 }],
@@ -85,7 +85,7 @@ let eventSeed = [
     timestamps: true,
   },
   {
-    title: "Zoo",
+    name: "Zoo",
     description: "Oakland Zoo",
     category: "zoo",
     location: [{ latitude: 37.75377, longitude: -122.14199 }],
@@ -94,7 +94,7 @@ let eventSeed = [
     timestamps: true,
   },
   {
-    title: "Hike up a Mountain",
+    name: "Hike up a Mountain",
     description: "Hike up Mt Tam, then realax on the beach",
     category: "outdoor",
     location: [{ latitude: 37.92385, longitude: -122.59759 }],
@@ -103,7 +103,7 @@ let eventSeed = [
     timestamps: true,
   },
   {
-    title: "Penny Candy",
+    name: "Penny Candy",
     description: "They acutally sell penny candy here!",
     category: "food",
     location: [{ latitude: 39.27935, longitude: -121.66104 }],

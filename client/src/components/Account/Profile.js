@@ -7,7 +7,7 @@ const Profile = () => {
   const [users, setUsers] = useState([
     {
       firstName: "",
-      // email: "",
+      email: "",
       lastName: "",
       username: "",
       saved: [],
@@ -17,31 +17,45 @@ const Profile = () => {
 
   // Function to get the the user from the database
   // Will need to change to ID so we don't get all users
-  const getLogin = () => {
-    fetch("/api/login", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(),
-    })
-      .then((res) => res.json())
-      // Then get the data
-      .then((data) => {
-        // Console log the data
-        console.log(data, "from get login//Profile.js");
-        //Set the data to users!
-        setUsers(data);
-      });
-  };
+  // const getLogin = () => {
+  //   fetch("/api/login", {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(),
+  //   })
+  //     .then((res) => res.json())
+  //     // Then get the data
+  //     .then((data) => {
+  //       // Console log the data
+  //       console.log(data, "from get login//Profile.js");
+  //       //Set the data to users!
+  //       setUsers(data);
+  //     });
+  // };
+
+// Function to delete the event from the database by ID
+const deleteUser = (user) => {
+  fetch(`/api/user/${user._id}`, {
+  method: "DELETE",
+    // Json that response
+  })
+  .then((response) => response.json())
+
+  // Refresh the page so that the event is no longer shown
+  window.location.reload();
+};
+
 
   const getUserData = async () => {
     try {
-      const res = await axios.get("/api", {
+      const res = await axios.get("/api/user", {
         headers: { "x-auth-token": localStorage.getItem("auth-token") },
       });
 
       console.log(res);
+      setUsers(res.data)
     } catch (err) {
       console.log(err);
     }
@@ -100,7 +114,7 @@ const Profile = () => {
           <div className="card-footer">
             <button
               className="btn btn-danger"
-              onClick={() => console.log("Delete")}
+              onClick={() => deleteUser(users[0]._id)}
             >
               Delete Profile
             </button>

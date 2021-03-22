@@ -30,11 +30,11 @@ const DefaultDetails = (props) => {
           // console.log(data);
           // console.log(data.features[0].place_name)
           // let address = ""
-          let addressTest = data.features[0].place_name;
-          console.log(addressTest);
+          let realAddress = data.features[0].place_name;
+          console.log(realAddress);
           // let address = data.features[0].place_name
 
-          setAddress(addressTest);
+          setAddress(realAddress);
         });
     } catch (error) {
       console.log(error);

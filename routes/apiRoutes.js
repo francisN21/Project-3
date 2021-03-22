@@ -203,7 +203,7 @@ router.put("/location/:id", (req, res) => {
   db.Saved.updateOne(
     { _id: req.params.id },
     {
-      title: req.body.title,
+      name: req.body.name,
       special: req.body.special,
       description: req.body.description,
       category: req.body.category,
@@ -226,6 +226,20 @@ router.put("/location/:id", (req, res) => {
 router.get("/", auth, (req, res) => {
   console.log(req.user);
   res.send("success");
+});
+
+// DELETE /User/:id by id for deleting a user from the database
+router.delete("/user/:id", (req, res) => {
+  // console.log(req.params.id)
+  // Using the User Collection
+  db.User.deleteOne({ _id: req.params.id })
+    .then((dbUser) => {
+      console.log("event deleted"), res.json(dbUser);
+    })
+    // Gotta catch all them errors!
+    .catch((err) => {
+      res.json(err);
+    });
 });
 
 module.exports = router;

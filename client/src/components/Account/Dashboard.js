@@ -32,7 +32,7 @@ const Dashboard = () => {
   return (
     <div  style={pageStyles}  className="account-overflow">
       {/* Title of page */}
-      <h1 className="text-center" > Your Events</h1 >
+      <h1 className="text-center" >Events</h1 >
       {/* Set up a div for the table */}
       < div className="table-responsive" >
         {/* Table */}
@@ -40,9 +40,8 @@ const Dashboard = () => {
           {/* Table header */}
           < thead >
             <tr>
-              <th>Event Name</th>
-              <th>Latitude/Longitude</th>
-
+              <th>Event</th>
+              <th>Location</th>
               <th>Date</th>
               <th>Description</th>
               <th>Delete Event</th>

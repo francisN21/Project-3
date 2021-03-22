@@ -33,18 +33,20 @@ const Navigation = () => {
         />
         {/* <Navbar.Collapse id="responsive-navbar-nav"> */}
         <Nav className="mr-auto collapse navbar-collapse justify-content-end">
-          <NavDropdown title="Generate" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
-            <NavDropdown.Item href="/clusters">Clusters</NavDropdown.Item>
-            <NavDropdown.Item href="/AddEvent">Add Event</NavDropdown.Item>
-            <NavDropdown.Divider />
+          {/* {/* <NavDropdown title="Generate" id="collapsible-nav-dropdown"> */}
+            {/* <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
+            <NavDropdown.Item href="/clusters">Clusters</NavDropdown.Item>  */}
+            {/* <NavDropdown.Item href="/AddEvent">Add Event</NavDropdown.Item> */}
+            {/* <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.4">
               Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
-          <Nav.Link href="/about">About</Nav.Link>
+            </NavDropdown.Item> */}
+          {/* </NavDropdown> */}
+          {/* <Nav.Link href="/about">About</Nav.Link> */}
+          <Nav.Link href="/dashboard">Events</Nav.Link>
+          <Nav.Link href="/clusters">Clusters</Nav.Link>
           <Nav.Link href="/profile">Profile</Nav.Link>
-          <Nav.Link href="/login">Login</Nav.Link>
+          {/* <Nav.Link href="/login">Login</Nav.Link> */}
         </Nav>
         {/* </Navbar.Collapse> */}
       </Navbar>
