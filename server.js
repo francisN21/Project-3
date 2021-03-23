@@ -25,7 +25,7 @@ app.use(session({ secret: "secret" }));
 app.use("/api", require("./routes/apiRoutes"));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  res.sendFile(path.join(__dirname, "./client/public/index.html"))
 })
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/project-3", {

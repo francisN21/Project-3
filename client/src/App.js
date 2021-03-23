@@ -3,6 +3,7 @@ import Nav from "./components/Nav/Nav";
 import Map from "./components/Map/Map";
 import Profile from "./components/Account/Profile";
 import Dashboard from "./components/Account/Dashboard";
+
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import FormAuthentication from "./components/Forms/FormAuthenticate";
 import UserContext from "./Context/UserContext"
@@ -57,6 +58,7 @@ function App() {
             <Route path="/editEvent" component={EditEvent} />
             <Route path="/profile" component={Profile} />
             <Route path="/login" component={FormAuthentication} />
+
             <Route path="/" component={Map} />
           </Switch>
         </UserContext.Provider>
