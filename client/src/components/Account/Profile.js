@@ -40,7 +40,7 @@ const Profile = () => {
     listStyle: "none",
   };
 
-  console.log(userData, "line34")
+
   // Return it all!
   return (
     <div>
@@ -50,14 +50,14 @@ const Profile = () => {
           < div className="card"
             style={cardStyles} >
             <div className="card-title text-center border-bottom">
-              <h4>User: {userData.user[0].firstName} {userData.user[0].lastName}</h4>
+              <h4>User: {userData.user?.[0].firstName}{userData.user?.[0].lastName}</h4>
             </div>
             <div className="card-body">
               <h5>UserName:</h5>
-              <h6>{userData.user[0].username}</h6>
+              <h6>{userData.user?.[0].username}</h6>
               <br></br>
               <h5>Email:</h5>
-              <h6>{userData.user[0].email}</h6>
+              <h6>{userData.user?.[0].email}</h6>
             </div>
             < div className="card-footer" >
               <button
