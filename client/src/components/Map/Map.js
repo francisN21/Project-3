@@ -22,14 +22,16 @@ require("dotenv").config();
 
 const Map = () => {
 
-const {userData} = useContext(UserContext)
-const history = useHistory()
-useEffect(() => {
-  if(!userData.user) {
-    history.push("/login");
-  }
+  const { userData } = useContext(UserContext)
+  const history = useHistory()
 
-}, [userData.user, history])
+  useEffect(() => {
+    console.log(userData)
+    if (!userData.token) {
+      history.push("/login");
+    }
+
+  }, [userData.user, history])
 
   // map setup
   const api = `pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;

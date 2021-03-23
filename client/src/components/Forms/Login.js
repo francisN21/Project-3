@@ -11,15 +11,14 @@ const Login = () => {
     email: "",
     password: "",
   });
+
   const history = useHistory();
-  const {userData, setUserData} = useContext(UserContext)
+  const { userData, setUserData } = useContext(UserContext)
 
   useEffect(() => {
-    if(userData.user) history.push("/")
-
+    console.log(userData)
+    if (userData.token) history.push("/")
   }, [userData.user, history])
-
-
 
   const onChange = (e) => {
     setLoginDetails({ ...loginDetails, [e.target.name]: e.target.value });
@@ -33,7 +32,7 @@ const Login = () => {
         setUserData({
           token: res.data.token,
           user: res.data.user
-      })
+        })
         localStorage.setItem("auth-token", res.data.token);
         return history.push("/");
       });

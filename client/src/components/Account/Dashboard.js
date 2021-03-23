@@ -1,12 +1,14 @@
 // Import all the React Goodness!
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { listEvents } from "../../utils/API";
 import DashboardEvent from "./DashboardEvent"
+import UserContext from "../../Context/UserContext"
 
 // Dashboard Page Component
 const Dashboard = () => {
   // State for getting the list of events saved for the dashboardPage
   const [dashboardList, setDashboardList] = useState([]);
+  const { userData, setUserData } = useContext(UserContext)
 
   // getListEvents function gets the list of events from the Mongo Database
   const getListEvents = async () => {
@@ -21,6 +23,8 @@ const Dashboard = () => {
   // UseEffect to call the function when the page loads
   useEffect(() => {
     getListEvents();
+    console.log(userData)
+
   }, []);
 
   // Styling for the page
@@ -30,7 +34,7 @@ const Dashboard = () => {
 
   // Return the component
   return (
-    <div  style={pageStyles}  className="account-overflow">
+    <div style={pageStyles} className="account-overflow">
       {/* Title of page */}
       <h1 className="text-center" >Events</h1 >
       {/* Set up a div for the table */}
@@ -48,10 +52,10 @@ const Dashboard = () => {
             </tr>
           </ thead>
           {/* Map Through the events and set each on to a DashboardEvent component with props */}
-            <tbody>
+          <tbody>
             {dashboardList.map((event) => (
-            <DashboardEvent event={event} key={event._id}/>
-              ))}
+              <DashboardEvent event={event} key={event._id} />
+            ))}
           </tbody>
 
         </table >
