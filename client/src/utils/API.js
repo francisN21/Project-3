@@ -109,10 +109,10 @@ async function loginInfo(login) {
 module.exports = {
   updateEvent,
   listEvents,
-  createEvent,
   deleteEvent,
   fetchUser,
   updateUser,
   loginUser,
   loginInfo,
+  createEvent
 };
