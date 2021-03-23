@@ -15,6 +15,7 @@ async function listEvents() {
 async function createEvent(query) {
   try {
     const response = await axios.post(`/api/location/`, query);
+    return response.json();
   } catch (error) {
     console.log(error);
   }
@@ -23,6 +24,7 @@ async function createEvent(query) {
 async function deleteEvent(query) {
   try {
     const response = await axios.delete(`/api/location/${query}`);
+    return response.json();
   } catch (error) {
     console.log(error);
   }
