@@ -6,16 +6,22 @@ import "../Forms/styles.css";
 import API from "../../utils/API";
 import UserContext from "../../Context/UserContext"
 
+// Login component
 const Login = () => {
+  // Set the state for the login Details
   const [loginDetails, setLoginDetails] = useState({
     email: "",
     password: "",
   });
+  // Set user data to the userContext
   const { userData, setUserData } = useContext(UserContext)
+  // use history to be able to redirect people
   const history = useHistory();
 
+  // Use effect to see if the user is logged in
   useEffect(() => {
     console.log(userData)
+    // If the user is logged in, send them to the map
     if (userData.token) history.push("/")
   }, [userData.token, history])
 
@@ -27,18 +33,21 @@ const Login = () => {
     try {
       // console.log(loginDetails, "FROM LOGIN.js");
       API.loginUser(loginDetails).then((res) => {
-        // console.log(res.data);
+        // set the user data to the token, and the user info
         setUserData({
           token: res.data.token,
           user: res.data.user
         })
+        // Set the local storage token
         localStorage.setItem("auth-token", res.data.token);
+        // After login, send to the map
         return history.push("/");
       });
     } catch (error) {
       console.log(error);
     }
   };
+  // Return the component
   return (
     <div className="login-form">
       <h2>Log In</h2>

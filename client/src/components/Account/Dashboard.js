@@ -23,7 +23,7 @@ const Dashboard = () => {
   // UseEffect to call the function when the page loads
   useEffect(() => {
     getListEvents();
-    console.log(userData)
+    // console.log(userData)
 
   }, []);
 

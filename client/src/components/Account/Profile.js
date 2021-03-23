@@ -12,24 +12,13 @@ const Profile = () => {
   const history = useHistory()
   // Log out function to be able to log out.
   const logout = () => {
+    // Set the Local Storage back to empty
     localStorage.setItem("auth-token", "")
+    // set the user Data to undefined again
     setUserData({ token: undefined, user: undefined })
+    // Push the user back to the login page
     history.push("/login");
   }
-
-
-  // const history = useHistory()
-
-  // useEffect(() => {
-  //   console.log(userData)
-  //   if (!userData.user) {
-  //     history.push("/login");
-  //   }
-
-  // }, [userData.user, history])
-
-
-
 
   // Styling!
   // Basic Card Styling

@@ -21,12 +21,15 @@ import UserContext from "../../Context/UserContext"
 require("dotenv").config();
 
 const Map = () => {
-
+  // Set the user data to userContext
   const { userData } = useContext(UserContext)
+  // Use history to be able to redirect if not logged in
   const history = useHistory()
 
+  // Use effect to see on page load if the user is logged in
   useEffect(() => {
     console.log(userData)
+    // If not logged in, send to the login page
     if (!userData.token) {
       history.push("/login");
     }
