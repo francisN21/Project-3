@@ -1,7 +1,7 @@
 {
   "name": "Project-3",
   "version": "1.0.0",
-  "description": "Project-3",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",

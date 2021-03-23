@@ -37,6 +37,7 @@ function App() {
       // set the user data to the token and the user information
       setUserData({ token, user: userRes.data })
     }
+
   }
   // use Effect to call the check logged in on the page load
   useEffect(() => {

@@ -1,7 +1,7 @@
 // import the react goodness!
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import UserContext from "../../Context/UserContext"
 
 // Profile Component
@@ -20,6 +20,15 @@ const Profile = () => {
     history.push("/login");
   }
 
+  // Use effect to see on page load if the user is logged in
+  useEffect(() => {
+    console.log(userData)
+    // If not logged in, send to the login page
+    if (!userData.token) {
+      history.push("/login");
+    }
+
+  }, [userData.user, history])
   // Styling!
   // Basic Card Styling
   const cardStyles = {
@@ -31,29 +40,33 @@ const Profile = () => {
     listStyle: "none",
   };
 
+  console.log(userData, "line34")
   // Return it all!
   return (
-    <div className="container account-overflow">
-      {/* Display User Information */}
-      <div className="card"
-        style={cardStyles}>
-        {/* <div className="card-title text-center border-bottom">
-          <h4>{userData.user[0].firstName} {userData.user[0].lastName}</h4>
-        </div>
-        <div className="card-body">
-          <h5>UserName:</h5>
-          <h6>{userData.user[0].username}</h6>
-          <br></br>
-          <h5>Email:</h5>
-          <h6>{userData.user[0].email}</h6>
-        </div> */}
-        <div className="card-footer">
-          <button
-            className="btn btn-danger"
-            onClick={() => logout()}
-          >Log Out</button>
-        </div>
-      </div>
+    <div>
+      {
+        userData ? (<div className="container account-overflow" >
+          {/* Display User Information */}
+          < div className="card"
+            style={cardStyles} >
+            <div className="card-title text-center border-bottom">
+              <h4>User: {userData.user[0].firstName} {userData.user[0].lastName}</h4>
+            </div>
+            <div className="card-body">
+              <h5>UserName:</h5>
+              <h6>{userData.user[0].username}</h6>
+              <br></br>
+              <h5>Email:</h5>
+              <h6>{userData.user[0].email}</h6>
+            </div>
+            < div className="card-footer" >
+              <button
+                className="btn btn-danger"
+                onClick={() => logout()}
+              >Log Out</button>
+            </div >
+          </div >
+        </div >) : (<h3>Loading...</h3>)}
     </div>
   );
 };

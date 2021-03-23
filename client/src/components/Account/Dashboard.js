@@ -3,12 +3,28 @@ import React, { useEffect, useState, useContext } from "react";
 import { listEvents } from "../../utils/API";
 import DashboardEvent from "./DashboardEvent"
 import UserContext from "../../Context/UserContext"
+import { useHistory } from "react-router-dom";
 
 // Dashboard Page Component
 const Dashboard = () => {
+  // Set the user data to userContext
+  const { userData, setUserData } = useContext(UserContext)
+  // const { userData } = useContext(UserContext)
+  // Use history to be able to redirect if not logged in
+  const history = useHistory()
+
+  // Use effect to see on page load if the user is logged in
+  useEffect(() => {
+    console.log(userData)
+    // If not logged in, send to the login page
+    if (!userData.token) {
+      history.push("/login");
+    }
+
+  }, [userData.user, history])
   // State for getting the list of events saved for the dashboardPage
   const [dashboardList, setDashboardList] = useState([]);
-  const { userData, setUserData } = useContext(UserContext)
+
 
   // getListEvents function gets the list of events from the Mongo Database
   const getListEvents = async () => {
