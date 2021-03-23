@@ -28,6 +28,7 @@ function App() {
     // If no token, set up the spot in LocalStorage
     if (token === null) {
       localStorage.setItem("auth-token", "")
+      token = ""
     } else {
       try {
         // If there is a token send the get request to get the user Data
