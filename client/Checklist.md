@@ -14,15 +14,16 @@
 - [x] Create Form to add a new Event
 - [x] Setup Map SDK on client
 - [x] List all log entries on map
-- [] Setup Authentication - Edgar
+- [x] Setup Authentication
 - [x] Profile 
 - [x] Dashboard /List of Events
 - [] more features
   -[] add friends
   -[] make events public or private
   -[] invite friends to an event
-  -[] Clusters
-  -[] Convert Long and lat to real addresses
+  -[x] Clusters
+  -[x] Convert Long and lat to real addresses
+  -[] Add password Check?
 - [] Styling
 - [] DEPLOY!
 - [] README

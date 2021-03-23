@@ -35,7 +35,7 @@ router.post("/user", function (req, res) {
     });
 });
 
-// GET Route for creating a new User
+// GET Route for getting a new User
 router.get("/user", function (req, res) {
   db.User.find({})
     .then(function (dbUser) {
@@ -223,9 +223,37 @@ router.put("/location/:id", (req, res) => {
     });
 });
 
+// router.get("/", auth, (req, res) => {
+//   console.log(req.user);
+//   res.send("success");
+// });
+
 router.get("/", auth, (req, res) => {
-  console.log(req.user);
-  res.send("success");
+  try {
+    const user = db.User.findById(req.user)
+    res.json({
+      username: user.username,
+      id: user._id
+    })
+  } catch (err) {
+    res.send(err.response)
+  }
+
+})
+
+// DELETE /User/:id by id for deleting a user from the database
+router.delete("/user/:id", (req, res) => {
+  // console.log(req.params.id)
+  // Using the User Collection
+  db.User.deleteOne({ _id: req.params.id })
+    .then((dbUser) => {
+      console.log("user deleted"), res.json(dbUser);
+    })
+    // Gotta catch all them errors!
+    .catch((err) => {
+      res.json(err);
+    });
 });
+
 
 module.exports = router;
