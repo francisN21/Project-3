@@ -4,7 +4,7 @@ import Map from "./components/Map/Map";
 import Profile from "./components/Account/Profile";
 import Dashboard from "./components/Account/Dashboard";
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import FormAuthentication from "./components/Forms/FormAuthenticate";
 import UserContext from "./Context/UserContext"
 
@@ -31,7 +31,7 @@ function App() {
     } else {
       try {
         // If there is a token send the get request to get the user Data
-        const userRes = await axios.get("/api/user", {
+        const userRes = await axios.get("/api/login", {
           headers: { "x-auth-token": token }
         })
         // then console log the results
@@ -39,7 +39,7 @@ function App() {
         // set the user data to the token and the user information
         setUserData({ token, user: userRes.data })
       } catch (err) {
-        console.log(err)
+        console.log("Must log in")
       }
     }
 

@@ -30,7 +30,7 @@ const Map = () => {
   useEffect(() => {
     console.log(userData)
     // If not logged in, send to the login page
-    if (!userData.token) {
+    if (!userData.user) {
       history.push("/login");
     }
 

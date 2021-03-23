@@ -75,7 +75,7 @@ async function fetchUser() {
 //updateEvent(query);
 async function updateUser(query) {
   try {
-    console.log(query);
+    // console.log(query);
     axios.post(`/api/user/update`, query);
     const response = await fetch(`/api/user/update`, {
       method: "POST",
