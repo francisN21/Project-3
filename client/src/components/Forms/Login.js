@@ -11,14 +11,13 @@ const Login = () => {
     email: "",
     password: "",
   });
-
-  const history = useHistory();
   const { userData, setUserData } = useContext(UserContext)
+  const history = useHistory();
 
   useEffect(() => {
     console.log(userData)
     if (userData.token) history.push("/")
-  }, [userData.user, history])
+  }, [userData.token, history])
 
   const onChange = (e) => {
     setLoginDetails({ ...loginDetails, [e.target.name]: e.target.value });
@@ -26,9 +25,9 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      console.log(loginDetails, "FROM LOGIN.js");
+      // console.log(loginDetails, "FROM LOGIN.js");
       API.loginUser(loginDetails).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setUserData({
           token: res.data.token,
           user: res.data.user

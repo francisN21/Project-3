@@ -35,7 +35,7 @@ router.post("/user", function (req, res) {
     });
 });
 
-// GET Route for creating a new User
+// GET Route for getting a new User
 router.get("/user", function (req, res) {
   db.User.find({})
     .then(function (dbUser) {

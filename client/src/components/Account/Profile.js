@@ -4,13 +4,17 @@ import React, { useEffect, useState, useContext } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import UserContext from "../../Context/UserContext"
 
+// Profile Component
 const Profile = () => {
+  // Get the userData from userContext
   const { userData, setUserData } = useContext(UserContext)
-
+  // Use history to send the user back to login page
+  const history = useHistory()
+  // Log out function to be able to log out.
   const logout = () => {
-    setUserData({ token: undefined, user: undefined })
     localStorage.setItem("auth-token", "")
-    console.log(userData)
+    setUserData({ token: undefined, user: undefined })
+    history.push("/login");
   }
 
 
@@ -57,7 +61,7 @@ const Profile = () => {
         <div className="card-footer">
           <button
             className="btn btn-danger"
-            onClick={() => console.log("logout")}
+            onClick={() => logout()}
           >Log Out</button>
         </div>
       </div>

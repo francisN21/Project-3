@@ -34,12 +34,13 @@ function App() {
       })
       // then console log the results
       console.log("user", userRes)
+      // set the user data to the token and the user information
       setUserData({ token, user: userRes.data })
     }
   }
-
+  // use Effect to call the check logged in on the page load
   useEffect(() => {
-    console.log(userData)
+    // console.log(userData)
     checkLoggedIn()
   }, [])
 
