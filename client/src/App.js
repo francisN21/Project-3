@@ -29,14 +29,18 @@ function App() {
     if (token === null) {
       localStorage.setItem("auth-token", "")
     } else {
-      // If there is a token send the get request to get the user Data
-      const userRes = await axios.get("/api/user", {
-        headers: { "x-auth-token": token }
-      })
-      // then console log the results
-      console.log("user", userRes)
-      // set the user data to the token and the user information
-      setUserData({ token, user: userRes.data })
+      try {
+        // If there is a token send the get request to get the user Data
+        const userRes = await axios.get("/api/user", {
+          headers: { "x-auth-token": token }
+        })
+        // then console log the results
+        console.log("user", userRes)
+        // set the user data to the token and the user information
+        setUserData({ token, user: userRes.data })
+      } catch (err) {
+        console.log(err)
+      }
     }
 
   }
