@@ -30,6 +30,9 @@ app.use("/api", require("./routes/apiRoutes"));
 //     res.sendFile(path.resolve(__dirname, "client", "public", "index.html"));
 //   });
 // }
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/project-3", {
   useNewUrlParser: true,
