@@ -47,7 +47,7 @@ const Map = () => {
   // map setup
   const api = `pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;
   // mapbox://styles/francisn21/cklv81byf44mx17ql4bv4chxl
-  const mapstyle = "mapbox://styles/mapbox/streets-v11";
+  const mapstyle = "mapbox://styles/mapbox/dark-v9";
   const [showevents, setEvents] = useState([]);
   const [showPopup, setShowPopup] = useState({});
   const [addEventLocation, setEventLocation] = useState(null);
