@@ -12,7 +12,7 @@ async function listEvents() {
     console.log(error);
   }
 }
-async function createEvent(query) {
+async function createTheEvent(query) {
   try {
     const response = await axios.post(`/api/location/`, query);
     return response.json();
@@ -106,8 +106,9 @@ async function loginInfo(login) {
   // });
   // return response.json();
 }
+// module.exports = apiCalls
 module.exports = {
-  createEvent,
+  createTheEvent,
   updateEvent,
   listEvents,
   deleteEvent,
