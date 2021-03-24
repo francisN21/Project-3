@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import axios from "axios";
 import "../Forms/styles.css";
-import loginUser from "../../utils/API";
+import { loginUser } from "../../utils/API";
 import UserContext from "../../Context/UserContext";
 
 // Login component
