@@ -22,8 +22,8 @@ const Login = () => {
   useEffect(() => {
     console.log(userData)
     // If the user is logged in, send them to the map
-    if (userData.token) history.push("/")
-  }, [userData.token, history])
+    if (userData.user) history.push("/")
+  }, [userData.user, history])
 
   const onChange = (e) => {
     setLoginDetails({ ...loginDetails, [e.target.name]: e.target.value });

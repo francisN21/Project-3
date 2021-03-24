@@ -23,10 +23,11 @@ app.use(session({ secret: "secret" }));
 
 // API Routes start with API and live at apiRoutes.js
 app.use("/api", require("./routes/apiRoutes"));
+// app.use("/users", require("./routes/userRoutes"));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-})
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/project-3", {
   useNewUrlParser: true,

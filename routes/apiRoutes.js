@@ -231,9 +231,11 @@ router.put("/location/:id", (req, res) => {
 router.get("/", auth, (req, res) => {
   try {
     const user = db.User.findById(req.user)
+    console.log(res, "234")
     res.json({
       username: user.username,
-      id: user._id
+      id: user._id,
+      email: user.email,
     })
   } catch (err) {
     res.send(err.response)

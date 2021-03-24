@@ -3,7 +3,8 @@ import Nav from "./components/Nav/Nav";
 import Map from "./components/Map/Map";
 import Profile from "./components/Account/Profile";
 import Dashboard from "./components/Account/Dashboard";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import FormAuthentication from "./components/Forms/FormAuthenticate";
 import UserContext from "./Context/UserContext"
 
@@ -27,15 +28,20 @@ function App() {
     // If no token, set up the spot in LocalStorage
     if (token === null) {
       localStorage.setItem("auth-token", "")
+      token = ""
     } else {
-      // If there is a token send the get request to get the user Data
-      const userRes = await axios.get("/api/user", {
-        headers: { "x-auth-token": token }
-      })
-      // then console log the results
-      console.log("user", userRes)
-      // set the user data to the token and the user information
-      setUserData({ token, user: userRes.data })
+      try {
+        // If there is a token send the get request to get the user Data
+        const userRes = await axios.get("/", {
+          headers: { "x-auth-token": token }
+        })
+        // then console log the results
+        console.log("user", userRes)
+        // set the user data to the token and the user information
+        setUserData({ token, user: userRes.data })
+      } catch (err) {
+        console.log("Must log in")
+      }
     }
 
   }
@@ -57,6 +63,7 @@ function App() {
             <Route path="/editEvent" component={EditEvent} />
             <Route path="/profile" component={Profile} />
             <Route path="/login" component={FormAuthentication} />
+
             <Route path="/" component={Map} />
           </Switch>
         </UserContext.Provider>
