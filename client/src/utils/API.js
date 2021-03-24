@@ -104,13 +104,3 @@ export async function loginInfo(login) {
   // });
   // return response.json();
 }
-module.exports = {
-  updateEvent,
-  listEvents,
-  createEvent,
-  deleteEvent,
-  fetchUser,
-  updateUser,
-  loginUser,
-  loginInfo,
-};
