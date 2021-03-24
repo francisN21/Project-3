@@ -45,6 +45,7 @@
     "express-session": "^1.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.19",
-    "supercluster": "^7.1.2"
+    "supercluster": "^7.1.2",
+    "worker-loader": "^3.0.8"
   }
 }
