@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { render } from 'react-dom';
 import ReactMapGL, { Marker, FlyToInterpolator } from 'react-map-gl';
 // import { clusterLayer, clusterCountLayer, unclusteredPointLayer, pointLayer } from './ClusterLayers';
-import { listEvents } from "../../utils/API";
+import { listEvents } from "../utils/API";
 import ClusterPins from "./ClusterPins";
 import useSupercluster from "use-supercluster"
 import "./Clusters.css"

@@ -6,7 +6,7 @@ import ReactMapGL, {
   NavigationControl,
 } from "react-map-gl";
 import EntryForm from "./EntryForm";
-import { listEvents } from "../../utils/API";
+import { listEvents } from "../utils/API";
 import Pin from "./pin";
 import Geocoder from "react-map-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";

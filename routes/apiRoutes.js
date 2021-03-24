@@ -228,7 +228,7 @@ router.put("/location/:id", (req, res) => {
 //   res.send("success");
 // });
 
-router.get("/", auth, (req, res) => {
+router.get("/login", auth, (req, res) => {
   try {
     const user = db.User.findById(req.user)
     console.log(res, "234")

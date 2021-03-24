@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import axios from "axios"
 import "../Forms/styles.css";
-import API from "../../utils/API";
+import { loginUser } from "../utils/API";
 import UserContext from "../../Context/UserContext"
 
 // Login component
@@ -32,7 +32,7 @@ const Login = () => {
     e.preventDefault();
     try {
       // console.log(loginDetails, "FROM LOGIN.js");
-      API.loginUser(loginDetails).then((res) => {
+      loginUser(loginDetails).then((res) => {
         // set the user data to the token, and the user info
         setUserData({
           token: res.data.token,

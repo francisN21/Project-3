@@ -106,7 +106,7 @@ async function loginInfo(login) {
   // });
   // return response.json();
 }
-// module.exports = apiCalls
+// module.exports = { API }
 module.exports = {
   createTheEvent,
   updateEvent,

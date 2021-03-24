@@ -1,6 +1,6 @@
 // Import all the React Goodness!
 import React, { useEffect, useState, useContext } from "react";
-import { listEvents } from "../../utils/API";
+import { listEvents } from "../utils/API";
 import DashboardEvent from "./DashboardEvent"
 import UserContext from "../../Context/UserContext"
 import { useHistory } from "react-router-dom";
