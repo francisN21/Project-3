@@ -228,10 +228,10 @@ router.put("/location/:id", (req, res) => {
 //   res.send("success");
 // });
 
-router.get("/", auth, (req, res) => {
+router.get("/login", auth, (req, res) => {
   try {
     const user = db.User.findById(req.user)
-    console.log(user, "234")
+    console.log(res, "234")
     res.json({
       username: user.username,
       id: user._id,
