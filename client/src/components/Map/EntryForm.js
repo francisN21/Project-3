@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-import { createEvent } from "../../utils/API";
+import { createEvent } from "../../utils/API"
 
 const EntryForm = ({ location, onClose }) => {
   const [eventForm, setEvent] = useState({
