@@ -30,7 +30,7 @@ const Details = ({ value, onClose }) => {
     try {
       await updateEvent(newValue);
       onClose();
-      toast(`sucess`);
+      toast(`success`);
     } catch (error) {
       toast(`${error}`);
     }
