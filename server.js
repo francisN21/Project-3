@@ -6,7 +6,7 @@ const db = require("./models");
 require("dotenv").config();
 const cors = require("cors");
 const session = require("express-session");
-const path = require("path")
+const path = require("path");
 
 //Port 5000 cause I'm crazy!
 const PORT = process.env.PORT || 5000;
@@ -25,8 +25,8 @@ app.use(session({ secret: "secret" }));
 app.use("/api", require("./routes/apiRoutes"));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-})
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/project-3", {
   useNewUrlParser: true,

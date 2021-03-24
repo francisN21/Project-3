@@ -1,6 +1,6 @@
 // import axios from "axios";
 
-const API_URL = "http://localhost:5000";
+const API_URL = process.env.PORT || "http://localhost:5000";
 const axios = require("axios");
 
 // will be added soon once I have server working
