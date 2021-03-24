@@ -7,7 +7,7 @@ const API_URL = process.env.PORT || "http://localhost:5000";
 const EntryForm = ({ location, onClose }) => {
   async function createEvent(query) {
     try {
-      const response = await axios.post(`${API_URL}/api/location/`, query);
+      const response = await axios.post(`/api/location/`, query);
     } catch (error) {
       console.log(error);
     }
