@@ -4,6 +4,7 @@ import { listEvents } from "../utils/API";
 import DashboardEvent from "./DashboardEvent"
 import UserContext from "../../Context/UserContext"
 import { useHistory } from "react-router-dom";
+import API from "../utils/API";
 
 // Dashboard Page Component
 const Dashboard = () => {
@@ -29,7 +30,7 @@ const Dashboard = () => {
   // getListEvents function gets the list of events from the Mongo Database
   const getListEvents = async () => {
     // Await the List events function in Utils/API
-    const showList = await listEvents();
+    const showList = await API.listEvents();
     // Console.log it
     console.log(showList);
     // Set State for the event list

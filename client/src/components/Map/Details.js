@@ -5,6 +5,7 @@ import "./Details.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { updateEvent } from "../utils/API";
+import API from "../utils/API";
 
 // Toast Notification Function to let the user know the event was deleted
 const notify = () => toast("Event Deleted");
@@ -27,7 +28,7 @@ const Details = ({ value, onClose }) => {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      await updateEvent(newValue);
+      await API.updateEvent(newValue);
       onClose();
       toast(`sucess`);
     } catch (error) {
@@ -37,7 +38,7 @@ const Details = ({ value, onClose }) => {
 
   const delEvent = async (event) => {
     try {
-      await deleteEvent(event);
+      await API.deleteEvent(event);
       console.log(value);
       setDetails(false);
       onClose();
