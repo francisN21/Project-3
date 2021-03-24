@@ -1,12 +1,12 @@
 // import axios from "axios";
 
-// const API_URL = "http://localhost:5000";
+const API_URL = process.env.PORT || "http://localhost:5000";
 const axios = require("axios");
 
 // will be added soon once I have server working
 export async function listEvents() {
   try {
-    const response = await fetch(`/api/location`);
+    const response = await fetch(`${API_URL}/api/location`);
     return response.json();
   } catch (error) {
     console.log(error);
@@ -14,7 +14,7 @@ export async function listEvents() {
 }
 export async function createEvent(query) {
   try {
-    const response = await axios.post(`/api/location/`, query);
+    const response = await axios.post(`${API_URL}/api/location/`, query);
     return response.json();
   } catch (error) {
     console.log(error);
@@ -23,7 +23,7 @@ export async function createEvent(query) {
 
 export async function deleteEvent(query) {
   try {
-    const response = await axios.delete(`/api/location/${query}`);
+    const response = await axios.delete(`${API_URL}/api/location/${query}`);
     return response.json();
   } catch (error) {
     console.log(error);
@@ -33,7 +33,7 @@ export async function deleteEvent(query) {
 export async function updateEvent(query) {
   try {
     const response = await axios.put(
-      `/api/location/${query._id}`,
+      `${API_URL}/api/location/${query._id}`,
       query
     );
     console.log(response);
@@ -44,7 +44,7 @@ export async function updateEvent(query) {
 
 export async function fetchUser() {
   try {
-    const response = await fetch(`/api/user`);
+    const response = await fetch(`${API_URL}/api/user`);
     return response.json();
   } catch (error) {
     console.log(error);
@@ -76,8 +76,8 @@ export async function fetchUser() {
 export async function updateUser(query) {
   try {
     // console.log(query);
-    axios.post(`/api/user/update`, query);
-    const response = await fetch(`/api/user/update`, {
+    axios.post(`${API_URL}/api/user/update`, query);
+    const response = await fetch(`${API_URL}/api/user/update`, {
       method: "POST",
       body: JSON.stringify(query),
     });
@@ -89,7 +89,7 @@ export async function updateUser(query) {
 
 export async function loginUser(login) {
   console.log(login, "from API JS");
-  return axios.post(`/api/login`, login);
+  return axios.post(`${API_URL}/api/login`, login);
   // const response = await fetch(`/api/login`, {
   //   method: "POST",
   //   body: JSON.stringify(login),
@@ -99,7 +99,7 @@ export async function loginUser(login) {
 
 export async function loginInfo(login) {
   console.log(login, "from API JS");
-  return axios.get(`/api/login`, login);
+  return axios.get(`${API_URL}/api/login`, login);
   // const response = await fetch(`/api/login`, {
   //   method: "POST",
   //   body: JSON.stringify(login),
