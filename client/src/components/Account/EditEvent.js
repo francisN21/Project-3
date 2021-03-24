@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { updateEvent } from "../../utils/API";
+import { updateEvent } from "../utils/API";
 
 
 // Toast Notification Function to let the user know the event was deleted
