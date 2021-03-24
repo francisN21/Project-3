@@ -1,35 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { updateEvent } from "../../utils/API";
 
-// Function to Edit the event from the database by ID
-const editEvent = (newEditEvent) => {
-  console.log(newEditEvent);
-
-  fetch(`/api/location/${newEditEvent._id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newEditEvent),
-    // Json that response
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      // Console log the data
-      // console.log(data)
-    });
-};
 
 // Toast Notification Function to let the user know the event was deleted
-const notify = (eventTitle) => toast(`${eventTitle} Event Saved`);
+const notify = (eventName) => toast(`${eventName} Event Saved`);
 
 // Edit event Component using props
 const EditEvent = (props) => {
   // Set up state
   const [newEditEvent, setNewEditEvent] = useState();
-  // console.log(props.location.editEventProps)
-  // console.log(props.location.editEventProps.dashboardEvent.name)
 
   // On edit change to update state
   const onEditChange = (e) => {
@@ -39,13 +20,11 @@ const EditEvent = (props) => {
   // Set it to a variable
   let editEventForm = "";
   editEventForm = props.location.editEventProps.event;
-  // console.log(editEventForm)
 
   // On Submit to prevent default behavior of the form
   const onSubmit = (e) => {
     // Gotta prevent the default!
     e.preventDefault();
-    // console.log(newEditEvent)
   };
 
   // UseEffect to call the function when the page loads
@@ -53,6 +32,10 @@ const EditEvent = (props) => {
     setNewEditEvent(editEventForm);
   }, []);
 
+const formStyles = {
+  margin: "10px"
+}
+  
   // Return the component
   return (
     // Div to center the content
@@ -66,10 +49,11 @@ const EditEvent = (props) => {
           {/* Input for title */}
           <input
             onChange={onEditChange}
-            name="title"
+            name="name"
             type="text"
-            placeholder={editEventForm.title}
+            placeholder={editEventForm.name}
             className="form-control text-center border border-dark"
+            style={formStyles}
           />
           {/* Input for description */}
           <input
@@ -78,6 +62,7 @@ const EditEvent = (props) => {
             type="text"
             placeholder={editEventForm.description}
             className="form-control text-center border border-dark"
+            style={formStyles}
           />
           {/* Input for latitude */}
           <input
@@ -87,6 +72,7 @@ const EditEvent = (props) => {
             step="0.00001"
             placeholder={editEventForm.location[0].latitude}
             className="form-control text-center border border-dark"
+            style={formStyles}
           />
           {/* Input for longitude */}
           <input
@@ -96,6 +82,7 @@ const EditEvent = (props) => {
             step="0.00001"
             placeholder={editEventForm.location[0].longitude}
             className="form-control text-center border border-dark"
+            style={formStyles}
           />
           {/* Input for date */}
           <input
@@ -104,12 +91,14 @@ const EditEvent = (props) => {
             type="date"
             placeholder={editEventForm.date}
             className="form-control text-center border border-dark"
+            style={formStyles}
           />
 
           {/* Button to save the event and call the Toast Notify Function*/}
           <button
-            onClick={() => { editEvent(newEditEvent); notify(newEditEvent.title) }}
-            className="btn btn-primary"
+            onClick={() => { updateEvent(newEditEvent); notify(newEditEvent.name)}}
+            className="justify-content-md-center col-md-12 btn btn-primary"
+            style={formStyles}
           >
             Save Edits
           </button>

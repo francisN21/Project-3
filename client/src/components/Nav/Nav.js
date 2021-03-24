@@ -3,12 +3,18 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 // import "bootstrap/dist/css/bootstrap.min.css";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   return (
     <>
-      <Navbar bg="dark" variant="dark" sticky="top">
+      <Navbar
+        collapseOnSelect
+        // expand="lg"
+        bg="dark"
+        variant="dark"
+        sticky="top"
+      >
         <Navbar.Brand href="/">
           <img
             alt="#"
@@ -21,20 +27,28 @@ const Navigation = () => {
             Project 3
           </marquee>{" "}
         </Navbar.Brand>
-        <Nav className="mr-auto collapse navbar-collapse justify-content-end">
-          <NavDropdown title="Generate" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
-            <NavDropdown.Item href="/clusters">Clusters</NavDropdown.Item>
-            <NavDropdown.Item href="/AddEvent">Add Event</NavDropdown.Item>
-            <NavDropdown.Divider />
+        {/* <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          className="navbar-button"
+        /> */}
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto collapse navbar-collapse justify-content-end">
+            {/* {/* <NavDropdown title="Generate" id="collapsible-nav-dropdown"> */}
+            {/* <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
+            <NavDropdown.Item href="/clusters">Clusters</NavDropdown.Item>  */}
+            {/* <NavDropdown.Item href="/AddEvent">Add Event</NavDropdown.Item> */}
+            {/* <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.4">
               Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
-          <Nav.Link href="/about">About</Nav.Link>
-          <Nav.Link href="/profile">Profile</Nav.Link>
-          <Nav.Link href="/login">Login</Nav.Link>
-        </Nav>
+            </NavDropdown.Item> */}
+            {/* </NavDropdown> */}
+            {/* <Nav.Link href="/about">About</Nav.Link> */}
+            <Link className="nav-link" to="/dashboard">Events</Link>
+            <Link className="nav-link" to="/clusters">Clusters</Link>
+            <Link className="nav-link" to="/profile">Profile</Link>
+            <Link className="nav-link" to="/login">Login</Link>
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
     </>
   );

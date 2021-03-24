@@ -14,7 +14,7 @@ async function listEvents() {
 }
 async function createEvent(query) {
   try {
-    const response = await axios.post(`${API_URL}/api/location`, query);
+    const response = await axios.post(`${API_URL}/api/location/`, query);
   } catch (error) {
     console.log(error);
   }
@@ -23,6 +23,18 @@ async function createEvent(query) {
 async function deleteEvent(query) {
   try {
     const response = await axios.delete(`${API_URL}/api/location/${query}`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function updateEvent(query) {
+  try {
+    const response = await axios.put(
+      `${API_URL}/api/location/${query._id}`,
+      query
+    );
+    console.log(response);
   } catch (error) {
     console.log(error);
   }
@@ -74,7 +86,7 @@ async function updateUser(query) {
 }
 
 async function loginUser(login) {
-  console.log(login);
+  console.log(login, "from API JS");
   return axios.post(`${API_URL}/api/login`, login);
   // const response = await fetch(`${API_URL}/api/login`, {
   //   method: "POST",
@@ -83,11 +95,22 @@ async function loginUser(login) {
   // return response.json();
 }
 
+async function loginInfo(login) {
+  console.log(login, "from API JS");
+  return axios.get(`${API_URL}/api/login`, login);
+  // const response = await fetch(`${API_URL}/api/login`, {
+  //   method: "POST",
+  //   body: JSON.stringify(login),
+  // });
+  // return response.json();
+}
 module.exports = {
+  updateEvent,
   listEvents,
   createEvent,
   deleteEvent,
   fetchUser,
   updateUser,
   loginUser,
+  loginInfo,
 };

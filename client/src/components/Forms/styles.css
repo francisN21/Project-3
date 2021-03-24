@@ -20,11 +20,12 @@ h2 {
 }
 
 label {
+  text-align: center;
   font-size: 18px;
   font-weight: 400;
 }
 
-button {
+button.login, .signup {
   width: 100%;
 }
 
@@ -34,12 +35,13 @@ p {
   margin-right: 40%;
 }
 
-button2 {
-  width: 20%;
-  margin-left: 40%;
-  margin-right: 40%;
-}
 
 div {
   text-align: center;
+}
+
+button.sign-up {
+  width: 20%;
+  margin-left: 40%;
+  margin-right: 70%
 }

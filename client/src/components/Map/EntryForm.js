@@ -24,7 +24,16 @@ const EntryForm = ({ location, onClose }) => {
       draggable: true,
       progress: undefined,
     });
+  // let eventButton = document.querySelector(".create-event");
   const onChange = (e) => {
+    // console.log(eventForm);
+    // if ((e = unde)) {
+    //   console.log(e);
+    //   eventButton.classList.add("disabled");
+    // } else {
+    //   console.log(e);
+    //   eventButton.classList.remove("disabled");
+    // }
     setEvent({ ...eventForm, [e.target.name]: e.target.value });
   };
 
@@ -34,6 +43,7 @@ const EntryForm = ({ location, onClose }) => {
       //   await axios.post("/api/location/", eventForm);
       await createEvent(eventForm);
       onClose();
+      success();
       //   console.log(location);
       console.log(eventForm);
     } catch (error) {
@@ -50,7 +60,9 @@ const EntryForm = ({ location, onClose }) => {
       <label htmlFor="category">Select Category: </label>
       <select name="category" id="category" onChange={onChange}>
         <option value="n/a">Please Select one</option>
+        <option value="anime">Anime</option>
         <option value="beach">Beach</option>
+        <option value="birthday">Birthday</option>
         <option value="car">Car</option>
         <option value="default">Default</option>
         <option value="disco">Disco</option>
@@ -74,7 +86,7 @@ const EntryForm = ({ location, onClose }) => {
       <input type="checkbox" name="private" value="true" onChange={onChange} /> */}
       <label htmlFor="date">Date: </label>
       <input type="date" name="date" onChange={onChange} />
-      <button type="submit" className="btn btn-primary" onClick={success}>
+      <button type="submit" className="btn btn-primary create-event">
         Create event
         <ToastContainer />
       </button>

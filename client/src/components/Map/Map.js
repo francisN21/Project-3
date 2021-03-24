@@ -1,5 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom"
+import React, { useRef, useState, useEffect, useCallback, useContext } from "react";
 import ReactMapGL, {
   Marker,
   Popup,
@@ -16,13 +15,31 @@ import "./Map.css";
 import Details from "./Details";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Redirect, useHistory } from "react-router-dom";
+import axios from "axios";
+import UserContext from "../../Context/UserContext"
 require("dotenv").config();
 
-
 const Map = () => {
+  // Set the user data to userContext
+  const { userData } = useContext(UserContext)
+  // Use history to be able to redirect if not logged in
+  const history = useHistory()
+
+  // Use effect to see on page load if the user is logged in
+  useEffect(() => {
+    console.log(userData)
+    // If not logged in, send to the login page
+    if (!userData.token) {
+      history.push("/login");
+    }
+
+  }, [userData.user, history])
+
   // map setup
   const api = `pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;
-  const mapstyle = "mapbox://styles/francisn21/cklv81byf44mx17ql4bv4chxl";
+  // mapbox://styles/francisn21/cklv81byf44mx17ql4bv4chxl
+  const mapstyle = "mapbox://styles/mapbox/dark-v9";
   const [showevents, setEvents] = useState([]);
   const [showPopup, setShowPopup] = useState({});
   const [addEventLocation, setEventLocation] = useState(null);
@@ -46,8 +63,23 @@ const Map = () => {
       console.log(error);
     }
   };
+  // const history = useHistory();
+  // const getUserData = async () => {
+  //   try {
+  //     const res = await axios.get("/api", {
+  //       headers: { "x-auth-token": localStorage.getItem("auth-token") },
+  //     });
+  //     if (!res) {
+  //       return history.push("/login");
+  //     }
+  //     console.log(res);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   useEffect(() => {
+    // getUserData();
     getEvents();
   }, []);
 
@@ -107,6 +139,7 @@ const Map = () => {
         {...viewport}
         mapboxApiAccessToken={api}
         mapStyle={mapstyle}
+        doubleClickZoom={false}
         onClick={() => setShowPopup({})}
         onDblClick={addEventPopup}
         onViewportChange={handleViewportChange}
@@ -140,12 +173,16 @@ const Map = () => {
                 closeButton={true}
                 closeOnClick={false}
                 dynamicPosition={true}
-                onClose={() => setShowPopup({})}
+                onClose={() => {
+                  setShowPopup({});
+                  getEvents();
+                }}
                 anchor="top"
               >
                 <Details
                   value={event}
                   onClose={() => {
+                    setShowPopup({});
                     getEvents();
                   }}
                 />
@@ -227,7 +264,7 @@ const Map = () => {
           <NavigationControl />
         </div>
       </ReactMapGL>
-    </div >
+    </div>
   );
 };
 

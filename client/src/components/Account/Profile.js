@@ -1,98 +1,72 @@
 // import the react goodness!
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import UserContext from "../../Context/UserContext"
 
+// Profile Component
 const Profile = () => {
-  // Use State for the users
-  const [users, setUsers] = useState([
-    {
-      firstName: "",
-      lastName: "",
-      username: "",
-      saved: [],
-      friends: [],
-    },
-  ]);
+  // Get the userData from userContext
+  const { userData, setUserData } = useContext(UserContext)
+  // Use history to send the user back to login page
+  const history = useHistory()
+  // Log out function to be able to log out.
+  const logout = () => {
+    // Set the Local Storage back to empty
+    localStorage.setItem("auth-token", "")
+    // set the user Data to undefined again
+    setUserData({ token: undefined, user: undefined })
+    // Push the user back to the login page
+    history.push("/login");
+  }
 
-  // Function to get the the user from the database
-  // Will need to change to ID so we don't get all users
-  const getUsers = () => {
-    fetch("/api/user", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      // Then get the data
-      .then((data) => {
-        // Console log the data
-        console.log(data);
-        //Set the data to users!
-        setUsers(data);
-      });
-  };
-  // use Effect to call the get users function when the page loads
+  // Use effect to see on page load if the user is logged in
   useEffect(() => {
-    getUsers();
-    // eslint-disable-line no-alert
-  }, []);
+    console.log(userData)
+    // If not logged in, send to the login page
+    if (!userData.token) {
+      history.push("/login");
+    }
 
-  // console.log(users)
-
+  }, [userData.user, history])
   // Styling!
   // Basic Card Styling
   const cardStyles = {
-    margin: "20px",
+    paddingTop: "10px",
+    marginTop: "5px"
   };
   // Basic List Styling
   const listStyles = {
     listStyle: "none",
   };
 
+  console.log(userData, "line34")
   // Return it all!
   return (
-    <div className="container account-overflow">
-      {/* If there is a user, display it */}
-      {users.length ? (
-        <div className="card" style={cardStyles}>
-          {/* Card title for name */}
-          <h1 className="card-title text-center">
-            {users[0].firstName} {users[0].lastName}
-          </h1>
-          {/* Break */}
-          <hr></hr>
-          <div className="card-body">
-            {/* Display username, email */}
-            <h4>Username: {users[0].username}</h4>
-            <h5>Email: {users[0].email}</h5>
-            {/* Iterate through the Saved items for the user */}
-            <ul style={listStyles}>
-              <h4>Saved:</h4>
-              {users[0].saved.map((item) => {
-                <li>{item}</li>;
-              })}
-            </ul>
-            {/* Iterate through the Friends of the user */}
-            <ul style={listStyles}>
-              <h4>Friends:</h4>
-              {users[0].friends.map((item) => {
-                <li>{item}</li>;
-              })}
-            </ul>
-          </div>
-          <div className="card-footer">
-            <button
-              className="btn btn-danger"
-              onClick={() => console.log("Delete")}
-            >
-              Delete Profile
-            </button>
-          </div>
-        </div>
-      ) : (
-        // If no users, display this
-        <h1>No users yet</h1>
-      )}
+    <div>
+      {
+        userData ? (<div className="container account-overflow" >
+          {/* Display User Information */}
+          < div className="card"
+            style={cardStyles} >
+            <div className="card-title text-center border-bottom">
+              <h4>User: {userData.user[0].firstName} {userData.user[0].lastName}</h4>
+            </div>
+            <div className="card-body">
+              <h5>UserName:</h5>
+              <h6>{userData.user[0].username}</h6>
+              <br></br>
+              <h5>Email:</h5>
+              <h6>{userData.user[0].email}</h6>
+            </div>
+            < div className="card-footer" >
+              <button
+                className="btn btn-danger"
+                onClick={() => logout()}
+              >Log Out</button>
+            </div >
+          </div >
+        </div >) : (<h3>Loading...</h3>)}
     </div>
   );
 };
