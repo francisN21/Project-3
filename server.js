@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 // Optimize for Heroku
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("client/public"));
 }
 app.use(session({ secret: "secret" }));
 
