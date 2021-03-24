@@ -6,7 +6,7 @@ import ReactMapGL, {
   NavigationControl,
 } from "react-map-gl";
 import EntryForm from "./EntryForm";
-import { listEvents } from "../utils/API";
+import { listEvents } from "../../utils/API";
 import Pin from "./pin";
 import Geocoder from "react-map-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -25,7 +25,7 @@ import mapboxgl from 'mapbox-gl';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
-// import API from "../../utils/API";
+
 require("dotenv").config();
 
 const Map = () => {
@@ -38,7 +38,7 @@ const Map = () => {
   useEffect(() => {
     console.log(userData)
     // If not logged in, send to the login page
-    if (!userData.user) {
+    if (!userData.token) {
       history.push("/login");
     }
 
@@ -47,7 +47,7 @@ const Map = () => {
   // map setup
   const api = `pk.eyJ1IjoiZnJhbmNpc24yMSIsImEiOiJja2x1amVuNGQwYmVkMm9vZW9xc3VwOW9jIn0.eh8hBFzSr0tJUxungpfu3A`;
   // mapbox://styles/francisn21/cklv81byf44mx17ql4bv4chxl
-  const mapstyle = "mapbox://styles/mapbox/dark-v9";
+  const mapstyle = "mapbox://styles/mapbox/streets-v11";
   const [showevents, setEvents] = useState([]);
   const [showPopup, setShowPopup] = useState({});
   const [addEventLocation, setEventLocation] = useState(null);

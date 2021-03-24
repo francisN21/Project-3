@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-import { createEvent } from "../utils/API";
-// import API from "../../utils/API";
-
+const axios = require("axios");
+const API_URL = process.env.PORT || "http://localhost:5000";
 const EntryForm = ({ location, onClose }) => {
+  async function createEvent(query) {
+    try {
+      const response = await axios.post(`${API_URL}/api/location/`, query);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const [eventForm, setEvent] = useState({
     name: "",
     special: "",

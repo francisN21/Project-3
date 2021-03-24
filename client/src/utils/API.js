@@ -15,7 +15,6 @@ export async function listEvents() {
 export async function createEvent(query) {
   try {
     const response = await axios.post(`${API_URL}/api/location/`, query);
-    return response.json();
   } catch (error) {
     console.log(error);
   }
@@ -24,7 +23,6 @@ export async function createEvent(query) {
 export async function deleteEvent(query) {
   try {
     const response = await axios.delete(`${API_URL}/api/location/${query}`);
-    return response.json();
   } catch (error) {
     console.log(error);
   }
@@ -57,10 +55,10 @@ export async function fetchUser() {
 //  query: { description: "Does this work?" },
 //};
 //updateEvent(query);
-// export export async function updateUser(query) {
+// export async function updateUser(query) {
 //   console.log(query);
-//   axios.post(`/api/user/update`, query);
-//   const response = await fetch(`/api/user/update`, {
+//   axios.post(`${API_URL}/api/user/update`, query);
+//   const response = await fetch(`${API_URL}/api/user/update`, {
 //     method: "POST",
 //     body: JSON.stringify(query),
 //   });
@@ -75,7 +73,7 @@ export async function fetchUser() {
 //updateEvent(query);
 export async function updateUser(query) {
   try {
-    // console.log(query);
+    console.log(query);
     axios.post(`${API_URL}/api/user/update`, query);
     const response = await fetch(`${API_URL}/api/user/update`, {
       method: "POST",
@@ -90,7 +88,7 @@ export async function updateUser(query) {
 export async function loginUser(login) {
   console.log(login, "from API JS");
   return axios.post(`${API_URL}/api/login`, login);
-  // const response = await fetch(`/api/login`, {
+  // const response = await fetch(`${API_URL}/api/login`, {
   //   method: "POST",
   //   body: JSON.stringify(login),
   // });
@@ -100,20 +98,9 @@ export async function loginUser(login) {
 export async function loginInfo(login) {
   console.log(login, "from API JS");
   return axios.get(`${API_URL}/api/login`, login);
-  // const response = await fetch(`/api/login`, {
+  // const response = await fetch(`${API_URL}/api/login`, {
   //   method: "POST",
   //   body: JSON.stringify(login),
   // });
   // return response.json();
 }
-// module.exports = { API }
-// module.exports = {
-//   createEvent,
-//   updateEvent,
-//   listEvents,
-//   deleteEvent,
-//   fetchUser,
-//   updateUser,
-//   loginUser,
-//   loginInfo
-// };

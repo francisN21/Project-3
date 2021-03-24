@@ -1,10 +1,10 @@
 // import axios from "axios";
 import React, { useState, useContext, useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 import "../Forms/styles.css";
-import { loginUser } from "../utils/API";
-import UserContext from "../../Context/UserContext"
+import { loginUser } from "../../utils/API";
+import UserContext from "../../Context/UserContext";
 
 // Login component
 const Login = () => {
@@ -14,16 +14,16 @@ const Login = () => {
     password: "",
   });
   // Set user data to the userContext
-  const { userData, setUserData } = useContext(UserContext)
+  const { userData, setUserData } = useContext(UserContext);
   // use history to be able to redirect people
   const history = useHistory();
 
   // Use effect to see if the user is logged in
   useEffect(() => {
-    console.log(userData)
+    console.log(userData);
     // If the user is logged in, send them to the map
-    if (userData.user) history.push("/")
-  }, [userData.user, history])
+    if (userData.token) history.push("/");
+  }, [userData.token, history]);
 
   const onChange = (e) => {
     setLoginDetails({ ...loginDetails, [e.target.name]: e.target.value });
@@ -36,8 +36,8 @@ const Login = () => {
         // set the user data to the token, and the user info
         setUserData({
           token: res.data.token,
-          user: res.data.user
-        })
+          user: res.data.user,
+        });
         // Set the local storage token
         localStorage.setItem("auth-token", res.data.token);
         // After login, send to the map

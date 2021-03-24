@@ -3,8 +3,7 @@ import Nav from "./components/Nav/Nav";
 import Map from "./components/Map/Map";
 import Profile from "./components/Account/Profile";
 import Dashboard from "./components/Account/Dashboard";
-
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import FormAuthentication from "./components/Forms/FormAuthenticate";
 import UserContext from "./Context/UserContext"
 
@@ -14,6 +13,9 @@ import EditEvent from "./components/Account/EditEvent";
 import Clusters from "./components/Clusters/Clusters";
 import axios from "axios";
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
+// import mapboxgl from "mapbox-gl/dist/mapbox-gl";
+// mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 function App() {
   // Set state for authentication using UserData
   const [userData, setUserData] = useState({
@@ -28,20 +30,15 @@ function App() {
     // If no token, set up the spot in LocalStorage
     if (token === null) {
       localStorage.setItem("auth-token", "")
-      token = ""
     } else {
-      try {
-        // If there is a token send the get request to get the user Data
-        const userRes = await axios.get("/api/login", {
-          headers: { "x-auth-token": token }
-        })
-        // then console log the results
-        console.log("user", userRes)
-        // set the user data to the token and the user information
-        setUserData({ token, user: userRes.data })
-      } catch (err) {
-        console.log("Must log in")
-      }
+      // If there is a token send the get request to get the user Data
+      const userRes = await axios.get("/api/login", {
+        headers: { "x-auth-token": token }
+      })
+      // then console log the results
+      console.log("user", userRes)
+      // set the user data to the token and the user information
+      setUserData({ token, user: userRes.data })
     }
 
   }
@@ -63,7 +60,6 @@ function App() {
             <Route path="/editEvent" component={EditEvent} />
             <Route path="/profile" component={Profile} />
             <Route path="/login" component={FormAuthentication} />
-
             <Route path="/" component={Map} />
           </Switch>
         </UserContext.Provider>

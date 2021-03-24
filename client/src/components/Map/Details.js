@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { deleteEvent } from "../utils/API";
+import { deleteEvent } from "../../utils/API";
 import DefaultDetails from "./DefaultDetails";
 import "./Details.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { updateEvent } from "../utils/API";
-// import API from "../../utils/API";
+import { updateEvent } from "../../utils/API";
 
 // Toast Notification Function to let the user know the event was deleted
 const notify = () => toast("Event Deleted");
@@ -30,7 +29,7 @@ const Details = ({ value, onClose }) => {
     try {
       await updateEvent(newValue);
       onClose();
-      toast(`success`);
+      toast(`sucess`);
     } catch (error) {
       toast(`${error}`);
     }

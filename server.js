@@ -6,7 +6,7 @@ const db = require("./models");
 require("dotenv").config();
 const cors = require("cors");
 const session = require("express-session");
-const path = require("path")
+const path = require("path");
 
 //Port 5000 cause I'm crazy!
 const PORT = process.env.PORT || 5000;
@@ -17,19 +17,13 @@ app.use(express.json());
 app.use(cors());
 // Optimize for Heroku
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/public"));
+  app.use(express.static("client/build"));
 }
 app.use(session({ secret: "secret" }));
 
 // API Routes start with API and live at apiRoutes.js
 app.use("/api", require("./routes/apiRoutes"));
-// app.use("/users", require("./routes/userRoutes"));
 
-// if (process.env.NODE_ENV === "production") {
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "client", "public", "index.html"));
-//   });
-// }
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
