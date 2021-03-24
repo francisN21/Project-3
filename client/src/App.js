@@ -32,7 +32,7 @@ function App() {
     } else {
       try {
         // If there is a token send the get request to get the user Data
-        const userRes = await axios.get("/api/login", {
+        const userRes = await axios.get("/", {
           headers: { "x-auth-token": token }
         })
         // then console log the results

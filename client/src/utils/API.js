@@ -107,12 +107,12 @@ async function loginInfo(login) {
   // return response.json();
 }
 module.exports = {
+  createEvent,
   updateEvent,
   listEvents,
   deleteEvent,
   fetchUser,
   updateUser,
   loginUser,
-  loginInfo,
-  createEvent
+  loginInfo
 };
