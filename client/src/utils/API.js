@@ -4,7 +4,7 @@ const API_URL = process.env.PORT || "http://localhost:5000";
 const axios = require("axios");
 
 // will be added soon once I have server working
-async function listEvents() {
+export async function listEvents() {
   try {
     const response = await fetch(`${API_URL}/api/location`);
     return response.json();
@@ -12,7 +12,7 @@ async function listEvents() {
     console.log(error);
   }
 }
-async function createEvent(query) {
+export async function createEvent(query) {
   try {
     const response = await axios.post(`${API_URL}/api/location/`, query);
   } catch (error) {
@@ -20,7 +20,7 @@ async function createEvent(query) {
   }
 }
 
-async function deleteEvent(query) {
+export async function deleteEvent(query) {
   try {
     const response = await axios.delete(`${API_URL}/api/location/${query}`);
   } catch (error) {
@@ -28,7 +28,7 @@ async function deleteEvent(query) {
   }
 }
 
-async function updateEvent(query) {
+export async function updateEvent(query) {
   try {
     const response = await axios.put(
       `${API_URL}/api/location/${query._id}`,
@@ -40,7 +40,7 @@ async function updateEvent(query) {
   }
 }
 
-async function fetchUser() {
+export async function fetchUser() {
   try {
     const response = await fetch(`${API_URL}/api/user`);
     return response.json();
@@ -71,7 +71,7 @@ async function fetchUser() {
 //  query: { description: "Does this work?" },
 //};
 //updateEvent(query);
-async function updateUser(query) {
+export async function updateUser(query) {
   try {
     console.log(query);
     axios.post(`${API_URL}/api/user/update`, query);
@@ -85,7 +85,7 @@ async function updateUser(query) {
   }
 }
 
-async function loginUser(login) {
+export async function loginUser(login) {
   console.log(login, "from API JS");
   return axios.post(`${API_URL}/api/login`, login);
   // const response = await fetch(`${API_URL}/api/login`, {
@@ -95,7 +95,7 @@ async function loginUser(login) {
   // return response.json();
 }
 
-async function loginInfo(login) {
+export async function loginInfo(login) {
   console.log(login, "from API JS");
   return axios.get(`${API_URL}/api/login`, login);
   // const response = await fetch(`${API_URL}/api/login`, {
