@@ -18,7 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Redirect, useHistory } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../../Context/UserContext"
-import API from "../utils/API";
+// import API from "../../utils/API";
 require("dotenv").config();
 
 const Map = () => {
@@ -57,7 +57,7 @@ const Map = () => {
   // reusable backend call to fetch event database
   const getEvents = async () => {
     try {
-      const showMarkers = await API.listEvents();
+      const showMarkers = await listEvents();
 
       setEvents(showMarkers);
     } catch (error) {

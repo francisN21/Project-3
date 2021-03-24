@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { updateEvent } from "../utils/API";
-import API from "../utils/API";
+import { updateEvent } from "../../utils/API";
 
 
 // Toast Notification Function to let the user know the event was deleted
@@ -97,7 +96,7 @@ const EditEvent = (props) => {
 
           {/* Button to save the event and call the Toast Notify Function*/}
           <button
-            onClick={() => { API.updateEvent(newEditEvent); notify(newEditEvent.name) }}
+            onClick={() => { updateEvent(newEditEvent); notify(newEditEvent.name) }}
             className="justify-content-md-center col-md-12 btn btn-primary"
             style={formStyles}
           >

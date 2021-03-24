@@ -7,7 +7,7 @@ import { listEvents } from "../utils/API";
 import ClusterPins from "./ClusterPins";
 import useSupercluster from "use-supercluster"
 import "./Clusters.css"
-import API from "../utils/API";
+// import API from "../../utils/API";
 
 // Clusters component function
 const Clusters = () => {
@@ -61,7 +61,7 @@ const Clusters = () => {
     // Get the events from the database
     const getEvents = async () => {
         try {
-            const showMarkers = await API.listEvents();
+            const showMarkers = await listEvents();
             // console.log(showMarkers)
             setEvents(showMarkers);
         } catch (error) {
