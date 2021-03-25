@@ -45,12 +45,6 @@ Please contact the principal developers listed above for permission to contribut
 The App currently has no unit tests. This could be added in a future update.
 
 
-## Questions
-
-[btabaska@gmail.com](https://www.github.com/btabaska@gmail.com)
-
-Reach me with additional questions at btabaska@gmail.com.
-
 ## License
 
 The content of this site is licensed under GNU GPLv3.
