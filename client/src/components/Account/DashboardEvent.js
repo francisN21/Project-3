@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import moment from 'moment';
 
 // Notify Function for Toastify Alert
 const notify = (event) => toast(`${event.title} Deleted`);
@@ -70,7 +71,7 @@ const getAddress = async (lon, lat) => {
                 {/* Address from the get address function */}
                 <td>{address}</td>
                 <td>
-                    <p>{event.date}</p>
+                    <p>{moment(event.date).format('DD-MM-YYYY')}</p>
                 </td>
                 <td>
                     <p>{event.description}</p>
