@@ -1,8 +1,6 @@
 // Import all the Goodness
 import React, { useState, useRef, useEffect } from 'react'
-import { render } from 'react-dom';
 import ReactMapGL, { Marker, FlyToInterpolator } from 'react-map-gl';
-// import { clusterLayer, clusterCountLayer, unclusteredPointLayer, pointLayer } from './ClusterLayers';
 import { listEvents } from "../../utils/API";
 import ClusterPins from "./ClusterPins";
 import useSupercluster from "use-supercluster"
@@ -75,6 +73,7 @@ const Clusters = () => {
 
     // Return everything to display on the page
     return (
+        // ReactMapGL for displaying the map
         <ReactMapGL
             {...viewport}
             maxZoom={20}

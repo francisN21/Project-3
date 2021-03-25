@@ -1,3 +1,4 @@
+// Import all the react goodness
 import React, { useState } from "react";
 import { deleteEvent } from "../../utils/API";
 import DefaultDetails from "./DefaultDetails";

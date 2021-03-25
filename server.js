@@ -8,7 +8,7 @@ const cors = require("cors");
 const session = require("express-session");
 const path = require("path");
 
-//Port 5000 cause I'm crazy!
+// Set up for Heroku or Port 5000 cause I'm crazy!
 const PORT = process.env.PORT || 5000;
 
 // Middleware
@@ -19,6 +19,7 @@ app.use(cors());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+// For Authenticaion
 app.use(session({ secret: "secret" }));
 
 // API Routes start with API and live at apiRoutes.js
@@ -28,6 +29,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 
+// Connect to the mongo database!
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/project-3", {
   useNewUrlParser: true,
   useUnifiedTopology: true,

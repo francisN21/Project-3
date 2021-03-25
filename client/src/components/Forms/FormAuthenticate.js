@@ -1,12 +1,15 @@
+// Import all the goodness
 import React, { useState } from "react";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import "../Forms/styles.css";
 
+// FormAuthenticate Component
 const FormAuthenticate = () => {
+  // Set state
   const [form, setform] = useState(true);
-  // console.log(setform);
 
+  // Set the variables
   const login = "Login";
   const signup = "Sign Up";
 
@@ -23,6 +26,7 @@ const FormAuthenticate = () => {
     formText = noAcc;
     formButton = signup;
   }
+  // Return if login, or signup page
   return (
     <div>
       <div>
@@ -42,4 +46,5 @@ const FormAuthenticate = () => {
   );
 };
 
+// Export the component
 export default FormAuthenticate;

@@ -1,3 +1,4 @@
+// Import all the react goodness
 import React, { useRef, useState, useEffect, useCallback, useContext } from "react";
 import ReactMapGL, {
   Marker,
@@ -71,27 +72,13 @@ const Map = () => {
       console.log(error);
     }
   };
-  // const history = useHistory();
-  // const getUserData = async () => {
-  //   try {
-  //     const res = await axios.get("/api", {
-  //       headers: { "x-auth-token": localStorage.getItem("auth-token") },
-  //     });
-  //     if (!res) {
-  //       return history.push("/login");
-  //     }
-  //     console.log(res);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
+  // Use effect to get the events from the database
   useEffect(() => {
     // getUserData();
     getEvents();
   }, []);
 
-  //
   const geolocateStyle = {
     top: 0,
     right: 0,
@@ -139,6 +126,7 @@ const Map = () => {
   };
   //  delete and edit popup ==== //
 
+  // return the component
   return (
     <div className="map" id="map">
       <ToastContainer />

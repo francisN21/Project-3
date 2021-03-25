@@ -1,3 +1,4 @@
+// Test file?
 import React, { useEffect } from "react";
 
 function Pin2({ type }) {

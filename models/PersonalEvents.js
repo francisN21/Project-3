@@ -1,3 +1,4 @@
+// Personal events collection, not being used yet.
 const mongoose = require("mongoose");
 
 function isLatitude(maybeLat) {

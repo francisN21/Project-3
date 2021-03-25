@@ -8,6 +8,7 @@ function CLusterPins(props) {
     return (
         //Pins
         <svg
+            // Props are Yellow
             style={{ fill: props.color }}
             height="10"
             viewBox="0 0 24 24"

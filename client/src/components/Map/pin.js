@@ -1,3 +1,4 @@
+// Import all the react goodness
 import React, { useEffect, useState } from "react";
 import food from "./icons/watermelon-icon.png";
 import zoo from "./icons/zoo.png";
@@ -14,7 +15,7 @@ import themePark from "./icons/theme-park.png";
 import anime from "./icons/chopper.png";
 import birthday from "./icons/Birthday.png";
 import home from "./icons/home.png";
-
+// Pin for each event
 function Pin({ type }) {
   let category = type.category;
   useEffect(() => {
@@ -23,6 +24,7 @@ function Pin({ type }) {
 
   const [pin, setPin] = useState();
   const displayMarker = (category) => {
+    // Switch statement for each pin
     switch (category) {
       case (category = "anime"):
         setPin(
@@ -181,4 +183,5 @@ function Pin({ type }) {
   return <>{pin}</>;
 }
 
+// Export the pins
 export default Pin;

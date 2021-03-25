@@ -1,8 +1,9 @@
+// Import all the react goodness
 import React, { useState } from "react";
 import axios from "axios";
 
 const SignUp = () => {
-  //use onSubmit
+  //use onSubmit to set state
   const [signUpForm, setSignUpForm] = useState({
     firstName: "",
     lastName: "",
@@ -11,10 +12,12 @@ const SignUp = () => {
     password: "",
   });
 
+  // Set the change for state
   const onChange = (e) => {
     setSignUpForm({ ...signUpForm, [e.target.name]: e.target.value });
   };
 
+  // On submit for the form to send the info to the database
   const submit = async (e) => {
     e.preventDefault();
     try {
@@ -27,6 +30,7 @@ const SignUp = () => {
     }
   };
 
+  // Return the component
   return (
     <div className="signup-form">
       <h2>Sign Up</h2>
@@ -34,6 +38,7 @@ const SignUp = () => {
         <div className="form-group">
           <label>Name</label>
           <br></br>
+          {/* Input for First Name */}
           <input
             type="text"
             name="firstName"
@@ -42,6 +47,7 @@ const SignUp = () => {
             placeholder="First Name"
             onChange={onChange}
           ></input>
+          {/* Input for Last Name */}
           <input
             type="text"
             name="lastName"
@@ -53,6 +59,7 @@ const SignUp = () => {
         </div>
         <label>User Name</label>
         <br></br>
+        {/* Input for User Name */}
         <input
           type="text"
           name="username"
@@ -61,6 +68,7 @@ const SignUp = () => {
           placeholder="user name"
           onChange={onChange}
         ></input>
+        {/* Input for Email Address */}
         <div className="form-group">
           <label>Email address</label>
           <br></br>
@@ -73,6 +81,7 @@ const SignUp = () => {
             onChange={onChange}
           ></input>
         </div>
+        {/* Input for Password */}
         <div className="form-group">
           <label>Password</label>
           <br></br>
@@ -85,6 +94,7 @@ const SignUp = () => {
             onChange={onChange}
           ></input>
         </div>
+        {/* Button to submit the form */}
         <button type="submit" className="btn btn-primary signup">
           Create account
         </button>
@@ -93,4 +103,5 @@ const SignUp = () => {
   );
 };
 
+// export the component
 export default SignUp;

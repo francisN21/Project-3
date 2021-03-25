@@ -1,10 +1,9 @@
-// import axios from "axios";
+// Import all the react goodness
 import React, { useState, useContext, useEffect } from "react";
-import { Redirect, useHistory } from "react-router-dom";
-import axios from "axios";
-import "../Forms/styles.css";
+import { useHistory } from "react-router-dom";
 import { loginUser } from "../../utils/API";
 import UserContext from "../../Context/UserContext";
+import "../Forms/styles.css";
 
 // Login component
 const Login = () => {
@@ -84,4 +83,5 @@ const Login = () => {
   );
 };
 
+// Export the component
 export default Login;

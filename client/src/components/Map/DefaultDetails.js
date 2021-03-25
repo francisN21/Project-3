@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import "../../.env";
 require("dotenv").config();
 const DefaultDetails = (props) => {
   let x = props.value.location[0].longitude;
@@ -27,20 +26,16 @@ const DefaultDetails = (props) => {
           return response.json();
         })
         .then(function (data) {
-          // console.log(data);
-          // console.log(data.features[0].place_name)
-          // let address = ""
           let realAddress = data.features[0].place_name;
           console.log(realAddress);
-          // let address = data.features[0].place_name
 
           setAddress(realAddress);
         });
     } catch (error) {
       console.log(error);
     }
-    // Fetch Get request
   };
+  // Return the component
   return (
     <>
       <h3>{props.value.name || props.value.title}</h3>
@@ -56,4 +51,5 @@ const DefaultDetails = (props) => {
   );
 };
 
+// Export the component
 export default DefaultDetails;
