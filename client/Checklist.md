@@ -19,6 +19,6 @@
   -[] make events public or private
   -[] invite friends to an event -[x] Clusters -[x] Convert Long and lat to real addresses
   -[] Add password Check?
-- [x] Styling - works 90% on mobile
-- [x] DEPLOY!
+- [] Styling
+- [] DEPLOY!
 - [x] README

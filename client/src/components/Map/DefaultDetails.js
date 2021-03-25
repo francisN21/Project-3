@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import moment from "moment"
 // import "../../.env";
 require("dotenv").config();
 const DefaultDetails = (props) => {
@@ -47,7 +46,7 @@ const DefaultDetails = (props) => {
       <h3>{props.value.name || props.value.title}</h3>
       {props.value.special ? <p>{props.value.special}</p> : null}
       <p className="text-wrap">{props.value.description}</p>
-      <p>{moment(props.value.date).format('DD-MM-YYYY')}</p>
+      <p>{props.value.date}</p>
       <p className="client-address">
         <a href={address} target={"_blank"} rel="noreferrer">
           {address}
