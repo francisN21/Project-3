@@ -14,11 +14,13 @@ Gif:
 
 ## Description
 
-    Create and save events for you and your friends on a map, so you know where everything is happening and when!
+    Create and save events for you and your friends on a map, 
+    so you know where everything is happening and when!
 
 ## Technology
 
-    ReactJS, MongoDB, Mongoose, MapBoxAPI, Supercluster, React-Bootstrap, JavaScript, Node, Express, Axios, Dotenv, HTML and CSS
+    ReactJS, MongoDB, Mongoose, MapBoxAPI, Supercluster, React-Bootstrap, 
+    JavaScript, Node, Express, Axios, Dotenv, HTML and CSS
 
 ## Table of Contents
 
@@ -74,10 +76,17 @@ Gif:
 Screen Shot Walk Through:
 
 ![Eventz-1](https://user-images.githubusercontent.com/68625400/112402632-1c3d6480-8cca-11eb-82af-1dafe9a51604.png)
+
 ![Eventz-2](https://user-images.githubusercontent.com/68625400/112402634-1d6e9180-8cca-11eb-9d61-f99c345dd4e8.png)
+
 ![Eventz-3](https://user-images.githubusercontent.com/68625400/112402635-1e072800-8cca-11eb-9395-3150942b290a.png)
+
 ![Eventz-4](https://user-images.githubusercontent.com/68625400/112402639-1f385500-8cca-11eb-896c-a4bb13fe13d5.png)
+
 ![Eventz-5](https://user-images.githubusercontent.com/68625400/112402640-1fd0eb80-8cca-11eb-9720-fee469fe7770.png)
+
 ![Eventz-6](https://user-images.githubusercontent.com/68625400/112402643-21021880-8cca-11eb-9858-ca596db4d9b0.png)
+
 ![Eventz-7](https://user-images.githubusercontent.com/68625400/112402646-22334580-8cca-11eb-8d25-3e76c5556d63.png)
+
 ![Eventz-8](https://user-images.githubusercontent.com/68625400/112402648-22cbdc00-8cca-11eb-9aff-760b1ce253e9.png)
