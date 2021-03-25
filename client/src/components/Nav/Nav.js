@@ -24,7 +24,7 @@ const Navigation = () => {
             className="d-inline-block align-top"
           />{" "}
           <marquee scrollamount="1" behavior="alternate" width="90">
-            Map Eventz
+            Eventz
           </marquee>{" "}
         </Navbar.Brand>
         {/* <Navbar.Toggle
