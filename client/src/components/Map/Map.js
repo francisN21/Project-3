@@ -18,6 +18,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { Redirect, useHistory } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../../Context/UserContext"
+import 'mapbox-gl/dist/mapbox-gl.css';
+import mapboxgl from 'mapbox-gl';
+
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+
+
 require("dotenv").config();
 
 const Map = () => {
@@ -30,7 +38,7 @@ const Map = () => {
   useEffect(() => {
     console.log(userData)
     // If not logged in, send to the login page
-    if (!userData.user) {
+    if (!userData.token) {
       history.push("/login");
     }
 

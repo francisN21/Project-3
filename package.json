@@ -7,12 +7,13 @@
     "node": "14.x"
   },
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start": "node server.js && npm run client",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
+    "heroku-prebuild": "npm install",
     "heroku-postbuild": "npm run build",
     "seed": "node seeders/seed.js"
   },
@@ -45,6 +46,7 @@
     "express-session": "^1.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.19",
-    "supercluster": "^7.1.2"
+    "supercluster": "^7.1.2",
+    "worker-loader": "^3.0.8"
   }
 }

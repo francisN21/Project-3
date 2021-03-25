@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-import { createTheEvent } from "../../utils/API";
-
+const axios = require("axios");
+const API_URL = process.env.PORT || "http://localhost:5000";
 const EntryForm = ({ location, onClose }) => {
+  async function createEvent(query) {
+    try {
+      const response = await axios.post(`/api/location/`, query);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const [eventForm, setEvent] = useState({
     name: "",
     special: "",
@@ -41,7 +48,7 @@ const EntryForm = ({ location, onClose }) => {
     e.preventDefault(e);
     try {
       //   await axios.post("/api/location/", eventForm);
-      await createTheEvent(eventForm);
+      await createEvent(eventForm);
       onClose();
       success();
       //   console.log(location);

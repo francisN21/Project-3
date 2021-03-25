@@ -15,20 +15,18 @@ const Navigation = () => {
         variant="dark"
         sticky="top"
       >
-        <Link className="nav-link" to="/" >
-          <Navbar.Brand>
-            <img
-              alt="#"
-              src="./images/map.jpg"
-              width="32"
-              height="32"
-              className="d-inline-block align-top"
-            />{" "}
-            <marquee scrollamount="1" behavior="alternate" width="90">
-              Project 3
+        <Navbar.Brand href="/">
+          <img
+            alt="#"
+            src="./images/map.jpg"
+            width="32"
+            height="32"
+            className="d-inline-block align-top"
+          />{" "}
+          <marquee scrollamount="1" behavior="alternate" width="90">
+            Eventz
           </marquee>{" "}
-          </Navbar.Brand>
-        </Link>
+        </Navbar.Brand>
         {/* <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           className="navbar-button"

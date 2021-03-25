@@ -53,8 +53,8 @@ const Profile = () => {
               <h4>{userData.user?.username}</h4>
             </div>
             <div className="card-body">
-              <h5>Your Email:</h5>
-              <h6>{userData.user?.email}</h6>
+              {/* <h5>Your Email:</h5> */}
+              {/* <h6>{userData.user?.email}</h6> */}
             </div>
             < div className="card-footer" >
               <button
