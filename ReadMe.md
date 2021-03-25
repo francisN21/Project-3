@@ -2,14 +2,22 @@
 
 <img src="https://img.shields.io/badge/LICENSE-mit-green"/>
 
+https://map-events-sm.herokuapp.com/profile
+
+
+Gif Walkthrough:
+
+
 
 ## Description
 
-    Create and save events for you and your friends on a map, so you know where everything is happening and when!
+    Create and save events for you and your friends on a map, 
+        so you know where everything is happening and when!
 
 ## Technology
 
-    ReactJS, MongoDB, Mongoose, MapBoxAPI, Supercluster, React-Bootstrap, JavaScript, Node, Express, Axios, Dotenv, HTML and CSS
+    ReactJS, MongoDB, Mongoose, MapBoxAPI, Supercluster, React-Bootstrap, 
+        JavaScript, Node, Express, Axios, Dotenv, HTML and CSS
 
 ## Table of Contents
 
@@ -43,7 +51,6 @@
     This application is covered under the MIT License
 
 
-
 ## MainRepo:
 
 [Project-3](https://github.com/francisN21/Project-3)
@@ -60,3 +67,7 @@
     Edgar Pena   Email: 
 
     Lea Wilhelmer   Email: leawilhelmer@gmail.com
+    
+
+Screen Shot Walk Though:
+
