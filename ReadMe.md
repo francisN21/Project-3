@@ -10,6 +10,11 @@ Gif Walkthrough:
 ![Map Eventz Walkthrough](https://user-images.githubusercontent.com/68625400/112558208-705c4d80-8d8b-11eb-9c27-261e81be43e3.gif)
 
 
+Presentation Slides:
+
+https://docs.google.com/presentation/d/1RZ58dj8YsrYpnJ-eZ6dLhekAaEUletpIG9NGubkDGG8/edit?usp=sharing
+
+
 ## Description
 
     Create and save events for you and your friends on a map, 
