@@ -1,3 +1,4 @@
+// User Collection
 const mongoose = require("mongoose"),
   Schema = mongoose.Schema,
   bcrypt = require("bcrypt"),

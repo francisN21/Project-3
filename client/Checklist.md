@@ -6,7 +6,10 @@
 - [x] Setup Mongoose/mySQL Model(s)
 - [~] POST / Events/Log - Brandon
   - Create a new Event/ Log entry
-- [~] GET / Event/logs - Brandon -[x] List all Events! -[x] Edit event -[x] Delete Event
+- [~] GET / Event/logs - Brandon 
+-[x] List all Events! 
+-[x] Edit event 
+-[x] Delete Event
 - [x] Setup Client
 - [x] Create Form to add a new Event
 - [x] Setup Map SDK on client
@@ -17,8 +20,10 @@
 - [] more features
   -[] add friends
   -[] make events public or private
-  -[] invite friends to an event -[x] Clusters -[x] Convert Long and lat to real addresses
+  -[] invite friends to an event 
+  -[x] Clusters 
+  -[x] Convert Long and lat to real addresses
   -[] Add password Check?
-- [x] Styling - works 90% on mobile
+- [] Styling
 - [x] DEPLOY!
 - [x] README

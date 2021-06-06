@@ -1,19 +1,20 @@
+// Saved collection for saving new events!
 const mongoose = require("mongoose");
-
+// Check the latitude
 function isLatitude(maybeLat) {
   var latF = parseFloat(maybeLat);
   if (isNaN(latF)) return false;
   return latF >= -90 && latF <= 90;
 }
-
+// Check the longitude 
 function isLongitude(maybeLon) {
   var lonF = parseFloat(maybeLon);
   if (isNaN(lonF)) return false;
   return lonF >= -180 && lonF <= 180;
 }
-
+// Set up schema
 const Schema = mongoose.Schema;
-
+// Saved Schema for each event
 const SavedSchema = new Schema({
   name: {
     type: String,
@@ -54,11 +55,12 @@ const SavedSchema = new Schema({
     min: "2021-01-28",
     max: "2023-05-23",
   },
+  // Author Id for each users events
   authorID: {
     type: String,
   },
 });
 
 const Saved = mongoose.model("Saved", SavedSchema);
-
+// Export it all!
 module.exports = Saved;

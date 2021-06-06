@@ -1,13 +1,10 @@
+// Require all the necessary packages
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 const router = require("express").Router();
 const db = require("../models");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
-
-router.get("/test", (req, res) => {
-  res.send({ msg: "success" });
-});
 
 //Route to get /events to get all the saved events
 router.get("/location", (req, res) => {
@@ -67,56 +64,25 @@ router.get("/user", function (req, res) {
 //     });
 // });
 
-// router.post("/login", function (req, res) {
-//   console.log(req.body.password, "apiRoutes line 69");
-//   db.User.find({})
-//     .then(function (dbUsers) {
-//       // console.log(dbUsers);
-//       const dbUser = dbUsers.find((user) => user.email === req.body.email);
-//       console.log(dbUser, "from apiRoutes.js  74");
-//       console.log(req.body.password, dbUser.password, "line 75");
-//       bcrypt.compare(req.body.password, dbUser.password).then((isEqual) => {
-//         req.session.isLoggedIn = isEqual;
-//         req.session.user = dbUser;
-//         return req.session.save((err) => {
-//           if (err) throw err;
-//           res.json(dbUser);
-//         });
-//       });
-//     })
-//     .catch(function (err) {
-//       console.log(err);
-//       // If an error occurred, send it to the client
-//     });
-// });
-
 //route for getting login data that has been stored
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-
     if (!email || !password) {
       return res.status(400).json({ msg: "Not everything has been filled" });
     }
-
     const user = await db.User.findOne({ email: email });
-
     console.log("user:", user);
-
     if (!user) {
       return res.status(400).json({ msg: "no user found" });
     }
-
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch) {
       return res.status(400).json({ msg: "password is incorrect" });
     }
-
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "24h",
     });
-
     res.json({ token, user: { id: user._id, username: user.username } });
   } catch (err) {
     console.log(err);
@@ -124,6 +90,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Post route to update an event
 router.post("/location/update/", function (req, res) {
   console.log(req.body);
   db.Saved.updateOne({ title: req.body.name }, { $set: req.body.query })
@@ -136,6 +103,7 @@ router.post("/location/update/", function (req, res) {
     });
 });
 
+// Post route to update a user
 router.post("/user/update/", function (req, res) {
   console.log(req.body);
   db.User.updateOne({ username: req.body.name }, { $set: req.body.query })
@@ -148,6 +116,7 @@ router.post("/user/update/", function (req, res) {
     });
 });
 
+// Another Post route to update an event?
 router.post("/user/update/", function (req, res) {
   console.log(req.body);
   db.User.updateOne({ username: req.body.name }, { $set: req.body.query })
@@ -160,10 +129,10 @@ router.post("/user/update/", function (req, res) {
       console.log(err);
     });
 });
+
 // DELETE /events/:id by id for deleting an event from the database
 router.delete("/location/:id", (req, res) => {
   // console.log(req.params.id)
-  // Using the LogEvent Database in the Events Models File
   db.Saved.deleteOne({ _id: req.params.id })
     .then((dbLogEvent) => {
       console.log("event deleted"), res.json(dbLogEvent);
@@ -174,7 +143,7 @@ router.delete("/location/:id", (req, res) => {
     });
 });
 
-// SEAN'S TEST POST ROUTE FOR WHEN NO USER ID
+// TEST POST ROUTE FOR WHEN NO USER ID
 // Route for creating a new Event
 router.post("/location/", (req, res) => {
   // Set event to a new variable
@@ -195,10 +164,6 @@ router.post("/location/", (req, res) => {
 
 // PUT route for updating Event
 router.put("/location/:id", (req, res) => {
-  // console.log(req.params.id)
-  // console.log(req.body)
-  // console.log(req.body.location[0].latitude)
-
   // Update One by the ID
   db.Saved.updateOne(
     { _id: req.params.id },
@@ -223,11 +188,7 @@ router.put("/location/:id", (req, res) => {
     });
 });
 
-// router.get("/", auth, (req, res) => {
-//   console.log(req.user);
-//   res.send("success");
-// });
-
+// Get route for authenticaion
 router.get("/login", auth, (req, res) => {
   try {
     const user = db.User.findById(req.user)
@@ -235,10 +196,10 @@ router.get("/login", auth, (req, res) => {
       username: user.username,
       id: user._id
     })
+    // Gotat catch them errors
   } catch (err) {
     res.send(err.response)
   }
-
 })
 
 // DELETE /User/:id by id for deleting a user from the database
@@ -255,5 +216,5 @@ router.delete("/user/:id", (req, res) => {
     });
 });
 
-
+// Export all the routes
 module.exports = router;

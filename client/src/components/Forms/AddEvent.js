@@ -112,5 +112,5 @@ const AddEvent = () => {
         </div>
     )
 }
-
+// Export the component
 export default AddEvent

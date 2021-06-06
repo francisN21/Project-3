@@ -1,9 +1,7 @@
-// import axios from "axios";
-
-// const API_URL = process.env.PORT || "http://localhost:5000";
+// Require axios for the api calls
 const axios = require("axios");
 
-// will be added soon once I have server working
+// Export the list events function that gets the events from the database
 export async function listEvents() {
   try {
     const response = await fetch(`/api/location`);
@@ -12,6 +10,7 @@ export async function listEvents() {
     console.log(error);
   }
 }
+// Export the create events function that lets user create an event
 export async function createEvent(query) {
   try {
     const response = await axios.post(`/api/location/`, query);
@@ -19,7 +18,7 @@ export async function createEvent(query) {
     console.log(error);
   }
 }
-
+// Function to delete the event from the database
 export async function deleteEvent(query) {
   try {
     const response = await axios.delete(`/api/location/${query}`);
@@ -27,7 +26,7 @@ export async function deleteEvent(query) {
     console.log(error);
   }
 }
-
+// Function to update the event, yeay CRUD functionality!
 export async function updateEvent(query) {
   try {
     const response = await axios.put(
@@ -39,7 +38,7 @@ export async function updateEvent(query) {
     console.log(error);
   }
 }
-
+// Function to get the user to log in
 export async function fetchUser() {
   try {
     const response = await fetch(`/api/user`);
@@ -48,32 +47,11 @@ export async function fetchUser() {
     console.log(error);
   }
 }
-//How to call update:
-//  var query = {
-// You can change description to any parameter you want to update, or include an array of multiple params
-//  username: "Ferris Wheel",
-//  query: { description: "Does this work?" },
-//};
-//updateEvent(query);
-// export async function updateUser(query) {
-//   console.log(query);
-//   axios.post(`/api/user/update`, query);
-//   const response = await fetch(`/api/user/update`, {
-//     method: "POST",
-//     body: JSON.stringify(query),
-//   });
-//   return response.json();
-// }
-//How to call update:
-//  var query = {
-// You can change description to any parameter you want to update, or include an array of multiple params
-//  username: "Ferris Wheel",
-//  query: { description: "Does this work?" },
-//};
-//updateEvent(query);
+
+// Function to update the user on the database, (not used yet)
 export async function updateUser(query) {
   try {
-    console.log(query);
+    // console.log(query);
     axios.post(`/api/user/update`, query);
     const response = await fetch(`/api/user/update`, {
       method: "POST",
@@ -85,22 +63,15 @@ export async function updateUser(query) {
   }
 }
 
+// Function to log in the user via post
 export async function loginUser(login) {
-  console.log(login, "from API JS");
+  // console.log(login, "from API JS");
   return axios.post(`/api/login`, login);
-  // const response = await fetch(`/api/login`, {
-  //   method: "POST",
-  //   body: JSON.stringify(login),
-  // });
-  // return response.json();
 }
 
+// Function to log in the user via get
 export async function loginInfo(login) {
-  console.log(login, "from API JS");
+  // console.log(login, "from API JS");
   return axios.get(`/api/login`, login);
-  // const response = await fetch(`/api/login`, {
-  //   method: "POST",
-  //   body: JSON.stringify(login),
-  // });
-  // return response.json();
+
 }

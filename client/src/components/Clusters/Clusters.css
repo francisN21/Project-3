@@ -1,4 +1,4 @@
-/* Set cluster markers for if LESS then 10 events */
+/* Set cluster markers for if LESS then 10 events  */
 .cluster-marker {
     color: black;
     background: rgb(21, 238, 238);
@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
 }
-/* Set cluster markers for if MORE then 10 events */
+/* Set cluster markers for if MORE then 10 events  */
 .cluster-large {
     color: black;
     background: rgb(250, 5, 217);

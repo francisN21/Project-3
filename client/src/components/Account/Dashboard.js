@@ -79,5 +79,5 @@ const Dashboard = () => {
     </div >
   );
 };
-
+// Export the component
 export default Dashboard;

@@ -1,3 +1,4 @@
+// Import all the react goodness
 import React, { useState } from "react";
 import { deleteEvent } from "../../utils/API";
 import DefaultDetails from "./DefaultDetails";
@@ -58,24 +59,22 @@ const Details = ({ value, onClose }) => {
           <input type="text" name="special" onChange={onChange} />
           <label htmlFor="category">Select Category: </label>
           <select name="category" id="category" onChange={onChange}>
-          <option value="n/a">Please Select one</option>
-        <option value="anime">Anime</option>
-        <option value="beach">Beach</option>
-        <option value="birthday">Birthday</option>
-        <option value="car">Car</option>
-        <option value="default">Default</option>
-        <option value="disco">Disco</option>
-        <option value="drinks">Drinks</option>
-        <option value="food">Food</option>
-        <option value="games">Games</option>
-        <option value="general">General</option>
-        <option value="home">Home</option>
-        <option value="karaoke">Karaoke</option>
-        <option value="outdoor">Outdoor</option>
-        <option value="park">Park</option>
-        <option value="party">Party</option>
-        <option value="theme-park">Theme Park</option>
-        <option value="zoo">Zoo</option>
+            <option value="n/a">Please Select one</option>
+            <option value="beach">Beach</option>
+            <option value="car">Car</option>
+            <option value="default">Default</option>
+            <option value="disco">Disco</option>
+            <option value="drinks">Drinks</option>
+            <option value="food">Food</option>
+            <option value="games">Games</option>
+            <option value="general">General</option>
+            <option value="home">Home</option>
+            <option value="karaoke">Karaoke</option>
+            <option value="outdoor">Outdoor</option>
+            <option value="park">Park</option>
+            <option value="party">Party</option>
+            <option value="theme-park">Theme Park</option>
+            <option value="zoo">Zoo</option>
           </select>
           <label htmlFor="description">Description: </label>
           <textarea

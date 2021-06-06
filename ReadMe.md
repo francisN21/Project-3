@@ -1,26 +1,29 @@
-# Map Eventz 
+# Map Events 
 
 <img src="https://img.shields.io/badge/LICENSE-mit-green"/>
-
 
 https://map-events-sm.herokuapp.com/profile
 
 
-Gif:
+Gif Walkthrough:
 
-![Map-Eventz](https://user-images.githubusercontent.com/68625400/112402829-79391a80-8cca-11eb-8502-140480727f8b.gif)
+![Map Eventz Walkthrough](https://user-images.githubusercontent.com/68625400/112558208-705c4d80-8d8b-11eb-9c27-261e81be43e3.gif)
 
+
+Presentation Slides:
+
+https://docs.google.com/presentation/d/1RZ58dj8YsrYpnJ-eZ6dLhekAaEUletpIG9NGubkDGG8/edit?usp=sharing
 
 
 ## Description
 
     Create and save events for you and your friends on a map, 
-    so you know where everything is happening and when!
+        so you know where everything is happening and when!
 
 ## Technology
 
     ReactJS, MongoDB, Mongoose, MapBoxAPI, Supercluster, React-Bootstrap, 
-    JavaScript, Node, Express, Axios, Dotenv, HTML and CSS
+        JavaScript, Node, Express, Axios, Dotenv, HTML and CSS
 
 ## Table of Contents
 
@@ -54,7 +57,6 @@ Gif:
     This application is covered under the MIT License
 
 
-
 ## MainRepo:
 
 [Project-3](https://github.com/francisN21/Project-3)
@@ -73,20 +75,21 @@ Gif:
     Lea Wilhelmer   Email: leawilhelmer@gmail.com
     
 
-Screen Shot Walk Through:
+Screen Shot Walk Though:
 
-![Eventz-1](https://user-images.githubusercontent.com/68625400/112402632-1c3d6480-8cca-11eb-82af-1dafe9a51604.png)
+![Eventz-1](https://user-images.githubusercontent.com/68625400/112557719-55d5a480-8d8a-11eb-9f74-ad152d6d0402.png)
 
-![Eventz-2](https://user-images.githubusercontent.com/68625400/112402634-1d6e9180-8cca-11eb-9d61-f99c345dd4e8.png)
+![Eventz-2](https://user-images.githubusercontent.com/68625400/112557722-59692b80-8d8a-11eb-8e84-583da42dcf73.png)
 
-![Eventz-3](https://user-images.githubusercontent.com/68625400/112402635-1e072800-8cca-11eb-9395-3150942b290a.png)
+![Eventz-3](https://user-images.githubusercontent.com/68625400/112557724-5a01c200-8d8a-11eb-90bd-636fb0e4197c.png)
 
-![Eventz-4](https://user-images.githubusercontent.com/68625400/112402639-1f385500-8cca-11eb-896c-a4bb13fe13d5.png)
+![Eventz-4](https://user-images.githubusercontent.com/68625400/112557727-5a9a5880-8d8a-11eb-8efc-199337b6d140.png)
 
-![Eventz-5](https://user-images.githubusercontent.com/68625400/112402640-1fd0eb80-8cca-11eb-9720-fee469fe7770.png)
+![Eventz-5](https://user-images.githubusercontent.com/68625400/112557728-5b32ef00-8d8a-11eb-824a-7bf889e600d3.png)
 
-![Eventz-6](https://user-images.githubusercontent.com/68625400/112402643-21021880-8cca-11eb-9858-ca596db4d9b0.png)
+![Eventz-6](https://user-images.githubusercontent.com/68625400/112557729-5bcb8580-8d8a-11eb-8f90-603db2099331.png)
 
-![Eventz-7](https://user-images.githubusercontent.com/68625400/112402646-22334580-8cca-11eb-8d25-3e76c5556d63.png)
+![Eventz-7](https://user-images.githubusercontent.com/68625400/112557730-5c641c00-8d8a-11eb-8ed5-81d8f5ad8717.png)
 
-![Eventz-8](https://user-images.githubusercontent.com/68625400/112402648-22cbdc00-8cca-11eb-9aff-760b1ce253e9.png)
+![Eventz-8](https://user-images.githubusercontent.com/68625400/112557734-5cfcb280-8d8a-11eb-91cf-78d4ab12e412.png)
+

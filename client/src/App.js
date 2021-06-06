@@ -1,3 +1,4 @@
+// Import all the react goodness
 import React, { useEffect, useState } from "react";
 import Nav from "./components/Nav/Nav";
 import Map from "./components/Map/Map";
@@ -6,16 +7,11 @@ import Dashboard from "./components/Account/Dashboard";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import FormAuthentication from "./components/Forms/FormAuthenticate";
 import UserContext from "./Context/UserContext"
-
-// import SignUp from "./components/Forms/SignUp";
-// import axios from "axios";
 import EditEvent from "./components/Account/EditEvent";
 import Clusters from "./components/Clusters/Clusters";
 import axios from "axios";
 
-// eslint-disable-next-line import/no-webpack-loader-syntax
-// import mapboxgl from "mapbox-gl/dist/mapbox-gl";
-// mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+// Function to display all the react data
 function App() {
   // Set state for authentication using UserData
   const [userData, setUserData] = useState({
@@ -53,6 +49,7 @@ function App() {
     checkLoggedIn()
   }, [])
 
+  // Return everything!
   return (
     <div className="App">
       <BrowserRouter>

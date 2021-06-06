@@ -1,3 +1,4 @@
+// Import all the react goodness
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -87,8 +88,8 @@ const EntryForm = ({ location, onClose }) => {
       </select>
       <label htmlFor="description">Description: </label>
       <textarea type="text" name="description" onChange={onChange}></textarea>
-      {/* <label htmlFor="time">Time: </label>
-      <input type="time" name="time" onChange={onChange} /> */}
+      <label htmlFor="time">Time: </label>
+      <input type="time" name="time" onChange={onChange} />
       {/* <label htmlFor="private">Private: </label>
       <input type="checkbox" name="private" value="true" onChange={onChange} /> */}
       <label htmlFor="date">Date: </label>
